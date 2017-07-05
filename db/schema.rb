@@ -10,10 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170705181613) do
+ActiveRecord::Schema.define(version: 20170705184600) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "episodes", force: :cascade do |t|
+    t.integer "podcast_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "media"
+  end
 
   create_table "podcasts", force: :cascade do |t|
     t.string "origin_id", null: false
@@ -22,4 +29,5 @@ ActiveRecord::Schema.define(version: 20170705181613) do
     t.index ["origin_id"], name: "index_podcasts_on_origin_id", unique: true
   end
 
+  add_foreign_key "episodes", "podcasts"
 end
