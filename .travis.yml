@@ -6,6 +6,7 @@ services:
   - docker
 
 before_install:
+  - echo $TRAVIS_BRANCH
   - docker build -t current .
 
 script:
