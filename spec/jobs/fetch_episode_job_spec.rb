@@ -8,7 +8,7 @@ RSpec.describe FetchEpisodeJob, type: :job do
   let(:job) { FetchEpisodeJob.new }
   let(:podcast) { FactoryGirl.create :podcast }
   let(:youtube_video_id) { 'AAbbCC123' }
-  let(:fetcher) { double(:fetcher, fetch_audio: '/some/path')}
+  let(:fetcher) { double(:fetcher, fetch_audio: Rails.root.join('spec', 'fixtures', 'audio.mp3'))}
 
   it 'should save media' do
     expect do
@@ -24,7 +24,7 @@ RSpec.describe FetchEpisodeJob, type: :job do
 
     it 'should have media' do
       expect(subject.media).to be_present
+      expect(subject.media.url).to include '.mp3'
     end
   end
-
 end
