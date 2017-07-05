@@ -5,3 +5,6 @@ COPY Gemfile* ./
 RUN bundle install
 COPY . ./
 
+COPY docker-entrypoint.sh /usr/local/bin/
+ENTRYPOINT ["docker-entrypoint.sh"]
+CMD ["web"]

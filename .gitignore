@@ -14,5 +14,3 @@
 !/tmp/.keep
 
 .byebug_history
-.env.test
-.env.development
