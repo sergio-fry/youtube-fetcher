@@ -11,6 +11,8 @@ RSpec.describe ChannelsController, type: :controller do
 
     data = Hash.from_xml response.body
 
+    expect(data['feed']['entry'].size).to eq 10
+
     entry = data['feed']['entry'][0]
     expect(entry).to be_present
 
