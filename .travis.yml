@@ -11,8 +11,8 @@ before_install:
 script:
   - docker run --rm -i -t current test
 
-  - if [ "$TRAVIS_TAG" != "" ]; then
-      docker login -u $DOCKER_HUB_USER -p $DOCKER_HUB_PASSWORD
-      docker build -t udalov/youtube-fetcher:$TRAVIS_TAG .
-      docker push udalov/youtube-fetcher:$TRAVIS_TAG
+  - if [ "$TRAVIS_COMMIT" != "" ]; then
+      docker login -u $DOCKER_HUB_USER -p $DOCKER_HUB_PASSWORD ;
+      docker build -t udalov/youtube-fetcher:$TRAVIS_COMMIT . ;
+      docker push udalov/youtube-fetcher:$TRAVIS_COMMIT ;
     fi
