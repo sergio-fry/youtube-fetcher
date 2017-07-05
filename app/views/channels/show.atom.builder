@@ -1,7 +1,9 @@
 atom_feed do |feed|
   feed.title @channel.title
 
-  @channel.videos.where(order: 'date').take(10).each do |video|
+  feed.updated @videos.first.published_at if @videos.present?
+
+  @videos.each do |video|
     feed.entry video, url: "https://www.youtube.com/watch?v=#{video.id}" do |entry|
       entry.author do |author|
         author.name @channel.title
