@@ -2,10 +2,15 @@ require 'rails_helper'
 
 RSpec.describe ChannelsController, type: :controller do
   render_views
-  it 'should fetch channel' do
+
+  def make_request
     VCR.use_cassette :fetch_channel do
       get :show, params: { id: 'UCX0nHcqZWDSsAPog-LXdP7A' }, format: :atom
     end
+  end
+
+  it 'should fetch channel' do
+    make_request
 
     expect(response).to be_success
 
@@ -21,4 +26,6 @@ RSpec.describe ChannelsController, type: :controller do
 
     expect(audio['href']).to include 'mp3'
   end
+
+  it { expect { make_request }.to change { Podcast.count }.by(1) }
 end
