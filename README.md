@@ -9,5 +9,5 @@ This README would normally document whatever steps are necessary to get the
 ## Run
 
 ```bash
-$ docker run -p "8647:80" --name yt-fetcher youtube-fetcher
+$ docker run -p "8647:80" --name yt-fetcher udalov/youtube-fetcher
 ```
