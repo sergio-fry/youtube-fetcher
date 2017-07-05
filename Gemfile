@@ -31,6 +31,7 @@ group :development, :test do
   gem 'selenium-webdriver'
   gem 'rspec-rails'
   gem 'dotenv-rails'
+  gem 'factory_girl_rails'
 end
 
 group :development do
@@ -49,4 +50,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 group :test do
   gem 'vcr'
   gem 'webmock'
+  gem 'database_cleaner'
 end
