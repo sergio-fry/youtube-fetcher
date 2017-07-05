@@ -1,8 +1,12 @@
 atom_feed do |feed|
   feed.title @channel.title
 
-  @channel.videos.each do |video|
+  @channel.videos.where(order: 'date').take(10).each do |video|
     feed.entry video, url: "https://www.youtube.com/watch?v=#{video.id}" do |entry|
+      entry.author do |author|
+        author.name @channel.title
+      end
+      entry.updated video.published_at.rfc3339
       entry.title video.title
       entry.content video.description, type: 'html'
 
