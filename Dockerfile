@@ -1,5 +1,7 @@
 FROM ruby:2.4.1
 
+RUN apt update && apt install -y youtube-dl
+
 WORKDIR /app 
 COPY Gemfile* ./
 RUN bundle install
