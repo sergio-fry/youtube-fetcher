@@ -6,13 +6,10 @@ services:
   - docker
 
 before_install:
-  - docker build -t udalov/youtube-fetcher:$TRAVIS_COMMIT .
-  - docker login -u $DOCKER_HUB_USER -p $DOCKER_HUB_PASSWORD hub.docker.com
+  - docker build -t current .
 
 script:
-  - docker run --rm -i -t udalov/youtube-fetcher:$TRAVIS_COMMIT test
-
-  - docker push udalov/youtube-fetcher:$TRAVIS_COMMIT
+  - docker run --rm -i -t current test
 
 deploy:
   provider: script
@@ -20,6 +17,7 @@ deploy:
     tags: true
     all_branches: true
   script:
+    - docker login -u $DOCKER_HUB_USER -p $DOCKER_HUB_PASSWORD hub.docker.com
     - docker build -t udalov/youtube-fetcher:$TRAVIS_TAG .
     - docker push udalov/youtube-fetcher:$TRAVIS_TAG
 
