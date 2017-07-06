@@ -6,9 +6,6 @@ class MediaController < ApplicationController
   private
 
   def fetch_audio(id)
-    cmd = "youtube-dl --extract-audio --audio-format mp3 --audio-quality 7 -o '#{Rails.root.join('tmp', 'youtube', '%(id)s.%(ext)s')}' https://www.youtube.com/watch?v=#{id}"
-    Rails.logger.info cmd
-    `#{cmd}`
-    Rails.root.join('tmp', 'youtube', "#{id}.mp3")
+    Episode.find_by(origin_id: id).media.path
   end
 end
