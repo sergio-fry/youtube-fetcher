@@ -12,7 +12,7 @@ class ChannelsController < ApplicationController
 
   def schedule_episodes_fetching
     # TODO: update period
-    @channel.videos.where(order: 'date').take(10).each do |video|
+    @channel.videos.where(order: 'date').take(10).reverse.each do |video|
       FetchEpisodeJob.perform_later @podcast, video.id
     end
   end
