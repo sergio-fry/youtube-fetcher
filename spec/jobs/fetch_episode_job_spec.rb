@@ -2,12 +2,14 @@ require 'rails_helper'
 
 RSpec.describe FetchEpisodeJob, type: :job do
   def perform_job
-    job.perform(podcast, youtube_video_id, fetcher)
+    VCR.use_cassette :fetch_video do
+      job.perform(podcast, youtube_video_id, fetcher)
+    end
   end
 
   let(:job) { FetchEpisodeJob.new }
   let(:podcast) { FactoryGirl.create :podcast }
-  let(:youtube_video_id) { 'AAbbCC123' }
+  let(:youtube_video_id) { 'fdpdN6K6ntY' }
   let(:fetcher) { double(:fetcher, fetch_audio: Rails.root.join('spec', 'fixtures', 'audio.mp3'))}
 
   it 'should save media' do
@@ -25,6 +27,11 @@ RSpec.describe FetchEpisodeJob, type: :job do
     it 'should have media' do
       expect(subject.media).to be_present
       expect(subject.media.url).to include '.mp3'
+      expect(File.exists?(subject.media.path)).to eq true
     end
+
+    its(:title) { is_expected.to eq 'Порошенко и дети' }
+    its(:published_at) { is_expected.to be_a Time }
+    its(:origin_id) { is_expected.to eq youtube_video_id }
   end
 end

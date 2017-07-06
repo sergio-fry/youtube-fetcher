@@ -11,6 +11,20 @@ class FetchEpisodeJob < ApplicationJob
   end
 
   def perform(podcast, youtube_video_id, fetcher=Fetcher.new)
-    podcast.episodes.create(media: File.open(fetcher.fetch_audio(youtube_video_id)))
+    return if podcast.episodes.exists?(origin_id: youtube_video_id)
+
+    @youtube_video_id = youtube_video_id
+    podcast.episodes.create(
+      origin_id: youtube_video_id,
+      media: File.open(fetcher.fetch_audio(youtube_video_id)),
+      title: video.title,
+      published_at: video.published_at
+    )
+  end
+
+  private
+
+  def video
+    @video ||= Yt::Video.new id: @youtube_video_id
   end
 end
