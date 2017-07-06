@@ -1,0 +1,9 @@
+web:
+  build: .
+  links:
+    - db
+  environment:
+    - DATABASE_URL=postgresql://postgres:postgres@db/yt_fetcher_test
+ 
+db:
+  image: postgres:9.4.5

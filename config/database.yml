@@ -3,14 +3,14 @@ default: &default
   pool: 5
 
 development:
-  url: postgresql://postgres:postgres@0.0.0.0/yt_fetcher_dev
+  url: <%= ENV.fetch('DATABASE_URL', 'postgresql://postgres:postgres@0.0.0.0/yt_fetcher_dev') %>
   <<: *default
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
-  url: postgresql://postgres:postgres@0.0.0.0/yt_fetcher_test
+  url: <%= ENV.fetch('DATABASE_URL', 'postgresql://postgres:postgres@0.0.0.0/yt_fetcher_test') %>
   <<: *default
 
 production:

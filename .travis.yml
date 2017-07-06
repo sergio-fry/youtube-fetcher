@@ -1,16 +1,21 @@
 sudo: required
 
-#language: ruby
+language: c
+
+env:
+  - DOCKER_COMPOSE_VERSION=1.11.2
 
 services:
   - docker
 
 before_install:
-  - docker build -t current .
+  - sudo rm /usr/local/bin/docker-compose
+  - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
+  - chmod +x docker-compose
+  - sudo mv docker-compose /usr/local/bin
 
 script:
-  - docker run -d -p 5432:5432 postgres:9.4.5
-  - docker run --rm -i -t current test
+  - docker-compose run --rm web test
 
   - if [ "$TRAVIS_TAG" != "" ]; then
       docker login -u $DOCKER_HUB_USER -p $DOCKER_HUB_PASSWORD ;
