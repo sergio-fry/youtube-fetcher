@@ -9,6 +9,7 @@ before_install:
   - docker build -t current .
 
 script:
+  - docker run -d -p 5432:5432 postgres:9.4.5
   - docker run --rm -i -t current test
 
   - if [ "$TRAVIS_TAG" != "" ]; then
