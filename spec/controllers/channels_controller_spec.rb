@@ -11,7 +11,7 @@ RSpec.describe ChannelsController, type: :controller do
 
   let(:youtube_channel_id) { 'UCX0nHcqZWDSsAPog-LXdP7A' }
 
-  let(:podcast) { FactoryGirl.create :podcast, origin_id: youtube_channel_id }
+  let(:podcast) { FactoryGirl.create :podcast, origin_id: youtube_channel_id, updated_at: 1.day.ago }
   before do
     20.times do
       FactoryGirl.create :episode, podcast: podcast

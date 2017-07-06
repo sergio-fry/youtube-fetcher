@@ -11,7 +11,7 @@ class ChannelsController < ApplicationController
   private
 
   def schedule_episodes_fetching
-    # TODO: update period
+    return if @podcast.updated_at > 10.minutes.ago
     @channel.videos.where(order: 'date').take(10).reverse.each do |video|
       FetchEpisodeJob.perform_later @podcast, video.id
     end

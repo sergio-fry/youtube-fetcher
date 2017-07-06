@@ -8,7 +8,7 @@ RSpec.describe FetchEpisodeJob, type: :job do
   end
 
   let(:job) { FetchEpisodeJob.new }
-  let(:podcast) { FactoryGirl.create :podcast }
+  let(:podcast) { FactoryGirl.create :podcast, updated_at: 1.day.ago}
   let(:youtube_video_id) { 'fdpdN6K6ntY' }
   let(:fetcher) { double(:fetcher, fetch_audio: Rails.root.join('spec', 'fixtures', 'audio.mp3'))}
 
@@ -16,6 +16,12 @@ RSpec.describe FetchEpisodeJob, type: :job do
     expect do
       perform_job
     end.to change { podcast.episodes.count }.by(1)
+  end
+
+  it 'should update updated_at field' do
+    expect do
+      perform_job
+    end.to change { podcast.updated_at }
   end
 
   describe 'new episode' do
@@ -33,5 +39,6 @@ RSpec.describe FetchEpisodeJob, type: :job do
     its(:title) { is_expected.to eq 'Порошенко и дети' }
     its(:published_at) { is_expected.to be_a Time }
     its(:origin_id) { is_expected.to eq youtube_video_id }
+    its(:size) { is_expected.to eq 4212645 }
   end
 end

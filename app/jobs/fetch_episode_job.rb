@@ -20,6 +20,8 @@ class FetchEpisodeJob < ApplicationJob
       title: video.title,
       published_at: video.published_at
     )
+
+    podcast.touch
   end
 
   private
