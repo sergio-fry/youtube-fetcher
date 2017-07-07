@@ -4,6 +4,7 @@ VCR.configure do |c|
   c.cassette_library_dir = 'spec/cassettes'
   c.hook_into :webmock
   c.configure_rspec_metadata!
+  c.ignore_hosts 'aws'
 end
 
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
