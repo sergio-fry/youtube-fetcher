@@ -25,5 +25,9 @@ module YoutubeFetcher
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
     ActiveJob::Base.queue_adapter = :sucker_punch
+    ActiveJob::QueueAdapters::SuckerPunchAdapter::JobWrapper.class_eval do
+      workers 1
+
+    end
   end
 end

@@ -2,8 +2,20 @@ web:
   build: .
   links:
     - db
+    - aws
   environment:
     - DATABASE_URL=postgresql://postgres:postgres@db/yt_fetcher_test
  
 db:
   image: postgres:9.4.5
+
+aws:
+  image: minio/minio:RELEASE.2017-06-13T19-01-01Z
+  ports:
+    - "9000:9000"
+
+   #environment:
+   #  - MINIO_ACCESS_KEY='N16HUTQLQQPC0RC6K'
+   #  - MINIO_SECRET_KEY='4Keb1h0SC+OehqxLtuEXUuKiPNCXfSwWh9oE8ggu'
+
+  command: ["server", "/export"]
