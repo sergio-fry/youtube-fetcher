@@ -1,0 +1,19 @@
+test:
+  build: .
+  ports:
+    - "3000:80"
+  links:
+    - db
+    - aws
+  environment:
+    - DATABASE_URL=postgresql://postgres:postgres@db/yt_fetcher_test
+
+    - AWS_ACCESS_KEY_ID=N16HUTQLQQPC0RC6K
+    - AWS_SECRET_ACCESS_KEY=4Keb1h0SC+OehqxLtuEXUuKiPNCXfSwWh9oE8ggu
+    - S3_BUCKET_NAME=youtube-podcasts-test
+    - S3_REGION=us-east-1
+
+  command: ["test"]
+  
+
+

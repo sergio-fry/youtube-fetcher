@@ -1,40 +1,3 @@
-web:
-  build: .
-  ports:
-    - "3000:80"
-  links:
-    - db
-    - aws
-  environment:
-    - DATABASE_URL=postgresql://postgres:postgres@db/yt_fetcher
-
-    - AWS_ACCESS_KEY_ID=N16HUTQLQQPC0RC6K
-    - AWS_SECRET_ACCESS_KEY=4Keb1h0SC+OehqxLtuEXUuKiPNCXfSwWh9oE8ggu
-    - S3_BUCKET_NAME=youtube-podcasts
-    - S3_REGION=us-east-1
-    - S3_HOST=aws
-    - S3_ENDPOINT=http://aws:9000
-
-test:
-  build: .
-  links:
-    - db
-    - aws
-
-  volumes:
-    - ./:/app
-  environment:
-    - DATABASE_URL=postgresql://postgres:postgres@db/yt_fetcher_test
-
-    - AWS_ACCESS_KEY_ID=N16HUTQLQQPC0RC6K
-    - AWS_SECRET_ACCESS_KEY=4Keb1h0SC+OehqxLtuEXUuKiPNCXfSwWh9oE8ggu
-    - S3_BUCKET_NAME=youtube-podcasts-test
-    - S3_REGION=us-east-1
-    - S3_HOST=aws
-    - S3_ENDPOINT=http://aws:9000
-
-  command: ["test"]
- 
 db:
   image: postgres:9.4.5
 
@@ -42,38 +5,11 @@ aws:
   image: minio/minio:RELEASE.2017-06-13T19-01-01Z
   ports:
     - "9000:9000"
+  volumes:
+    - "./tmp/minio:/data"
 
   environment:
     - MINIO_ACCESS_KEY=N16HUTQLQQPC0RC6K
     - MINIO_SECRET_KEY=4Keb1h0SC+OehqxLtuEXUuKiPNCXfSwWh9oE8ggu
 
-  command: ["server", "/export"]
-
-
-aws-client:
-  image: minio/mc
-  volumes:
-    - "./.mc:/root/.mc"
-
-
-
-createbucket:
-  image: garland/aws-cli-docker
-  links:
-    - aws
-  command: >
-    /bin/sh -c "
-      while ! wget -q -s http://aws:9000/aws/login; do sleep 1; done;
-      aws configure set default.s3.signature_version s3v4;
-      aws configure set default.region us-east-1;
-      aws s3api create-bucket \
-        --bucket youtube-podcasts \
-        --endpoint-url=http://aws:9000;
-      aws s3api create-bucket \
-        --bucket youtube-podcasts-test \
-        --endpoint-url=http://aws:9000;
-      exit 0;
-    "
-  environment:
-    - AWS_ACCESS_KEY_ID=N16HUTQLQQPC0RC6K
-    - AWS_SECRET_ACCESS_KEY=4Keb1h0SC+OehqxLtuEXUuKiPNCXfSwWh9oE8ggu
+  command: ["server", "/data"]

@@ -2,7 +2,7 @@
 	"version": "8",
 	"hosts": {
 		"aws": {
-			"url": "http://aws",
+			"url": "http://aws:9000",
 			"accessKey": "N16HUTQLQQPC0RC6K",
 			"secretKey": "4Keb1h0SC+OehqxLtuEXUuKiPNCXfSwWh9oE8ggu",
 			"api": "S3v4"
