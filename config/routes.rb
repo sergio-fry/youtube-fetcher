@@ -3,4 +3,5 @@ Rails.application.routes.draw do
   resources :channels, only: :show
 
   get '/audio/:id.mp3', to: 'media#audio', as: :media 
+  root 'welcome#index'
 end

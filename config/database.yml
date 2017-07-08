@@ -1,6 +1,6 @@
 default: &default
   adapter: postgresql
-  pool: 5
+  pool: 20
 
 development:
   url: <%= ENV.fetch('DATABASE_URL', 'postgresql://postgres:postgres@0.0.0.0/yt_fetcher_dev') %>

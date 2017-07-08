@@ -33,7 +33,6 @@ RSpec.describe FetchEpisodeJob, type: :job do
     it 'should have media' do
       expect(subject.media).to be_present
       expect(subject.media.url).to include '.mp3'
-      expect(File.exists?(subject.media.path)).to eq true
     end
 
     its(:title) { is_expected.to eq 'Порошенко и дети' }
