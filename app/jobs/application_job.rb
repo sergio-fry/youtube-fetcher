@@ -5,6 +5,7 @@ class ApplicationJob < ActiveJob::Base
 
   def with_db_connection
     ActiveRecord::Base.connection_pool.with_connection do
+      Rails.logger.info 'WITH DB CONNECTION'
       yield
     end
   end

@@ -10,7 +10,7 @@ CarrierWave.configure do |config|
     path_style: true
   }
   config.fog_public     = true                                        # optional, defaults to true
-  config.asset_host = "#{ENV.fetch('S3_HOST')}/#{ENV.fetch('S3_BUCKET_NAME')}"
+  config.asset_host = ENV['S3_ASSET_HOST']
   config.fog_directory = ENV.fetch('S3_BUCKET_NAME')
   #config.fog_attributes = { cache_control: "public, max-age=#{365.day.to_i}" } # optional, defaults to {}
 end

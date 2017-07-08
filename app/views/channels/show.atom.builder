@@ -12,7 +12,7 @@ atom_feed do |feed|
       entry.title video.title
       entry.content video.description, type: 'html'
 
-      entry.link rel: 'enclosure', type: 'audio/mpeg', title: 'mp3', href: media_url(video.origin_id), length: video.size
+      entry.link rel: 'enclosure', type: 'audio/mpeg', title: 'mp3', href: video.url, length: video.size
     end
   end
 end

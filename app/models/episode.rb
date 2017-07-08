@@ -8,4 +8,8 @@ class Episode < ApplicationRecord
   def size
     media.size
   end
+
+  def url
+    media.url
+  end
 end

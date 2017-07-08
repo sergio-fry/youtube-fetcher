@@ -1,6 +1,6 @@
 class WelcomeController < ApplicationController
   def index
-    Podcast.first.episodes.create!(
+    podcast.episodes.create!(
       origin_id: '1212',
       title: 'efwe',
       published_at: Time.now,
@@ -8,5 +8,12 @@ class WelcomeController < ApplicationController
     )
 
     render plain: 'OK'
+  end
+
+  private
+
+  def podcast
+    Podcast.first || Podcast.create(origin_id: "ABC")
+
   end
 end
