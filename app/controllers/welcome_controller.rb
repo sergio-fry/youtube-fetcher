@@ -4,7 +4,7 @@ class WelcomeController < ApplicationController
       origin_id: '1212',
       title: 'efwe',
       published_at: Time.now,
-      media: File.open(Rails.root.join('tmp/youtube/8RGh_Een5sc.mp3'))
+      media: File.open(Rails.root.join('spec/fixtures/audio.mp3'))
     )
 
     render plain: 'OK'

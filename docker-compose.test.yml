@@ -12,6 +12,8 @@ test:
     - AWS_SECRET_ACCESS_KEY=4Keb1h0SC+OehqxLtuEXUuKiPNCXfSwWh9oE8ggu
     - S3_BUCKET_NAME=youtube-podcasts-test
     - S3_REGION=us-east-1
+    - S3_HOST=aws
+    - S3_ENDPOINT=http://aws:9000
 
   command: ["test"]
   
