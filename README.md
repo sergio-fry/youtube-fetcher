@@ -6,7 +6,6 @@
 [![Test Coverage](https://codeclimate.com/github/sergio-fry/youtube-fetcher/badges/coverage.svg)](https://codeclimate.com/github/sergio-fry/youtube-fetcher/coverage)
 [![Dependency Status](https://gemnasium.com/badges/github.com/sergio-fry/youtube-fetcher.svg)](https://gemnasium.com/github.com/sergio-fry/youtube-fetcher)
 [![Docker Pulls](https://img.shields.io/docker/pulls/udalov/youtube-fetcher.svg)](https://hub.docker.com/r/udalov/youtube-fetcher/)
-[![Issue Stats](https://img.shields.io/issuestats/i/github/sergio-fry/youtube-fetcher.svg)](https://github.com/sergio-fry/youtube-fetcher/issues)
 
 
 Convert your favourite Youtube channels into audio podcasts.
