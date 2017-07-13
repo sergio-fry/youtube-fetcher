@@ -15,8 +15,8 @@ http://youtube-fetcher.herokuapp.com/channels/ABC123.atom
 
 ## Features
 
-           |  Youtube Fetcher                        
------------|---------------------------------------------------------------------------
+|          |  Youtube Fetcher                        |
+|----------|-----------------------------------------|
 :sparkles: | Build Atom feed podcast by a channel ID
 :rocket:   | Background media download
 :radio:    | Video converted into MP3 audio
