@@ -7,6 +7,8 @@ COPY Gemfile* ./
 RUN bundle install
 COPY . ./
 
+VOLUME /db
+
 COPY docker-entrypoint.sh /usr/local/bin/
 ENTRYPOINT ["docker-entrypoint.sh"]
 CMD ["web"]

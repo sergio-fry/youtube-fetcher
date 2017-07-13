@@ -1,23 +1,21 @@
 sudo: required
 
-language: c
+language: ruby
 
 env:
   global:
-    - DOCKER_COMPOSE_VERSION=1.11.2
+    - RAILS_ENV=test
     - GIT_COMMITTED_AT=$(if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then git log -1 --pretty=format:%ct; else git log -1 --skip 1 --pretty=format:%ct; fi)
 
 services:
   - docker
 
 before_install:
-  - sudo rm /usr/local/bin/docker-compose
-  - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
-  - chmod +x docker-compose
-  - sudo mv docker-compose /usr/local/bin
+  - echo 'GO!'
 
 script:
-  - make test-ci
+  - rake db:create db:migrate
+  - rspec
 
   - if [ "$TRAVIS_TAG" != "" ]; then
       docker login -u $DOCKER_HUB_USER -p $DOCKER_HUB_PASSWORD ;
