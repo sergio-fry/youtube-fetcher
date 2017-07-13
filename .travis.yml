@@ -14,8 +14,8 @@ before_install:
   - echo 'GO!'
 
 script:
-  - rake db:create db:migrate
-  - rspec
+  - bundle exec rake db:create db:migrate
+  - bundle exec rspec
 
   - if [ "$TRAVIS_TAG" != "" ]; then
       docker login -u $DOCKER_HUB_USER -p $DOCKER_HUB_PASSWORD ;
