@@ -17,9 +17,6 @@ test:
 
     - CC_TEST_REPORTER_ID=$CC_TEST_REPORTER_ID
 
-  volumes:
-    - "./coverage:/app/coverage"
-
   command: ["test"]
   
 
