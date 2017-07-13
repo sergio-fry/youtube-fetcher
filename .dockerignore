@@ -2,4 +2,3 @@ log
 docker-compose.yml
 Dockerfile
 tmp
-.git

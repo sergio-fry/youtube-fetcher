@@ -3,7 +3,9 @@ sudo: required
 language: c
 
 env:
-  - DOCKER_COMPOSE_VERSION=1.11.2
+  global:
+    - DOCKER_COMPOSE_VERSION=1.11.2
+    - GIT_COMMITTED_AT=$(if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then git log -1 --pretty=format:%ct; else git log -1 --skip 1 --pretty=format:%ct; fi)
 
 services:
   - docker

@@ -1,3 +1,6 @@
+require 'simplecov'
+SimpleCov.start
+
 require 'vcr'
 
 VCR.configure do |c|
