@@ -1,5 +1,5 @@
 class ApplicationJob < ActiveJob::Base
-  # FIXME: Without that, a default async backand is used.
+  # Without that, a default async backand is used.
   self.queue_adapter = :sucker_punch
 
   around_perform :with_db_connection
