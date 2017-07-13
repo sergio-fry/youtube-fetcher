@@ -22,7 +22,7 @@ http://youtube-fetcher.herokuapp.com/channels/ABC123.atom
 :radio:    | Video converted into MP3 audio
 :ship:     | Ships as a Docker image
 :metal:    | It's a Ruby on Rails application
-:+1:       | Well tested [![Test Coverage](https://codeclimate.com/github/sergio-fry/youtube-fetcher/badges/coverage.svg)](https://codeclimate.com/github/sergio-fry/youtube-fetcher/coverage)
+:+1:       | Well tested
 
 ## Setup
 
