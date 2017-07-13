@@ -15,6 +15,9 @@ test:
     - S3_HOST=aws
     - S3_ENDPOINT=http://aws:9000
 
+  volumes:
+    - "./coverage:/app/coverage"
+
   command: ["test"]
   
 

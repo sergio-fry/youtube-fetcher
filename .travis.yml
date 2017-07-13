@@ -1,9 +1,10 @@
 sudo: required
 
-language: c
+language: ruby
 
 env:
   - DOCKER_COMPOSE_VERSION=1.11.2
+  - GIT_COMMITTED_AT=$(if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then git log -1 --pretty=format:%ct; else git log -1 --skip 1 --pretty=format:%ct; fi)
 
 services:
   - docker
@@ -14,8 +15,13 @@ before_install:
   - chmod +x docker-compose
   - sudo mv docker-compose /usr/local/bin
 
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+
 script:
   - make test-ci
+
+  - if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT; fi
 
   - if [ "$TRAVIS_TAG" != "" ]; then
       docker login -u $DOCKER_HUB_USER -p $DOCKER_HUB_PASSWORD ;
