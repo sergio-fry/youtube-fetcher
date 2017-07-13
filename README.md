@@ -2,8 +2,8 @@
 
 [![Build Status](https://travis-ci.org/sergio-fry/youtube-fetcher.svg?branch=master)](https://travis-ci.org/sergio-fry/youtube-fetcher)
 [![GitHub tag](https://img.shields.io/github/tag/sergio-fry/youtube-fetcher.svg)]()
-[![Code Climate](https://codeclimate.com/github/udalov/youtube-fetcher.png)](https://codeclimate.com/github/udalov/youtube-fetcher)
-[![Gemnasium](https://img.shields.io/udalov/youtube-fetcher/he.svg)]()
+[![Code Climate](https://codeclimate.com/github/sergio-fry/youtube-fetcher.png)](https://codeclimate.com/github/sergio-fry/youtube-fetcher)
+[![Gemnasium](https://img.shields.io/sergio-fry/youtube-fetcher/he.svg)]()
 [![CocoaPods](https://img.shields.io/cocoapods/metrics/doc-percent/AFNetworking.svg)]()
 
 [![Docker Build Statu](https://img.shields.io/docker/build/jrottenberg/ffmpeg.svg)]()
