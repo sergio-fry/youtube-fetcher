@@ -1,12 +1,12 @@
 # Youtube Fetcher
 
 [![Build Status](https://travis-ci.org/sergio-fry/youtube-fetcher.svg?branch=master)](https://travis-ci.org/sergio-fry/youtube-fetcher)
-
 [![GitHub tag](https://img.shields.io/github/tag/sergio-fry/youtube-fetcher.svg)]()
-[![Gemnasium](https://img.shields.io/gemnasium/mathiasbynens/he.svg)]()
-[![Github file size](https://img.shields.io/github/size/webcaetano/craft/build/craft.min.js.svg)]()
-[![Docker Build Statu](https://img.shields.io/docker/build/jrottenberg/ffmpeg.svg)]()
+[![Code Climate](https://codeclimate.com/github/udalov/youtube-fetcher.png)](https://codeclimate.com/github/udalov/youtube-fetcher)
+[![Gemnasium](https://img.shields.io/udalov/youtube-fetcher/he.svg)]()
 [![CocoaPods](https://img.shields.io/cocoapods/metrics/doc-percent/AFNetworking.svg)]()
+
+[![Docker Build Statu](https://img.shields.io/docker/build/jrottenberg/ffmpeg.svg)]()
 
 TODO: coverage, up-to-date, code quality, heroku install, MIT License
 
