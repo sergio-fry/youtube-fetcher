@@ -29,7 +29,7 @@ http://youtube-fetcher.russianpulse.ru/channels/UCVPYbobPRzz0SjinWekjUBw.atom
 ## Setup
 
 ```bash
-$	docker run -e RAILS_ENV=production -e SECRET_KEY_BASE=ABC123 -p 3000:80 -t udalov/youtube-fetcher web
+docker run -e RAILS_ENV=production -e SECRET_KEY_BASE=ABC123 -p 3000:80 -t udalov/youtube-fetcher web
 ```
 
 Open browser:
