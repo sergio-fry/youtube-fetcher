@@ -8,14 +8,11 @@
 [![Docker Pulls](https://img.shields.io/docker/pulls/udalov/youtube-fetcher.svg)](https://hub.docker.com/r/udalov/youtube-fetcher/)
 [![license](https://img.shields.io/github/license/sergio-fry/youtube-fetcher.svg)](https://github.com/sergio-fry/youtube-fetcher)
 
+**Synopsis**
 
-Convert your favourite Youtube channels into audio podcasts.
+Convert Youtube channel into audio podcasts with 1 click. Free webservice is [available](http://youtube-fetcher.russianpulse.ru).
 
-## Example
-
-Let's turn [TEDx Talks into](https://www.youtube.com/channel/UCsT0YIqwnpJCM-mx7-gSA4Q) *podcast*:
-
-http://youtube-fetcher.russianpulse.ru/channels/UCsT0YIqwnpJCM-mx7-gSA4Q.atom :headphones:
+With *YF* you can listen to your favorite Youtube channels as audio podcasts offline. Choose any podcast player you want.
 
 ## Features
 
@@ -27,6 +24,13 @@ http://youtube-fetcher.russianpulse.ru/channels/UCsT0YIqwnpJCM-mx7-gSA4Q.atom :h
 :ship:     | Ships as a Docker image
 :metal:    | It's a Ruby on Rails application
 :+1:       | Well tested
+
+## Example
+
+Let's turn [TEDx Talks into](https://www.youtube.com/channel/UCsT0YIqwnpJCM-mx7-gSA4Q) *podcast*:
+
+http://youtube-fetcher.russianpulse.ru/channels/UCsT0YIqwnpJCM-mx7-gSA4Q.atom :headphones:
+
 
 ## Setup
 
