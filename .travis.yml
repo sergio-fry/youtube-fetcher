@@ -18,6 +18,9 @@ script:
   - bundle exec rake db:create db:migrate
   - bundle exec rspec
 
+  - gem i codeclimate-test-reporter 
+  - CODECLIMATE_REPO_TOKEN=$CC_TEST_REPORTER_ID codeclimate-test-reporter
+
   - if [ "$TRAVIS_TAG" != "" ]; then
       docker login -u $DOCKER_HUB_USER -p $DOCKER_HUB_PASSWORD ;
       docker build -t udalov/youtube-fetcher:$TRAVIS_TAG . ;
