@@ -15,6 +15,6 @@ RSpec.feature "Add new channel", type: :feature do
 
     click_on 'Convert to podcast'
 
-    expect(page).to have_current_path('/channels/UCX0nHcqZWDSsAPog-LXdP7A.atom', only_path: true)
+    expect(page).to have_content '/channels/UCX0nHcqZWDSsAPog-LXdP7A.atom'
   end
 end
