@@ -6,6 +6,7 @@
 [![Test Coverage](https://codeclimate.com/github/sergio-fry/youtube-fetcher/badges/coverage.svg)](https://codeclimate.com/github/sergio-fry/youtube-fetcher/coverage)
 [![Dependency Status](https://gemnasium.com/badges/github.com/sergio-fry/youtube-fetcher.svg)](https://gemnasium.com/github.com/sergio-fry/youtube-fetcher)
 [![Docker Pulls](https://img.shields.io/docker/pulls/udalov/youtube-fetcher.svg)](https://hub.docker.com/r/udalov/youtube-fetcher/)
+[![license](https://img.shields.io/github/license/sergio-fry/youtube-fetcher.svg)](https://github.com/sergio-fry/youtube-fetcher)
 
 
 Convert your favourite Youtube channels into audio podcasts.
@@ -35,3 +36,7 @@ docker run -e RAILS_ENV=production -e SECRET_KEY_BASE=ABC123 -p 3000:80 -t udalo
 Open browser:
 
 http://0.0.0.0:3000/
+
+## License
+
+Youtube Fetcher is released under the MIT [License](http://www.opensource.org/licenses/MIT).
