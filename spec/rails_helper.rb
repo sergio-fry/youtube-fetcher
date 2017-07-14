@@ -24,6 +24,8 @@ RSpec.configure do |config|
   end
 
   config.around(:each) do |example|
+    DatabaseCleaner.strategy = example.metadata[:js] ? :truncation : :transaction
+
     DatabaseCleaner.cleaning do
       example.run
     end

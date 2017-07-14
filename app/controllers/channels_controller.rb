@@ -1,4 +1,13 @@
 class ChannelsController < ApplicationController
+
+  class Channel < Podcast
+    attr_accessor :url
+  end
+
+  def create
+    redirect_to channel_path(channel_id, format: :atom)
+  end
+
   def show
     @podcast = Podcast.find_or_create_by origin_id: params[:id]
     @channel = Yt::Channel.new id: params[:id]
@@ -8,7 +17,19 @@ class ChannelsController < ApplicationController
     schedule_episodes_fetching
   end
 
+  def new
+    @channel = Channel.new
+  end
+
   private
+
+  def channel_id
+    channel_url.split('/channel/')[1]
+  end
+
+  def channel_url
+    params[:channels_controller_channel][:url]
+  end
 
   def schedule_episodes_fetching
     return if @podcast.updated_at > 10.minutes.ago && @podcast.updated_at > @podcast.created_at
