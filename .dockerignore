@@ -2,3 +2,6 @@ log
 docker-compose.yml
 Dockerfile
 tmp
+db/*.sqlite3
+.git
+public/uploads

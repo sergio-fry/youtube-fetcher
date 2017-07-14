@@ -1,23 +1,25 @@
 sudo: required
 
-language: c
+language: ruby
+cache: bundler
 
 env:
   global:
-    - DOCKER_COMPOSE_VERSION=1.11.2
+    - RAILS_ENV=test
     - GIT_COMMITTED_AT=$(if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then git log -1 --pretty=format:%ct; else git log -1 --skip 1 --pretty=format:%ct; fi)
 
 services:
   - docker
 
 before_install:
-  - sudo rm /usr/local/bin/docker-compose
-  - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
-  - chmod +x docker-compose
-  - sudo mv docker-compose /usr/local/bin
+  - echo 'GO!'
 
 script:
-  - make test-ci
+  - bundle exec rake db:create db:migrate
+  - bundle exec rspec
+
+  - gem i codeclimate-test-reporter 
+  - CODECLIMATE_REPO_TOKEN=$CC_TEST_REPORTER_ID codeclimate-test-reporter
 
   - if [ "$TRAVIS_TAG" != "" ]; then
       docker login -u $DOCKER_HUB_USER -p $DOCKER_HUB_PASSWORD ;

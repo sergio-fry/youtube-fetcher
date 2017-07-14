@@ -12,9 +12,6 @@
 
 ActiveRecord::Schema.define(version: 20170706052446) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
   create_table "episodes", force: :cascade do |t|
     t.integer "podcast_id"
     t.datetime "created_at", null: false
@@ -34,5 +31,4 @@ ActiveRecord::Schema.define(version: 20170706052446) do
     t.index ["origin_id"], name: "index_podcasts_on_origin_id", unique: true
   end
 
-  add_foreign_key "episodes", "podcasts"
 end

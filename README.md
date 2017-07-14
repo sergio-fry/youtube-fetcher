@@ -29,5 +29,9 @@ http://youtube-fetcher.herokuapp.com/channels/ABC123.atom
 ## Setup
 
 ```bash
-$ docker run -p "8647:80" --name yt-fetcher udalov/youtube-fetcher
+$	docker run -e RAILS_ENV=production -e SECRET_KEY_BASE=ABC123 -p 3000:80 -t udalov/youtube-fetcher web
 ```
+
+Open browser:
+
+http://0.0.0.0:3000/

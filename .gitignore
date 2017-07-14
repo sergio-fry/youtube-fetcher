@@ -15,5 +15,6 @@
 
 .byebug_history
 
+db/*.sqlite3
 public/uploads/
 coverage/
