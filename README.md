@@ -13,8 +13,9 @@ Convert your favourite Youtube channels into audio podcasts.
 
 ## Example
 
-http://youtube-fetcher.russianpulse.ru/channels/UCVPYbobPRzz0SjinWekjUBw.atom
+Let's turn [TEDx Talks into](https://www.youtube.com/channel/UCsT0YIqwnpJCM-mx7-gSA4Q) *podcast*:
 
+http://youtube-fetcher.russianpulse.ru/channels/UCsT0YIqwnpJCM-mx7-gSA4Q.atom :headphones:
 
 ## Features
 
