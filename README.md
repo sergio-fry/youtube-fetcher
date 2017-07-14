@@ -1,6 +1,6 @@
 # Youtube Fetcher
 
-[![Youtube Compatible](https://img.shields.io/badge/youtube%20compatible-100%25-green.svg)](https://travis-ci.org/sergio-fry/youtube-fetcher)
+[![Youtube Compatible](https://img.shields.io/badge/youtube-podcasting-brightgreen.svg)](http://youtube-fetcher.russianpulse.ru)
 [![Build Status](https://travis-ci.org/sergio-fry/youtube-fetcher.svg?branch=master)](https://travis-ci.org/sergio-fry/youtube-fetcher)
 [![Code Climate](https://codeclimate.com/github/sergio-fry/youtube-fetcher.png)](https://codeclimate.com/github/sergio-fry/youtube-fetcher)
 [![Test Coverage](https://codeclimate.com/github/sergio-fry/youtube-fetcher/badges/coverage.svg)](https://codeclimate.com/github/sergio-fry/youtube-fetcher/coverage)
@@ -12,7 +12,7 @@ Convert your favourite Youtube channels into audio podcasts.
 
 ## Example
 
-http://youtube-fetcher.herokuapp.com/channels/ABC123.atom
+http://youtube-fetcher.russianpulse.ru/channels/UCVPYbobPRzz0SjinWekjUBw.atom
 
 
 ## Features
