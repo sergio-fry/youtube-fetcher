@@ -21,16 +21,17 @@ script:
   - gem i codeclimate-test-reporter 
   - CODECLIMATE_REPO_TOKEN=$CC_TEST_REPORTER_ID codeclimate-test-reporter
 
+  - eval $DEPLOY_CMD
+  - exit 0
+
   - if [ "$TRAVIS_TAG" != "" ]; then
       docker login -u $DOCKER_HUB_USER -p $DOCKER_HUB_PASSWORD ;
-      docker pull udalov/youtube-fetcher ;
       docker build -t udalov/youtube-fetcher:$TRAVIS_TAG . ;
       docker push udalov/youtube-fetcher:$TRAVIS_TAG ;
     fi
 
   - if [ "$TRAVIS_BRANCH" == "master" ]; then
       docker login -u $DOCKER_HUB_USER -p $DOCKER_HUB_PASSWORD ;
-      docker pull udalov/youtube-fetcher ;
       docker build -t udalov/youtube-fetcher:latest . ;
       docker push udalov/youtube-fetcher:latest ;
       eval $DEPLOY_CMD ;
