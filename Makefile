@@ -1,20 +1,11 @@
-test: buckets build exec-test
-
-test-ci: buckets build start-db-and-wait exec-test
-
-
-start-db-and-wait:
-	docker-compose -f docker-compose.yml -f docker-compose.test.yml up -d
-	sleep 10
+test: build
+	docker run --rm -t youtube-fetcher test
 
 build:
-	docker-compose -f docker-compose.yml -f docker-compose.test.yml build test
+	docker build -t youtube-fetcher .
 
-exec-test:
-	docker-compose -f docker-compose.yml -f docker-compose.test.yml run --rm test
+run:
+	docker run -e RAILS_ENV=production -e SECRET_KEY_BASE=ABC123 -p 3000:80 -t youtube-fetcher web
 
-
-buckets:
-	mkdir -p tmp/minio/youtube-podcasts
-	mkdir -p tmp/minio/youtube-podcasts-test
-
+console:
+	docker run -e RAILS_ENV=production -e SECRET_KEY_BASE=ABC123 -i -t youtube-fetcher bash

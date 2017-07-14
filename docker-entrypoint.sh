@@ -3,6 +3,10 @@ set -e
 
 if [ "$1" = 'web' ]; then
   rm -rf tmp/pids/*
+
+  rm -rf public/uploads/
+  ln -s /uploads public/uploads
+
   bundle exec rake db:create db:migrate
   bundle exec rails server puma -p 80 --binding 0.0.0.0
 fi
