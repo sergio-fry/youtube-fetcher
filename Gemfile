@@ -32,6 +32,7 @@ gem 'sucker_punch'
 
 gem 'fog-aws'
 gem "font-awesome-rails"
+gem 'dotenv-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -41,7 +42,6 @@ group :development, :test do
   gem 'selenium-webdriver'
   gem 'rspec-rails'
   gem 'rspec-its'
-  gem 'dotenv-rails'
   gem 'factory_girl_rails'
   gem 'pry'
 end
