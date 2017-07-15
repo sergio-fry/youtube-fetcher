@@ -15,6 +15,7 @@ before_install:
   - echo 'GO!'
 
 script:
+  - yarn install
   - bundle exec rake assets:precompile db:create db:migrate
   - bundle exec rspec
 

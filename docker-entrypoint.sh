@@ -7,14 +7,16 @@ if [ "$1" = 'web' ]; then
   rm -rf public/uploads/
   ln -s /uploads public/uploads
 
-  bundle exec rake assets:precompile db:create db:migrate
+  yarn install
+  bundle exec rake webpacker:compile assets:precompile db:create db:migrate
   bundle exec rails server puma -p 80 --binding 0.0.0.0
 fi
 
 if [ "$1" = 'test' ]; then
   echo 'Specs...'
   export RAILS_ENV=test
-  bundle exec rake assets:precompile db:create db:migrate
+  yarn install
+  bundle exec rake webpacker:compile assets:precompile db:create db:migrate
   bundle exec rspec
 
   exit 0
