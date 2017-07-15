@@ -27,7 +27,7 @@ Convert Youtube channel into audio podcasts with 1 click. Free webservice is [av
 
 Let's turn [TEDx Talks into](https://www.youtube.com/channel/UCsT0YIqwnpJCM-mx7-gSA4Q) *podcast*:
 
-http://youtube-fetcher.russianpulse.ru/channels/UCsT0YIqwnpJCM-mx7-gSA4Q.atom :headphones:
+http://youtube-fetcher.russianpulse.ru/channels/UCsT0YIqwnpJCM-mx7-gSA4Q
 
 
 ## Setup
