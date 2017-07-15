@@ -10,6 +10,21 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
+ *= require bootstrap/dist/css/bootstrap
+ *= require font-awesome
  *= require_tree .
  *= require_self
  */
+
+
+.fa-youtube {
+  color: #CD201F;
+}
+
+.fa-podcast {
+  color: #551A8B;
+}
+
+.youtube-to-podcast-banner {
+  font-size: 5rem;
+}

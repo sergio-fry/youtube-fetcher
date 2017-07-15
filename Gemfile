@@ -9,6 +9,10 @@ end
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.2'
 
+gem 'sass-rails', '~> 5.0'
+gem 'uglifier', '>= 1.3.0'
+gem 'webpacker', '~> 2.0'
+
 gem 'pg'
 gem 'sqlite3'
 
@@ -27,6 +31,7 @@ gem 'carrierwave', '~> 1.0'
 gem 'sucker_punch'
 
 gem 'fog-aws'
+gem "font-awesome-rails"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
