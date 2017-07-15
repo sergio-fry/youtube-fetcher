@@ -17,7 +17,7 @@
 
 db/*.sqlite3
 public/uploads/
+public/assets
 coverage/
 node_modules/
 /public/packs
-/node_modules

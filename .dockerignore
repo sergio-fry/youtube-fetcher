@@ -1,7 +1,11 @@
-log
-docker-compose.yml
-Dockerfile
-tmp
-db/*.sqlite3
 .git
+Dockerfile
+coverage/
+db/*.sqlite3
+docker-compose.yml
+log
+node_modules/
+public/assets
+public/packs
 public/uploads
+tmp

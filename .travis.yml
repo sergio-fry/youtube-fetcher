@@ -15,7 +15,7 @@ before_install:
   - echo 'GO!'
 
 script:
-  - bundle exec rake db:create db:migrate
+  - bundle exec rake assets:precompile db:create db:migrate
   - bundle exec rspec
 
   - gem i codeclimate-test-reporter 
