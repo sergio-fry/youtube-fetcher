@@ -1,0 +1,3 @@
+<h1><%= @channel.title %> </h1>
+
+Feed URL: <%= link_to channel_url(@podcast.origin_id, format: :atom), channel_url(@podcast.origin_id, format: :atom) %>

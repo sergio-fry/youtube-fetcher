@@ -5,7 +5,7 @@ class ChannelsController < ApplicationController
   end
 
   def create
-    redirect_to channel_path(channel_id, format: :atom)
+    redirect_to channel_path(channel_id)
   end
 
   def show
