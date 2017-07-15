@@ -9,7 +9,6 @@ RSpec.feature "Add new channel", type: :feature do
 
   it 'should display form' do
     visit new_channel_url
-    expect(page).to have_text 'Listen Youtube channel'
 
     fill_in 'Paste Youtube channel URL here', with: 'https://www.youtube.com/channel/UCX0nHcqZWDSsAPog-LXdP7A'
 

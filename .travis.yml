@@ -1,7 +1,9 @@
 sudo: required
 
 language: ruby
-cache: bundler
+cache:
+  - bundler
+  - yarn
 
 env:
   global:
@@ -15,6 +17,7 @@ before_install:
   - echo 'GO!'
 
 script:
+  - yarn install
   - bundle exec rake db:create db:migrate
   - bundle exec rspec
 
