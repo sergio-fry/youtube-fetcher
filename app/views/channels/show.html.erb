@@ -1,3 +1,15 @@
-<h1><%= @channel.title %> </h1>
+<h1><%= @channel.title %> Podcast</h1>
 
-Feed URL: <%= link_to channel_url(@podcast.origin_id, format: :atom), channel_url(@podcast.origin_id, format: :atom) %>
+Atom feed: <%= link_to channel_url(@podcast.origin_id, format: :atom), channel_url(@podcast.origin_id, format: :atom) %>
+
+<br />
+<br />
+
+<div class='episodes'>
+  <% @podcast.episodes.each do |episode| %>
+    <div class='episode'>
+      <%= episode.title %>
+      <span class='episode__link'><%= link_to number_to_human_size(episode.size), episode.url %></span>
+    </div>
+  <% end %>
+</div>
