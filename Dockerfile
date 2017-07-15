@@ -15,6 +15,7 @@ ENV DATABASE_URL=sqlite3:///db/production.sqlite3
 
 VOLUME /db
 VOLUME /uploads
+VOLUME node_modules
 
 COPY docker-entrypoint.sh /usr/local/bin/
 ENTRYPOINT ["docker-entrypoint.sh"]
