@@ -18,8 +18,6 @@ before_install:
 
 script:
   - yarn install
-  - bundle exec rake webpacker:install webpacker:compile
-  - bundle exec rake assets:precompile
   - bundle exec rake db:create db:migrate
   - bundle exec rspec
 
