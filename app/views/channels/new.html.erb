@@ -1,9 +1,14 @@
-<h1>New channel</h1>
+<div class="jumbotron">
+  <h1>Listen Youtube channel</h1>
 
-<%= form_for @channel, url: channels_path do |f| %>
-  <%= f.label :url, 'Channel URL' %>
-  <br />
-  <%= f.text_field :url %>
-  <br />
-  <%= f.submit 'Convert to podcast' %>
-<% end %>
+  Simple and free service that lets you listen to any YouTube channels in podcast format.
+
+  <p></p>
+
+  <%= form_for @channel, url: channels_path, html: { class: 'form' } do |f| %>
+    <%= f.text_field :url, type: :url, class: 'form-control input-lg', placeholder: 'Paste Youtube channel URL here' %>
+    <br />
+
+    <%= f.submit 'Convert to podcast', class: 'btn btn-primary btn-lg' %>
+  <% end %>
+</div>
