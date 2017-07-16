@@ -16,7 +16,9 @@ ENV RAILS_LOG_TO_STDOUT=true
 
 VOLUME /db
 VOLUME /uploads
-VOLUME node_modules
+VOLUME /app/node_modules
+VOLUME /app/tmp/cache
+VOLUME /app/public/assets
 
 COPY docker-entrypoint.sh /usr/local/bin/
 ENTRYPOINT ["docker-entrypoint.sh"]
