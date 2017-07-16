@@ -10,6 +10,8 @@
 
 Convert Youtube channel into audio podcasts with 1 click. Free webservice is [available](http://youtube-fetcher.russianpulse.ru). With *YF* you can listen to your favorite Youtube channels as audio podcasts offline. Choose any podcast player you want.
 
+Try [Youtube Fetcher](http://youtube-fetcher.russianpulse.ru/) online.
+
 ![Form Example](form-example.png)
 
 ## Features
