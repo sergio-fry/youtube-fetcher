@@ -7,11 +7,27 @@ class Tracker
     @staccato = Staccato.tracker(Rails.configuration.x.google_analytics_id, nil, ssl: true)
   end
 
+  def event(*args)
+    staccato.event(*args)
+    slack_notifier.try(:ping, hash_to_message(args[0]))
+  end
+
   def self.event(*args)
-    instance.staccato.event(*args)
+    instance.event(*args)
   end
 
   def self.timing(*args, &block)
     instance.staccato.timing(*args, &block)
+  end
+
+  private
+
+  def hash_to_message(h)
+    "#{h[:category].to_s.titleize} #{h[:action]} #{h[:label]} #{h[:value]}"
+  end
+
+  def slack_notifier
+    return if Rails.configuration.x.slack_webhook_url.blank?
+    @slack_notifier ||= Slack::Notifier.new(Rails.configuration.x.slack_webhook_url)
   end
 end
