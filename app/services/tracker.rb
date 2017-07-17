@@ -10,4 +10,8 @@ class Tracker
   def self.event(*args)
     instance.staccato.event(*args)
   end
+
+  def self.timing(*args)
+    instance.staccato.timing(*args)
+  end
 end

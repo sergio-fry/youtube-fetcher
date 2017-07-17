@@ -8,5 +8,15 @@ RSpec.describe Tracker do
       end.not_to raise_error
     end
   end
+
+  it 'should track timing' do
+    VCR.use_cassette :google_analytics_timing do
+      expect do
+        Tracker.timing(category: 'runtime', variable: 'youtube-dl', label: 'download') do
+          sleep 0.001
+        end
+      end.not_to raise_error
+    end
+  end
 end
 

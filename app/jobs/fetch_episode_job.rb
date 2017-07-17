@@ -3,7 +3,11 @@ class FetchEpisodeJob < ApplicationJob
 
   class Fetcher
     def fetch_audio(id)
-      YoutubeDl.new.fetch_audio id
+      Tracker.timing(category: 'runtime', variable: 'youtube-dl', label: 'download') do
+        YoutubeDl.new.fetch_audio id
+      end
+
+      Tracker.event category: :audio, action: :download, label: youtube_video_id
     end
   end
 
@@ -19,7 +23,6 @@ class FetchEpisodeJob < ApplicationJob
     )
 
     podcast.touch
-    Tracker.event category: :audio, action: :download, label: youtube_video_id
   end
 
   private

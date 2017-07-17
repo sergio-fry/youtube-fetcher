@@ -4,7 +4,8 @@ RSpec.describe "channels/show", type: :view do
   subject { rendered }
   before do
     assign(:channel, double(:channel, title: 'My Podcast'))
-    assign(:podcast, FactoryGirl.build(:podcast, episodes: [FactoryGirl.build(:episode, title: 'My Episode')]))
+    assign(:podcast, FactoryGirl.build(:podcast))
+    assign(:videos, [FactoryGirl.build(:episode, title: 'My Episode')])
 
     render
   end
