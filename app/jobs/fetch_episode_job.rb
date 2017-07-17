@@ -8,6 +8,8 @@ class FetchEpisodeJob < ApplicationJob
       end
 
       Tracker.event category: :audio, action: :download, label: youtube_video_id
+    rescue YoutubeDl::UnknownError => ex
+      Tracker.event category: 'Error', action: ex.class, label: ex.message
     end
   end
 
