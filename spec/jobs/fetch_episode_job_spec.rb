@@ -12,6 +12,10 @@ RSpec.describe FetchEpisodeJob, type: :job do
   let(:youtube_video_id) { 'fdpdN6K6ntY' }
   let(:fetcher) { double(:fetcher, fetch_audio: Rails.root.join('spec', 'fixtures', 'audio.mp3'))}
 
+  before do
+    allow(Tracker).to receive(:event)
+  end
+
   it 'should save media' do
     expect do
       perform_job

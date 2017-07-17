@@ -3,10 +3,18 @@ class FetchEpisodeJob < ApplicationJob
 
   class Fetcher
     def fetch_audio(id)
-      cmd = "youtube-dl --extract-audio --audio-format mp3 --audio-quality 9 -o '#{Rails.root.join('tmp', 'youtube', '%(id)s.%(ext)s')}' https://www.youtube.com/watch?v=#{id}"
-      Rails.logger.info cmd
-      `#{cmd}`
-      Rails.root.join('tmp', 'youtube', "#{id}.mp3")
+      path = nil
+
+      Tracker.timing(category: 'runtime', variable: 'youtube-dl', label: 'download') do
+        path = YoutubeDl.new.fetch_audio id
+      end
+
+      Tracker.event category: :audio, action: :download, label: id
+
+      path
+    rescue YoutubeDl::UnknownError => ex
+      Tracker.event category: 'Error', action: ex.class, label: ex.message
+      raise ex # raise again
     end
   end
 

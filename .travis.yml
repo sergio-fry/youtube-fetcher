@@ -1,7 +1,9 @@
 sudo: required
 
 language: ruby
-cache: bundler
+cache:
+  - bundler
+  - yarn
 
 env:
   global:
@@ -15,6 +17,7 @@ before_install:
   - echo 'GO!'
 
 script:
+  - yarn install
   - bundle exec rake db:create db:migrate
   - bundle exec rspec
 
@@ -31,5 +34,4 @@ script:
       docker login -u $DOCKER_HUB_USER -p $DOCKER_HUB_PASSWORD ;
       docker build -t udalov/youtube-fetcher:latest . ;
       docker push udalov/youtube-fetcher:latest ;
-      eval $DEPLOY_CMD ;
     fi
