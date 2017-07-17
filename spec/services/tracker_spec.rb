@@ -11,9 +11,12 @@ RSpec.describe Tracker do
 
   it 'should track timing' do
     VCR.use_cassette :google_analytics_timing do
+      obj = double(:obj)
+      expect(obj).to receive(:ping)
+
       expect do
         Tracker.timing(category: 'runtime', variable: 'youtube-dl', label: 'download') do
-          sleep 0.001
+          obj.ping
         end
       end.not_to raise_error
     end
