@@ -22,6 +22,7 @@ class FetchEpisodeJob < ApplicationJob
     )
 
     podcast.touch
+    Tracker.event category: :audio, action: :download, label: youtube_video_id
   end
 
   private
