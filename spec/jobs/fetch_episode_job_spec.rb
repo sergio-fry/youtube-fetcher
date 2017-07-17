@@ -13,7 +13,7 @@ RSpec.describe FetchEpisodeJob, type: :job do
   let(:fetcher) { double(:fetcher, fetch_audio: Rails.root.join('spec', 'fixtures', 'audio.mp3'))}
 
   before do
-    Tracker.stub(:event)
+    allow(Tracker).to receive(:event)
   end
 
   it 'should save media' do
