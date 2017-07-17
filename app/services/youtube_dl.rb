@@ -11,11 +11,11 @@ class YoutubeDl
   private
 
   def error_handler(response)
-    return unless response.match /ERROR/
+    return unless response.match(/ERROR/)
 
     error = response.match(/ERROR: (.+)/)[1]
 
-    if response.match /ERROR: Incomplete YouTube ID/
+    if response.match(/ERROR: Incomplete YouTube ID/)
       raise IncompleteYoutubeId.new error
     else
       raise UnknownError.new error
