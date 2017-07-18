@@ -5,7 +5,11 @@ class ChannelsController < ApplicationController
   end
 
   def create
-    redirect_to channel_path(channel_id)
+    if playlist_id.present?
+      redirect_to playlist_path(playlist_id)
+    else
+      redirect_to channel_path(channel_id)
+    end
   end
 
   def show
@@ -22,6 +26,14 @@ class ChannelsController < ApplicationController
   end
 
   private
+
+  def playlist_id
+    m = channel_url.match(/youtube.com\/playlist\?list=(.+)/)
+
+    return if m.blank?
+
+    m[1]
+  end
 
   def channel_id
     channel_url.split('/channel/')[1]

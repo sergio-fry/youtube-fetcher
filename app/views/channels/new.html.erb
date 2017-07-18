@@ -13,7 +13,7 @@
   <p></p>
 
   <%= form_for @channel, url: channels_path, html: { class: 'form' } do |f| %>
-    <%= f.text_field :url, type: :url, class: 'form-control input-lg', placeholder: 'Paste Youtube channel URL here' %>
+    <%= f.text_field :url, type: :url, class: 'form-control input-lg', placeholder: 'Paste Youtube channel/playlist URL here' %>
     <br />
 
     <%= f.submit 'Convert to podcast', class: 'btn btn-primary btn-lg' %>
