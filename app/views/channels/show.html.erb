@@ -1,6 +1,12 @@
 <h1><%= @channel.title %> Podcast</h1>
 
-Atom feed: <%= link_to channel_url(@podcast.origin_id, format: :atom), channel_url(@podcast.origin_id, format: :atom) %>
+Atom feed:
+
+<% if @podcast.source_type == 'playlist' %>
+  <%= link_to playlist_url(@podcast.origin_id, format: :atom), playlist_url(@podcast.origin_id, format: :atom) %>
+<% else %>
+  <%= link_to channel_url(@podcast.origin_id, format: :atom), channel_url(@podcast.origin_id, format: :atom) %>
+<% end %>
 
 <br />
 <br />

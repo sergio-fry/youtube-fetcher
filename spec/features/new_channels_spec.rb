@@ -1,19 +1,27 @@
 require 'rails_helper'
 
 RSpec.feature "Add new channel", type: :feature do
-  around do |example|
+  it 'should add new channel' do
     VCR.use_cassette :fetch_channel do
-      example.run
+      visit new_channel_url
+
+      fill_in 'Paste Youtube channel/playlist URL here', with: 'https://www.youtube.com/channel/UCX0nHcqZWDSsAPog-LXdP7A'
+
+      click_on 'Convert to podcast'
+
+      expect(page).to have_content '/channels/UCX0nHcqZWDSsAPog-LXdP7A.atom'
     end
   end
 
-  it 'should display form' do
-    visit new_channel_url
+  it 'should add new playlist' do
+    VCR.use_cassette :fetch_playlist do
+      visit new_channel_url
 
-    fill_in 'Paste Youtube channel URL here', with: 'https://www.youtube.com/channel/UCX0nHcqZWDSsAPog-LXdP7A'
+      fill_in 'Paste Youtube channel/playlist URL here', with: 'https://www.youtube.com/playlist?list=PLOGi5-fAu8bH_T9HhH9V2B5izEE4G5waV'
 
-    click_on 'Convert to podcast'
+      click_on 'Convert to podcast'
 
-    expect(page).to have_content '/channels/UCX0nHcqZWDSsAPog-LXdP7A.atom'
+      expect(page).to have_content '/playlists/PLOGi5-fAu8bH_T9HhH9V2B5izEE4G5waV.atom'
+    end
   end
 end

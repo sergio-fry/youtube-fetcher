@@ -40,4 +40,20 @@ RSpec.describe ChannelsController, type: :controller do
     before { Podcast.destroy_all }
     it { expect { make_request }.to change { Podcast.count }.by(1) }
   end
+
+  describe '.channel_id' do
+    subject { controller.send(:channel_id) }
+    before { allow(controller).to receive(:channel_url) { channel_url } }
+    let(:channel_url) { 'https://www.youtube.com/channel/UCX0nHcqZWDSsAPog-LXdP7A' }
+
+    it { is_expected.to eq 'UCX0nHcqZWDSsAPog-LXdP7A' }
+  end
+
+  describe '.playlist_id' do
+    subject { controller.send(:playlist_id) }
+    before { allow(controller).to receive(:channel_url) { channel_url } }
+    let(:channel_url) { 'https://www.youtube.com/playlist?list=PLOGi5-fAu8bH_T9HhH9V2B5izEE4G5waV' }
+
+    it { is_expected.to eq 'PLOGi5-fAu8bH_T9HhH9V2B5izEE4G5waV' }
+  end
 end

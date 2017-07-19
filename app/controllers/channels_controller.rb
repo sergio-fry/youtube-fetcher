@@ -5,7 +5,11 @@ class ChannelsController < ApplicationController
   end
 
   def create
-    redirect_to channel_path(channel_id)
+    if playlist_id.present?
+      redirect_to playlist_path(playlist_id)
+    else
+      redirect_to channel_path(channel_id)
+    end
   end
 
   def show
@@ -23,6 +27,14 @@ class ChannelsController < ApplicationController
 
   private
 
+  def playlist_id
+    m = channel_url.match(/youtube.com\/playlist\?list=(.+)/)
+
+    return if m.blank?
+
+    m[1]
+  end
+
   def channel_id
     channel_url.split('/channel/')[1]
   end
@@ -33,8 +45,12 @@ class ChannelsController < ApplicationController
 
   def schedule_episodes_fetching
     return if @podcast.updated_at > 10.minutes.ago && @podcast.updated_at > @podcast.created_at
-    @channel.videos.where(order: 'date').take(10).reverse.each do |video|
+    new_youtube_videos.each do |video|
       FetchEpisodeJob.perform_later @podcast, video.id
     end
+  end
+
+  def new_youtube_videos
+    @channel.videos.where(order: 'date').take(10).reverse
   end
 end

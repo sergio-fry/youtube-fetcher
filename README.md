@@ -19,6 +19,8 @@ Try [Youtube Fetcher](http://youtube-fetcher.russianpulse.ru/) online.
 |          |  Youtube Fetcher                        |
 |----------|-----------------------------------------|
 :sparkles: | Build Atom feed podcast by a channel ID
+:tv:       | Youtube channels support
+:speaker:  | Playlists are supported too!
 :rocket:   | Background media download
 :radio:    | Video converted into MP3 audio
 :ship:     | Ships as a Docker image
