@@ -10,10 +10,18 @@ class PlaylistsController < ChannelsController
 
   private
 
-  def schedule_episodes_fetching
-    return if @podcast.updated_at > 10.minutes.ago && @podcast.updated_at > @podcast.created_at
-    @channel.playlist_items.where(order: 'date').take(10).reverse.each do |item|
-      FetchEpisodeJob.perform_later @podcast, item.video_id
+  class PlaylistItemWrapper
+    attr_reader :id
+
+    def initialize(item)
+      @id = item.video_id
+
+    end
+  end
+
+  def new_youtube_videos
+    @channel.playlist_items.where(order: 'date').take(10).reverse.map do |item|
+      PlaylistItemWrapper.new item
     end
   end
 end
