@@ -7,6 +7,7 @@
 [![Dependency Status](https://gemnasium.com/badges/github.com/sergio-fry/youtube-fetcher.svg)](https://gemnasium.com/github.com/sergio-fry/youtube-fetcher)
 [![Docker Pulls](https://img.shields.io/docker/pulls/udalov/youtube-fetcher.svg)](https://hub.docker.com/r/udalov/youtube-fetcher/)
 [![license](https://img.shields.io/github/license/sergio-fry/youtube-fetcher.svg)](https://github.com/sergio-fry/youtube-fetcher)
+[![Gitter](https://img.shields.io/gitter/room/youtube-fetcher/Lobby.svg)](https://gitter.im/youtube-fetcher/Lobby)
 
 Convert Youtube channel into audio podcasts with 1 click. Free webservice is [available](http://youtube-fetcher.russianpulse.ru). With *YF* you can listen to your favorite Youtube channels as audio podcasts offline. Choose any podcast player you want.
 
