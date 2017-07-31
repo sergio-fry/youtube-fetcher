@@ -15,7 +15,6 @@ class PlaylistsController < ChannelsController
 
     def initialize(item)
       @id = item.video_id
-
     end
   end
 

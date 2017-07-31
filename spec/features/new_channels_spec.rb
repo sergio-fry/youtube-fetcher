@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature "Add new channel", type: :feature do
+RSpec.feature 'Add new channel', type: :feature do
   it 'should add new channel' do
     VCR.use_cassette :fetch_channel do
       visit new_channel_url

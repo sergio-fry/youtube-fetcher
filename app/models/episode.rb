@@ -5,11 +5,7 @@ class Episode < ApplicationRecord
   validates :title, presence: true
   validates :published_at, presence: true
 
-  def size
-    media.size
-  end
+  delegate :size, to: :media
 
-  def url
-    media.url
-  end
+  delegate :url, to: :media
 end

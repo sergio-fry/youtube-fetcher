@@ -8,9 +8,9 @@ RSpec.describe FetchEpisodeJob, type: :job do
   end
 
   let(:job) { FetchEpisodeJob.new }
-  let(:podcast) { FactoryGirl.create :podcast, updated_at: 1.day.ago}
+  let(:podcast) { create :podcast, updated_at: 1.day.ago }
   let(:youtube_video_id) { 'fdpdN6K6ntY' }
-  let(:fetcher) { double(:fetcher, fetch_audio: Rails.root.join('spec', 'fixtures', 'audio.mp3'))}
+  let(:fetcher) { double(:fetcher, fetch_audio: Rails.root.join('spec', 'fixtures', 'audio.mp3')) }
 
   before do
     allow(Tracker).to receive(:event)
@@ -42,6 +42,6 @@ RSpec.describe FetchEpisodeJob, type: :job do
     its(:title) { is_expected.to eq 'Порошенко и дети' }
     its(:published_at) { is_expected.to be_a Time }
     its(:origin_id) { is_expected.to eq youtube_video_id }
-    its(:size) { is_expected.to eq 4212645 }
+    its(:size) { is_expected.to eq 4_212_645 }
   end
 end

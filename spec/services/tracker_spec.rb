@@ -22,4 +22,3 @@ RSpec.describe Tracker do
     end
   end
 end
-

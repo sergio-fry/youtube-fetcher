@@ -1,6 +1,5 @@
 atom_feed do |feed|
   feed.title @channel.title
-
   feed.updated @videos.first.published_at if @videos.present?
 
   @videos.each do |video|
