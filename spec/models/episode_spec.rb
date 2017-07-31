@@ -1,5 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Episode, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  subject { build(:episode) }
+  it { should belong_to(:podcast) }
+  it { should validate_presence_of(:title) }
+  it { should validate_presence_of(:published_at) }
 end

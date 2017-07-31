@@ -1,0 +1,22 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title YoutubeFetcher
+    %meta{:charset => "utf-8"}/
+    %meta{:content => "IE=edge", "http-equiv" => "X-UA-Compatible"}/
+    %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}/
+    = csrf_meta_tags
+    = stylesheet_link_tag    'application', media: 'all'
+  %body
+    = render partial: 'shared/google_analytics'
+    %nav.navbar.navbar-default
+      .container-fluid
+        .navbar-header
+          %a.navbar-brand{:href => "/"}
+            Youtube Fetcher
+            %i.fa.fa-youtube{"aria-hidden" => "true"}
+            →
+            %i.fa.fa-podcast{"aria-hidden" => "true"}
+    .container
+      = yield

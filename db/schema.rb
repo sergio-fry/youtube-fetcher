@@ -10,26 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170718173920) do
-
-  create_table "episodes", force: :cascade do |t|
-    t.integer "podcast_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "media"
-    t.string "title"
-    t.integer "media_size"
-    t.text "description"
-    t.datetime "published_at"
-    t.string "origin_id"
+ActiveRecord::Schema.define(version: 20_170_718_173_920) do
+  create_table 'episodes', force: :cascade do |t|
+    t.integer 'podcast_id'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.string 'media'
+    t.string 'title'
+    t.integer 'media_size'
+    t.text 'description'
+    t.datetime 'published_at'
+    t.string 'origin_id'
   end
 
-  create_table "podcasts", force: :cascade do |t|
-    t.string "origin_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "source_type"
-    t.index ["origin_id"], name: "index_podcasts_on_origin_id", unique: true
+  create_table 'podcasts', force: :cascade do |t|
+    t.string 'origin_id', null: false
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.string 'source_type'
+    t.index ['origin_id'], name: 'index_podcasts_on_origin_id', unique: true
   end
-
 end

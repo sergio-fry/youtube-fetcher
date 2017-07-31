@@ -14,8 +14,8 @@ RSpec.describe YoutubeDl do
   describe '#error_handler' do
     context do
       let(:response) do
-        <<-TEXT
-ERROR: Incomplete YouTube ID ABC123. URL https://www.youtube.com/watch?v=ABC123 looks truncated.
+        <<~TEXT
+          ERROR: Incomplete YouTube ID ABC123. URL https://www.youtube.com/watch?v=ABC123 looks truncated.
         TEXT
       end
 
@@ -27,5 +27,3 @@ ERROR: Incomplete YouTube ID ABC123. URL https://www.youtube.com/watch?v=ABC123 
     end
   end
 end
-
-

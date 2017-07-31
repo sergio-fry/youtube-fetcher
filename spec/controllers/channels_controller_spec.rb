@@ -11,10 +11,10 @@ RSpec.describe ChannelsController, type: :controller do
 
   let(:youtube_channel_id) { 'UCX0nHcqZWDSsAPog-LXdP7A' }
 
-  let(:podcast) { FactoryGirl.create :podcast, origin_id: youtube_channel_id, updated_at: 1.day.ago }
+  let(:podcast) { create :podcast, origin_id: youtube_channel_id, updated_at: 1.day.ago }
   before do
     20.times do
-      FactoryGirl.create :episode, podcast: podcast
+      create :episode, podcast: podcast
     end
   end
 
@@ -30,7 +30,7 @@ RSpec.describe ChannelsController, type: :controller do
     entry = data['feed']['entry'][0]
     expect(entry).to be_present
 
-    audio = entry['link'].find { |l| l['rel'] == 'enclosure' }
+    audio = entry['link'].detect { |l| l['rel'] == 'enclosure' }
     expect(audio).to be_present
 
     expect(audio['href']).to include 'mp3'

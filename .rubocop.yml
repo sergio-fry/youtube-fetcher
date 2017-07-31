@@ -1,0 +1,59 @@
+inherit_from: .rubocop_todo.yml
+AllCops:
+  Exclude:
+    - 'bin/*'
+    - 'db/schema.rb'
+    - 'node_modules/**/*'
+    - 'vendor/**/*'
+  TargetRubyVersion: 2.4
+Layout/IndentationConsistency:
+  EnforcedStyle: normal
+Lint/AssignmentInCondition:
+  Enabled: false
+Lint/Debugger:
+  Enabled: true
+Lint/DefEndAlignment:
+  AutoCorrect: true
+Lint/EndAlignment:
+  AutoCorrect: true
+  EnforcedStyleAlignWith: keyword
+Metrics/LineLength:
+  Enabled: false
+  Max: 110
+Rails:
+  Enabled: true
+Style/AsciiComments:
+  Enabled: false
+Style/Alias:
+  EnforcedStyle: prefer_alias_method
+Style/AutoResourceCleanup:
+  Enabled: true
+Style/ClassAndModuleChildren:
+  Enabled: false
+Style/CollectionMethods:
+  Description: Preferred collection methods.
+  StyleGuide: https://github.com/bbatsov/ruby-style-guide#map-find-select-reduce-size
+  Enabled: true
+  PreferredMethods:
+    collect: map
+    collect!: map!
+    find: detect
+    find_all: select
+    reduce: inject
+Style/Documentation:
+  Enabled: false
+Style/FileName:
+  Description: Use snake_case for source file names.
+  StyleGuide: https://github.com/bbatsov/ruby-style-guide#snake-case-files
+  Enabled: false
+Style/FormatStringToken:
+  Enabled: false
+Style/PercentLiteralDelimiters:
+  PreferredDelimiters:
+    '%i': '()'
+    '%I': '()'
+    '%r': '{}'
+    '%w': '()'
+    '%W': '()'
+Style/StringLiterals:
+  EnforcedStyle: single_quotes

@@ -1,0 +1,17 @@
+%h1
+  = @channel.title
+  Podcast
+%p
+  Videos:
+  = @channel.videos.count
+Atom feed:
+- if @podcast.source_type == 'playlist'
+  = link_to playlist_url(@podcast.origin_id, format: :atom), playlist_url(@podcast.origin_id, format: :atom)
+- else
+  = link_to channel_url(@podcast.origin_id, format: :atom), channel_url(@podcast.origin_id, format: :atom)
+%br
+.episodes
+  - @videos.each do |episode|
+    .episode
+      = episode.title
+      %span.episode__link= link_to number_to_human_size(episode.size), episode.url

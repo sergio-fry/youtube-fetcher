@@ -1,5 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Podcast, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  subject { build(:podcast) }
+  it { should have_many(:episodes).dependent(:destroy) }
+  it { should validate_presence_of(:origin_id) }
 end
