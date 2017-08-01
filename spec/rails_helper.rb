@@ -30,4 +30,6 @@ RSpec.configure do |config|
       example.run
     end
   end
+
+  config.include FactoryGirl::Syntax::Methods
 end
