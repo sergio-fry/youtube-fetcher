@@ -16,11 +16,20 @@ Atom feed:
 <div class='episodes'>
   <% @videos.each do |episode| %>
     <div class='episode'>
-      <%= episode.title %> | <%= episode.description %>
-      <span class='episode__link'><%= link_to number_to_human_size(episode.size), episode.url %></span>
-      <span class='origin__link'>
-        <%= link_to image_tag(episode.thumbnail), "https://www.youtube.com/watch?v=#{episode.origin_id}" if episode.thumbnail %>
-      </span>
+      <table>
+        <body>
+          <tr>
+            <td><%= link_to image_tag(episode.thumbnail), "https://www.youtube.com/watch?v=#{episode.origin_id}" if episode.thumbnail %></td>
+            <td>
+              <ul>
+                <li>Title: <%= episode.title %></li>
+                <li>Description: <%= episode.description %></li>
+                <li><span class='episode__link'>Podcast: <%= link_to number_to_human_size(episode.size), episode.url %></span></li>
+              </ul>
+            </td>
+          </tr>
+        </body>
+      </table>
     </div>
   <% end %>
 </div>
