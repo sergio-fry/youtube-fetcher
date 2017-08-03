@@ -119,6 +119,7 @@ GEM
     mini_portile2 (2.2.0)
     minitest (5.10.2)
     multi_json (1.12.1)
+    newrelic_rpm (4.3.0.335)
     nio4r (2.1.0)
     nokogiri (1.8.0)
       mini_portile2 (~> 2.2.0)
@@ -266,6 +267,7 @@ DEPENDENCIES
   font-awesome-rails
   jbuilder (~> 2.5)
   listen (>= 3.0.5, < 3.2)
+  newrelic_rpm
   pg
   pry
   puma (~> 3.7)
