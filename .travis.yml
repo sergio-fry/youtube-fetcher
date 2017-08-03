@@ -14,7 +14,10 @@ services:
   - docker
 
 before_install:
-  - echo 'GO!'
+  - sudo curl -L https://sourceforge.net/projects/mp3gain/files/mp3gain/1.5.2/mp3gain-1_5_2_r2-src.zip/download -o /usr/src/mp3gain.zip
+  - sudo mkdir /usr/src/mp3gain
+  - sudo mv /usr/src/mp3gain.zip /usr/src/mp3gain/
+  - sudo  bash -c "cd /usr/src/mp3gain/ && unzip mp3gain.zip && make install "
 
 script:
   - yarn install
