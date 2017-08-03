@@ -42,6 +42,6 @@ RSpec.describe FetchEpisodeJob, type: :job do
     its(:title) { is_expected.to eq 'Порошенко и дети' }
     its(:published_at) { is_expected.to be_a Time }
     its(:origin_id) { is_expected.to eq youtube_video_id }
-    its(:size) { is_expected.to eq 4212645 }
+    its(:size) { is_expected.to eq 160749 }
   end
 end

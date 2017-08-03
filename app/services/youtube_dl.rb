@@ -5,10 +5,14 @@ class YoutubeDl
   def fetch_audio(id)
     exec "--extract-audio --audio-format mp3 --audio-quality 9 -o '#{Rails.root.join('tmp', 'youtube', '%(id)s.%(ext)s')}' https://www.youtube.com/watch?v=#{id}"
 
-    Rails.root.join('tmp', 'youtube', "#{id}.mp3")
+    normalizer.normalize Rails.root.join('tmp', 'youtube', "#{id}.mp3")
   end
 
   private
+
+  def normalizer
+    Normalizer.new
+  end
 
   def error_handler(response)
     return unless response.match(/ERROR/)

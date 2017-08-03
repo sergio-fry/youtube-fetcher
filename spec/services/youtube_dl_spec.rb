@@ -3,7 +3,10 @@ require 'rails_helper'
 RSpec.describe YoutubeDl do
   let(:youtube_dl) { YoutubeDl.new }
 
-  before { allow(youtube_dl).to receive(:exec) }
+  before do
+    allow(youtube_dl).to receive(:exec)
+    allow_any_instance_of(Normalizer).to receive(:normalize)
+  end
 
   describe '#fetch_audio' do
     it 'should work' do
