@@ -35,6 +35,23 @@ Let's turn [TEDx Talks into](https://www.youtube.com/channel/UCsT0YIqwnpJCM-mx7-
 http://youtube-fetcher.russianpulse.ru/channels/UCsT0YIqwnpJCM-mx7-gSA4Q
 
 
+## requirements
+Generally, you should install youtube-dl and ffmpeg from your chosen distribution's package manager. For instance:
+
+```bash
+# Debian/Ubuntu
+apt-get install youtube-dl
+apt-get install ffmpeg
+
+# Fedora/CentOS
+yum install youtube-dl
+yum install ffmpeg
+
+# MacOS
+brew install youtube-dl
+brew install ffmpeg
+```
+
 ## Setup
 
 ```bash
