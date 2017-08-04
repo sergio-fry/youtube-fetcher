@@ -46,8 +46,10 @@ class ChannelsController < ApplicationController
   def schedule_episodes_fetching
     return if @podcast.updated_at > 10.minutes.ago && @podcast.updated_at > @podcast.created_at
     new_youtube_videos.each do |video|
-      FetchEpisodeJob.perform_later @podcast, video.id
+      FetchAudioEpisodeJob.perform_later @podcast, video.id
     end
+
+    @podcast.touch
   end
 
   def new_youtube_videos

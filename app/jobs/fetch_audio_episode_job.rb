@@ -1,12 +1,12 @@
-class FetchEpisodeJob < ApplicationJob
+class FetchAudioEpisodeJob < ApplicationJob
   queue_as :default
 
   class Fetcher
-    def fetch_audio(id)
+    def fetch(id)
       path = nil
 
       Tracker.timing(category: 'runtime', variable: 'youtube-dl', label: 'download') do
-        path = YoutubeDl.new.fetch_audio id
+        path = YoutubeDl.new.fetch id
       end
 
       Tracker.event category: :audio, action: :download, label: id
@@ -24,12 +24,10 @@ class FetchEpisodeJob < ApplicationJob
     @youtube_video_id = youtube_video_id
     podcast.episodes.create(
       origin_id: youtube_video_id,
-      media: File.open(fetcher.fetch_audio(youtube_video_id)),
+      media: File.open(fetcher.fetch(youtube_video_id)),
       title: video.title,
       published_at: video.published_at
     )
-
-    podcast.touch
   end
 
   private

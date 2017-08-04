@@ -1,16 +1,16 @@
 require 'rails_helper'
 
-RSpec.describe FetchEpisodeJob, type: :job do
+RSpec.describe FetchAudioEpisodeJob, type: :job do
   def perform_job
     VCR.use_cassette :fetch_video do
       job.perform(podcast, youtube_video_id, fetcher)
     end
   end
 
-  let(:job) { FetchEpisodeJob.new }
+  let(:job) { FetchAudioEpisodeJob.new }
   let(:podcast) { FactoryGirl.create :podcast, updated_at: 1.day.ago}
   let(:youtube_video_id) { 'fdpdN6K6ntY' }
-  let(:fetcher) { double(:fetcher, fetch_audio: Rails.root.join('spec', 'fixtures', 'audio.mp3'))}
+  let(:fetcher) { double(:fetcher, fetch: Rails.root.join('spec', 'fixtures', 'audio.mp3'))}
 
   before do
     allow(Tracker).to receive(:event)
@@ -20,12 +20,6 @@ RSpec.describe FetchEpisodeJob, type: :job do
     expect do
       perform_job
     end.to change { podcast.episodes.count }.by(1)
-  end
-
-  it 'should update updated_at field' do
-    expect do
-      perform_job
-    end.to change { podcast.updated_at }
   end
 
   describe 'new episode' do
