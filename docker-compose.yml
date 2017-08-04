@@ -1,0 +1,27 @@
+web:
+  build: .
+  volumes:
+    - "./:/app"
+  links:
+    - db
+  environment:
+    - RAILS_ENV=development
+    - DATABASE_URL=postgresql://postgres:postgres@db/development
+
+  ports:
+    - "3000:80"
+
+worker:
+  build: .
+  volumes:
+    - "./:/app"
+  links:
+    - db
+  environment:
+    - RAILS_ENV=development
+    - DATABASE_URL=postgresql://postgres:postgres@db/development
+
+  command: ["worker"]
+
+db:
+  image: postgres:9.6

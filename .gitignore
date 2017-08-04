@@ -16,7 +16,7 @@
 .byebug_history
 
 db/*.sqlite3
-public/uploads/
+public/uploads
 public/assets
 coverage/
 node_modules/

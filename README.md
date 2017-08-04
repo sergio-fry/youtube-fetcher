@@ -34,32 +34,26 @@ Let's turn [TEDx Talks into](https://www.youtube.com/channel/UCsT0YIqwnpJCM-mx7-
 
 http://youtube-fetcher.russianpulse.ru/channels/UCsT0YIqwnpJCM-mx7-gSA4Q
 
-## Setup
+## Run
 
 ```bash
-docker run -e RAILS_ENV=production -e SECRET_KEY_BASE=ABC123 -p 3000:80 -t udalov/youtube-fetcher web
+make up
 ```
 
 Open browser:
 
 http://0.0.0.0:3000/
 
-## Development requirements
-Generally, you should install youtube-dl and ffmpeg from your chosen distribution's package manager. For instance:
+## Test
 
 ```bash
-# Debian/Ubuntu
-apt-get install youtube-dl
-apt-get install ffmpeg
-
-# Fedora/CentOS
-yum install youtube-dl
-yum install ffmpeg
-
-# MacOS
-brew install youtube-dl
-brew install ffmpeg
+make test
 ```
+
+## Requirements
+
+* Docker
+* Docker Compose
 
 ## License
 
