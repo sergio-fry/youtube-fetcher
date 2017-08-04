@@ -17,7 +17,7 @@ class ChannelsController
       video.audio_url = episode.url
       video.audio_size = episode.size
 
-      video_episode = VideoEpisode.find_by origin_id: episode.origin_id
+      video_episode = VideoEpisode.find_by origin_id: episode.origin_id, type: 'VideoEpisode'
 
       if video_episode.present?
         video.video_url = video_episode.url
