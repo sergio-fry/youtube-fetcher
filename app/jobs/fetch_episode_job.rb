@@ -1,11 +1,13 @@
-class FetchAudioEpisodeJob < ApplicationJob
+class FetchEpisodeJob < ApplicationJob
   queue_as :default
 
-  EPISODES_RELATION = 'episodes'.freeze
-
   class Fetcher
-    def fetch(id)
-      path = fetch_media id
+    def fetch_audio(id)
+      path = nil
+
+      Tracker.timing(category: 'runtime', variable: 'youtube-dl', label: 'download') do
+        path = YoutubeDl.new.fetch_audio id
+      end
 
       Tracker.event category: :audio, action: :download, label: id
 
@@ -14,24 +16,20 @@ class FetchAudioEpisodeJob < ApplicationJob
       Tracker.event category: 'Error', action: ex.class, label: ex.message
       raise ex # raise again
     end
-
-    private
-
-    def fetch_media(id)
-      YoutubeDl.new.fetch_audio id
-    end
   end
 
   def perform(podcast, youtube_video_id, fetcher=Fetcher.new)
-    return if podcast.send(self.class::EPISODES_RELATION).exists?(origin_id: youtube_video_id)
+    return if podcast.episodes.exists?(origin_id: youtube_video_id)
 
     @youtube_video_id = youtube_video_id
-    podcast.send(self.class::EPISODES_RELATION).create(
+    podcast.episodes.create(
       origin_id: youtube_video_id,
-      media: File.open(fetcher.fetch(youtube_video_id)),
+      media: File.open(fetcher.fetch_audio(youtube_video_id)),
       title: video.title,
       published_at: video.published_at
     )
+
+    podcast.touch
   end
 
   private

@@ -8,12 +8,6 @@ class YoutubeDl
     normalizer.normalize Rails.root.join('tmp', 'youtube', "#{id}.mp3")
   end
 
-  def fetch_video(id)
-    exec "-f 'worst[height>=360]+worstaudio' --recode-video mp4 -o '#{Rails.root.join('tmp', 'youtube-videos', '%(id)s.%(ext)s')}' https://www.youtube.com/watch?v=#{id}"
-
-    Rails.root.join('tmp', 'youtube-videos', "#{id}.mp4")
-  end
-
   private
 
   def normalizer
