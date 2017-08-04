@@ -1,20 +1,20 @@
 require 'rails_helper'
 
-RSpec.describe FetchAudioEpisodeJob, type: :job do
+RSpec.describe FetchVideoEpisodeJob, type: :job do
   def perform_job
     VCR.use_cassette :fetch_video do
       job.perform(podcast, youtube_video_id)
     end
   end
 
-  let(:job) { FetchAudioEpisodeJob.new }
+  let(:job) { FetchVideoEpisodeJob.new }
   let(:podcast) { FactoryGirl.create :podcast, updated_at: 1.day.ago}
   let(:youtube_video_id) { 'fdpdN6K6ntY' }
 
   before do
     allow(Tracker).to receive(:event)
-    allow_any_instance_of(YoutubeDl).to receive(:fetch_audio) do
-      Rails.root.join('spec', 'fixtures', 'audio.mp3')
+    allow_any_instance_of(YoutubeDl).to receive(:fetch_video) do
+      Rails.root.join('spec', 'fixtures', 'video.mp4')
     end
   end
 
@@ -32,12 +32,12 @@ RSpec.describe FetchAudioEpisodeJob, type: :job do
 
     it 'should have media' do
       expect(subject.media).to be_present
-      expect(subject.media.url).to include '.mp3'
+      expect(subject.media.url).to include '.mp4'
     end
 
     its(:title) { is_expected.to eq 'Порошенко и дети' }
     its(:published_at) { is_expected.to be_a Time }
     its(:origin_id) { is_expected.to eq youtube_video_id }
-    its(:size) { is_expected.to eq 160749 }
+    its(:size) { is_expected.to eq 996692 }
   end
 end

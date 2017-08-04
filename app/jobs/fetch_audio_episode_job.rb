@@ -3,11 +3,7 @@ class FetchAudioEpisodeJob < ApplicationJob
 
   class Fetcher
     def fetch(id)
-      path = nil
-
-      Tracker.timing(category: 'runtime', variable: 'youtube-dl', label: 'download') do
-        path = YoutubeDl.new.fetch id
-      end
+      path = fetch_media id
 
       Tracker.event category: :audio, action: :download, label: id
 
@@ -15,6 +11,12 @@ class FetchAudioEpisodeJob < ApplicationJob
     rescue YoutubeDl::UnknownError => ex
       Tracker.event category: 'Error', action: ex.class, label: ex.message
       raise ex # raise again
+    end
+
+    private
+
+    def fetch_media(id)
+      YoutubeDl.new.fetch_audio id
     end
   end
 
