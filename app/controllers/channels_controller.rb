@@ -1,5 +1,4 @@
 class ChannelsController < ApplicationController
-
   class Channel < Podcast
     attr_accessor :url
   end
@@ -16,7 +15,7 @@ class ChannelsController < ApplicationController
     @podcast = Podcast.find_or_create_by origin_id: params[:id]
     @channel = Yt::Channel.new id: params[:id]
 
-    @videos = @podcast.episodes.order('published_at DESC').limit(10)
+    @videos = @podcast.episodes.order('published_at DESC').limit(10).map { |e| Video.build e }
 
     schedule_episodes_fetching
   end

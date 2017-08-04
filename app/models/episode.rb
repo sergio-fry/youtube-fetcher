@@ -1,6 +1,4 @@
 class Episode < ApplicationRecord
-  self.abstract_class = true
-
   belongs_to :podcast
   mount_uploader :media, MediaUploader
 

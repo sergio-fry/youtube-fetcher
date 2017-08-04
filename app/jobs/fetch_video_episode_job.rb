@@ -1,4 +1,6 @@
 class FetchVideoEpisodeJob < FetchAudioEpisodeJob
+  EPISODES_RELATION = 'video_episodes'.freeze
+
   class Fetcher < FetchAudioEpisodeJob::Fetcher
     private
 

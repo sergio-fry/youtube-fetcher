@@ -21,12 +21,12 @@ RSpec.describe FetchVideoEpisodeJob, type: :job do
   it 'should save media' do
     expect do
       perform_job
-    end.to change { podcast.episodes.count }.by(1)
+    end.to change { podcast.video_episodes.count }.by(1)
   end
 
   describe 'new episode' do
     before { perform_job }
-    subject { podcast.episodes.first }
+    subject { podcast.video_episodes.first }
 
     it { is_expected.to be_present }
 

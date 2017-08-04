@@ -1,6 +1,8 @@
 class FetchAudioEpisodeJob < ApplicationJob
   queue_as :default
 
+  EPISODES_RELATION = 'episodes'.freeze
+
   class Fetcher
     def fetch(id)
       path = fetch_media id
@@ -21,10 +23,10 @@ class FetchAudioEpisodeJob < ApplicationJob
   end
 
   def perform(podcast, youtube_video_id, fetcher=Fetcher.new)
-    return if podcast.episodes.exists?(origin_id: youtube_video_id)
+    return if podcast.send(self.class::EPISODES_RELATION).exists?(origin_id: youtube_video_id)
 
     @youtube_video_id = youtube_video_id
-    podcast.episodes.create(
+    podcast.send(self.class::EPISODES_RELATION).create(
       origin_id: youtube_video_id,
       media: File.open(fetcher.fetch(youtube_video_id)),
       title: video.title,

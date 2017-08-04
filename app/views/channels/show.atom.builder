@@ -4,7 +4,7 @@ atom_feed do |feed|
   feed.updated @videos.first.published_at if @videos.present?
 
   @videos.each do |video|
-    feed.entry video, url: "https://www.youtube.com/watch?v=#{video.id}" do |entry|
+    feed.entry video, url: "https://www.youtube.com/watch?v=#{video.origin_id}" do |entry|
       entry.author do |author|
         author.name @channel.title
       end
@@ -12,7 +12,7 @@ atom_feed do |feed|
       entry.title video.title
       entry.content video.description, type: 'html'
 
-      entry.link rel: 'enclosure', type: 'audio/mpeg', title: 'mp3', href: video.url, length: video.size
+      entry.link rel: 'enclosure', type: 'audio/mpeg', title: 'mp3', href: video.audio_url, length: video.audio_size
     end
   end
 end
