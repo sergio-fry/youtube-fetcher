@@ -3,9 +3,9 @@ require 'rails_helper'
 RSpec.describe ChannelsController, type: :controller do
   render_views
 
-  def make_request
+  def make_request(format=:atom)
     VCR.use_cassette :fetch_channel do
-      get :show, params: { id: youtube_channel_id }, format: :atom
+      get :show, params: { id: youtube_channel_id }, format: format
     end
   end
 
@@ -43,6 +43,11 @@ RSpec.describe ChannelsController, type: :controller do
   context 'when channel is new' do
     before { Podcast.destroy_all }
     it { expect { make_request }.to change { Podcast.count }.by(1) }
+  end
+
+  it 'should render channel as HTNL' do
+    make_request :html
+    expect(response).to be_success
   end
 
   describe '.channel_id' do
