@@ -18,7 +18,7 @@ class FetchEpisodeJob < ApplicationJob
     end
   end
 
-  def perform(podcast, youtube_video_id, fetcher=Fetcher.new)
+  def perform(podcast, youtube_video_id, fetcher=Fetcher.new, data)
     return if podcast.episodes.exists?(origin_id: youtube_video_id)
 
     @youtube_video_id = youtube_video_id
@@ -26,6 +26,8 @@ class FetchEpisodeJob < ApplicationJob
       origin_id: youtube_video_id,
       media: File.open(fetcher.fetch_audio(youtube_video_id)),
       title: video.title,
+      description: data['description'],
+      thumbnail: data['thumbnails']['default']['url'],
       published_at: video.published_at
     )
 

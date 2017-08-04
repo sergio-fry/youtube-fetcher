@@ -1,5 +1,5 @@
+<%= image_tag @channel.snippet.data['thumbnails']['default']['url'] %>
 <h1><%= @channel.title %> Podcast</h1>
-
 Atom feed:
 
 <% if @podcast.source_type == 'playlist' %>
@@ -9,13 +9,27 @@ Atom feed:
 <% end %>
 
 <br />
+<p><%= @channel.snippet.data['description'] %></p>
+<p><%= @channel.snippet.data['localized']['description'] %></p>
 <br />
 
 <div class='episodes'>
   <% @videos.each do |episode| %>
     <div class='episode'>
-      <%= episode.title %>
-      <span class='episode__link'><%= link_to number_to_human_size(episode.size), episode.url %></span>
+      <table>
+        <body>
+          <tr>
+            <td><%= link_to image_tag(episode.thumbnail), "https://www.youtube.com/watch?v=#{episode.origin_id}" if episode.thumbnail %></td>
+            <td>
+              <ul>
+                <li>Title: <%= episode.title %></li>
+                <li>Description: <%= episode.description %></li>
+                <li><span class='episode__link'>Podcast: <%= link_to number_to_human_size(episode.size), episode.url %></span></li>
+              </ul>
+            </td>
+          </tr>
+        </body>
+      </table>
     </div>
   <% end %>
 </div>

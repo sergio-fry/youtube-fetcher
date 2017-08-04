@@ -5,20 +5,19 @@ class ChannelsController < ApplicationController
   end
 
   def create
-    if playlist_id.present?
-      redirect_to playlist_path(playlist_id)
-    else
-      redirect_to channel_path(channel_id)
-    end
+    return redirect_to(playlist_path(playlist_id)) if playlist_id.present?
+    return redirect_to(channel_path(channel_id)) if channel_id.present?
+    redirect_to :root
   end
 
   def show
-    @podcast = Podcast.find_or_create_by origin_id: params[:id]
     @channel = Yt::Channel.new id: params[:id]
-
+    @channel.title # exception if wrong :id
+    @podcast = Podcast.find_or_create_by origin_id: params[:id]
     @videos = @podcast.episodes.order('published_at DESC').limit(10)
-
     schedule_episodes_fetching
+  rescue
+    redirect_to :root
   end
 
   def new
@@ -46,7 +45,7 @@ class ChannelsController < ApplicationController
   def schedule_episodes_fetching
     return if @podcast.updated_at > 10.minutes.ago && @podcast.updated_at > @podcast.created_at
     new_youtube_videos.each do |video|
-      FetchEpisodeJob.perform_later @podcast, video.id
+      FetchEpisodeJob.perform_later @podcast, video.id, video.snippet.data
     end
   end
 
