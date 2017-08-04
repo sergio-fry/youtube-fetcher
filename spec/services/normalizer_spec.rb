@@ -11,7 +11,6 @@ RSpec.describe Normalizer do
     src = Rails.root.join('spec', 'fixtures', 'audio.mp3')
     dst = Rails.root.join('tmp', 'test', 'normalizer', 'audio.mp3')
     `cp #{src} #{dst}`
-    puts dst
 
     dst
   end

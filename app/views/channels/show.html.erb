@@ -15,7 +15,12 @@ Atom feed:
   <% @videos.each do |episode| %>
     <div class='episode'>
       <%= episode.title %>
-      <span class='episode__link'><%= link_to number_to_human_size(episode.size), episode.url %></span>
+      <span class='episode__link'>audio <%= link_to number_to_human_size(episode.audio_size), episode.audio_url %></span>
+
+      <% if episode.has_video? %>
+        |
+        <span class='episode__link'>video <%= link_to number_to_human_size(episode.video_size), episode.video_url %></span>
+      <% end %>
     </div>
   <% end %>
 </div>

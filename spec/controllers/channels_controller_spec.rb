@@ -3,20 +3,17 @@ require 'rails_helper'
 RSpec.describe ChannelsController, type: :controller do
   render_views
 
-  def make_request
+  def make_request(format=:atom)
     VCR.use_cassette :fetch_channel do
-      get :show, params: { id: youtube_channel_id }, format: :atom
+      get :show, params: { id: youtube_channel_id }, format: format
     end
   end
 
   let(:youtube_channel_id) { 'UCX0nHcqZWDSsAPog-LXdP7A' }
 
   let(:podcast) { FactoryGirl.create :podcast, origin_id: youtube_channel_id, updated_at: 1.day.ago }
-  before do
-    20.times do
-      FactoryGirl.create :episode, podcast: podcast
-    end
-  end
+  let!(:episode) { FactoryGirl.create :episode, podcast: podcast }
+  let!(:video_episode) { FactoryGirl.create :video_episode, podcast: podcast, origin_id: episode.origin_id }
 
   it 'should fetch channel' do
     make_request
@@ -25,20 +22,32 @@ RSpec.describe ChannelsController, type: :controller do
 
     data = Hash.from_xml response.body
 
-    expect(data['feed']['entry'].size).to eq 10
-
-    entry = data['feed']['entry'][0]
+    entry = data['feed']['entry']
     expect(entry).to be_present
 
-    audio = entry['link'].find { |l| l['rel'] == 'enclosure' }
+    audio = entry['link'].find { |l| l['rel'] == 'enclosure' && l['type'] == 'audio/mpeg' }
     expect(audio).to be_present
-
     expect(audio['href']).to include 'mp3'
+
+    video = entry['link'].find { |l| l['rel'] == 'enclosure' && l['type'] == 'video/mp4' }
+    expect(video).to be_present
+    expect(video['href']).to include 'mp4'
+  end
+
+  it 'should update updated_at field' do
+    expect do
+      make_request
+    end.to change { podcast.reload.updated_at }
   end
 
   context 'when channel is new' do
     before { Podcast.destroy_all }
     it { expect { make_request }.to change { Podcast.count }.by(1) }
+  end
+
+  it 'should render channel as HTNL' do
+    make_request :html
+    expect(response).to be_success
   end
 
   describe '.channel_id' do

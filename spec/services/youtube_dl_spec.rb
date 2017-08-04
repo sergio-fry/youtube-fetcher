@@ -14,6 +14,12 @@ RSpec.describe YoutubeDl do
     end
   end
 
+  describe '#fetch_video' do
+    it 'should work' do
+      youtube_dl.fetch_video 'ABC123'
+    end
+  end
+
   describe '#error_handler' do
     context do
       let(:response) do
