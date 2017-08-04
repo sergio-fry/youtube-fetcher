@@ -1,5 +1,4 @@
 class ChannelsController < ApplicationController
-
   class Channel < Podcast
     attr_accessor :url
   end
@@ -16,7 +15,7 @@ class ChannelsController < ApplicationController
     @podcast = Podcast.find_or_create_by origin_id: params[:id]
     @channel = Yt::Channel.new id: params[:id]
 
-    @videos = @podcast.episodes.order('published_at DESC').limit(10)
+    @videos = @podcast.episodes.order('published_at DESC').limit(10).map { |e| Video.build e }
 
     schedule_episodes_fetching
   end
@@ -46,8 +45,11 @@ class ChannelsController < ApplicationController
   def schedule_episodes_fetching
     return if @podcast.updated_at > 10.minutes.ago && @podcast.updated_at > @podcast.created_at
     new_youtube_videos.each do |video|
-      FetchEpisodeJob.perform_later @podcast, video.id
+      FetchAudioEpisodeJob.perform_later @podcast, video.id
+      FetchVideoEpisodeJob.perform_later @podcast, video.id
     end
+
+    @podcast.touch
   end
 
   def new_youtube_videos
