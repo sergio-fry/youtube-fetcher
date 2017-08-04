@@ -28,10 +28,6 @@ module YoutubeFetcher
     # -- all .rb files in that directory are automatically loaded.
 
     # FIXME: does not work. This config is overriden in a ApplicationJob
-    ActiveJob::Base.queue_adapter = :sucker_punch
-    ActiveJob::QueueAdapters::SuckerPunchAdapter::JobWrapper.class_eval do
-      workers 1
-
-    end
+    ActiveJob::Base.queue_adapter = :delayed_job
   end
 end
