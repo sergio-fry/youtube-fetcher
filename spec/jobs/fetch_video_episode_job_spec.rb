@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe FetchVideoEpisodeJob, type: :job do
+  include MediaFilesHelper
+
   def perform_job
     VCR.use_cassette :fetch_video do
       job.perform(podcast, youtube_video_id)
@@ -13,9 +15,7 @@ RSpec.describe FetchVideoEpisodeJob, type: :job do
 
   before do
     allow(Tracker).to receive(:event)
-    allow_any_instance_of(YoutubeDl).to receive(:fetch_video) do
-      Rails.root.join('spec', 'fixtures', 'video.mp4')
-    end
+    allow_any_instance_of(YoutubeDl).to receive(:fetch_video) { video_file_example_path }
   end
 
   it 'should save media' do

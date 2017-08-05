@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe FetchAudioEpisodeJob, type: :job do
+  include MediaFilesHelper
+
   def perform_job
     VCR.use_cassette :fetch_video do
       job.perform(podcast, youtube_video_id)
@@ -13,9 +15,7 @@ RSpec.describe FetchAudioEpisodeJob, type: :job do
 
   before do
     allow(Tracker).to receive(:event)
-    allow_any_instance_of(YoutubeDl).to receive(:fetch_audio) do
-      Rails.root.join('spec', 'fixtures', 'audio.mp3')
-    end
+    allow_any_instance_of(YoutubeDl).to receive(:fetch_audio) { audio_file_example_path }
   end
 
   it 'should save media' do
