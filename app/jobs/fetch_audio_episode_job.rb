@@ -26,15 +26,23 @@ class FetchAudioEpisodeJob < ApplicationJob
     return if podcast.send(self.class::EPISODES_RELATION).exists?(origin_id: youtube_video_id)
 
     @youtube_video_id = youtube_video_id
+    @fetcher = fetcher
+
     podcast.send(self.class::EPISODES_RELATION).create(
       origin_id: youtube_video_id,
-      media: File.open(fetcher.fetch(youtube_video_id)),
+      media: File.open(local_media_path),
       title: video.title,
       published_at: video.published_at
     )
+  ensure
+    `rm #{local_media_path}`
   end
 
   private
+
+  def local_media_path
+    @local_media_path ||= @fetcher.fetch(@youtube_video_id)
+  end
 
   def video
     @video ||= Yt::Video.new id: @youtube_video_id
