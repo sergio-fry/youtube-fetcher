@@ -12,7 +12,6 @@ RSpec.describe FetchAudioEpisodeJob, type: :job do
   let(:job) { FetchAudioEpisodeJob.new }
   let(:podcast) { FactoryGirl.create :podcast, updated_at: 1.day.ago}
   let(:youtube_video_id) { 'fdpdN6K6ntY' }
-
   let(:temp_audio_file_path) { audio_file_example_path }
 
   before do

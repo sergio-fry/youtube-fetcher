@@ -12,16 +12,22 @@ RSpec.describe FetchVideoEpisodeJob, type: :job do
   let(:job) { FetchVideoEpisodeJob.new }
   let(:podcast) { FactoryGirl.create :podcast, updated_at: 1.day.ago}
   let(:youtube_video_id) { 'fdpdN6K6ntY' }
+  let(:temp_video_file_path) { video_file_example_path }
 
   before do
     allow(Tracker).to receive(:event)
-    allow_any_instance_of(YoutubeDl).to receive(:fetch_video) { video_file_example_path }
+    allow_any_instance_of(YoutubeDl).to receive(:fetch_video) { temp_video_file_path }
   end
 
   it 'should save media' do
     expect do
       perform_job
     end.to change { podcast.video_episodes.count }.by(1)
+  end
+
+  it 'should remove temp file' do
+    perform_job
+    expect(File.exists?(temp_video_file_path)).to eq false
   end
 
   describe 'new episode' do
