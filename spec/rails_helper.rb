@@ -26,8 +26,10 @@ RSpec.configure do |config|
   config.around(:each) do |example|
     DatabaseCleaner.strategy = example.metadata[:js] ? :truncation : :transaction
 
+    `mkdir -p #{Rails.root.join('tmp', 'test')}`
     DatabaseCleaner.cleaning do
       example.run
     end
+    `rm -rf #{Rails.root.join('tmp', 'test', '*')}`
   end
 end
