@@ -36,8 +36,8 @@ RSpec.describe PlaylistsController, type: :controller do
     expect(audio['href']).to include 'mp3'
   end
 
-  context 'when playlist is new' do
-    before { Podcast.destroy_all }
-    it { expect { make_request }.to change { Podcast.count }.by(1) }
+  context 'when playlist not found' do
+    before { Podcast.destroy_all; make_request }
+    it { expect(response.code.to_i).to eq 404 }
   end
 end
