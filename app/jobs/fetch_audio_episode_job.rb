@@ -47,6 +47,7 @@ class FetchAudioEpisodeJob < ApplicationJob
   end
 
   def local_media_path
+    return if @fetcher.nil?
     @local_media_path ||= @fetcher.fetch(@youtube_video_id)
   end
 
