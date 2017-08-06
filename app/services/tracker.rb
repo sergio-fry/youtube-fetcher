@@ -16,10 +16,6 @@ class Tracker
     instance.event(*args)
   end
 
-  def self.timing(*args, &block)
-    instance.staccato.timing(*args, &block)
-  end
-
   private
 
   def hash_to_message(h)
