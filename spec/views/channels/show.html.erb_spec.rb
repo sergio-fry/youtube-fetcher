@@ -2,9 +2,8 @@ require 'rails_helper'
 
 RSpec.describe "channels/show", type: :view do
   subject { rendered }
-  let(:podcast) { FactoryGirl.build(:podcast) }
+  let(:podcast) { FactoryGirl.build(:podcast, title: 'My Podcast') }
   before do
-    assign(:channel, double(:channel, title: 'My Podcast'))
     assign(:podcast, podcast)
     assign(:videos, [FactoryGirl.build(:episode, title: 'My Episode')])
 

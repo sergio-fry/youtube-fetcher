@@ -14,7 +14,7 @@ class PlaylistsController < ChannelsController
   end
 
   def new_youtube_videos
-    @channel.playlist_items.where(order: 'date').take(10).reverse.map do |item|
+    channel.playlist_items.where(order: 'date').take(10).reverse.map do |item|
       PlaylistItemWrapper.new item
     end
   end

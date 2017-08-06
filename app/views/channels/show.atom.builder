@@ -1,12 +1,12 @@
 atom_feed do |feed|
-  feed.title @channel.title
+  feed.title @podcast.title
 
   feed.updated @videos.first.published_at if @videos.present?
 
   @videos.each do |video|
     feed.entry video, url: "https://www.youtube.com/watch?v=#{video.origin_id}" do |entry|
       entry.author do |author|
-        author.name @channel.title
+        author.name @podcast.title
       end
       entry.updated video.published_at.rfc3339
       entry.title video.title

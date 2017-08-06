@@ -16,7 +16,7 @@ class ChannelsController < ApplicationController
 
   def show
     @podcast = Podcast.find_or_create_by origin_id: params[:id], source_type: self.class::PODCAST_SOURCE_TYPE
-    @channel = self::class::PODCAST_YT_KLASS.new id: params[:id]
+    @podcast.update_attributes(title: channel.title)
 
     @videos = if params[:type] == 'video'
                 @podcast.video_episodes
@@ -34,6 +34,10 @@ class ChannelsController < ApplicationController
   end
 
   private
+
+  def channel
+    @channel ||= self::class::PODCAST_YT_KLASS.new id: params[:id]
+  end
 
   def playlist_id
     m = channel_url.match(/youtube.com\/playlist\?list=(.+)/)
@@ -62,6 +66,6 @@ class ChannelsController < ApplicationController
   end
 
   def new_youtube_videos
-    @channel.videos.where(order: 'date').take(10).reverse
+    channel.videos.where(order: 'date').take(10).reverse
   end
 end
