@@ -13,11 +13,32 @@
 <br />
 <br />
 
-<div class='episodes'>
-  <% @videos.each do |episode| %>
-    <div class='episode'>
-      <%= episode.title %>
-      <span class='episode__link'><%= episode.mime_type %> <%= link_to number_to_human_size(episode.size), episode.url %></span>
-    </div>
+<table class='episodes table'>
+  <tr>
+    <th>Title</th>
+    <th>Published At</th>
+    <th><i class="fa fa-headphones"></i></th>
+    <th><i class="fa fa-video-camera"></i></th>
+  </tr>
+  <% (@new_videos + @videos).sort_by(&:published_at).reverse.each do |episode| %>
+    <tr class='episode'>
+      <td><%= episode.title %></td>
+      <td><%= episode.published_at %></td>
+
+      <td class='episode__media'>
+        <% if episode.has_audio? %>
+          <%= link_to number_to_human_size(episode.audio_size), episode.audio_url %>
+        <% else %>
+          <i class="fa fa-refresh fa-spin" aria-hidden="true"></i>
+        <% end %>
+      </td>
+      <td class='episode__media'>
+        <% if episode.has_video? %>
+          <%= link_to number_to_human_size(episode.video_size), episode.video_url %>
+        <% else %>
+          <i class="fa fa-refresh fa-spin" aria-hidden="true"></i>
+        <% end %>
+      </td>
+    </tr>
   <% end %>
-</div>
+</table>

@@ -6,6 +6,40 @@ class ChannelsController < ApplicationController
     attr_accessor :url
   end
 
+  class EpisodeWrapper
+    attr_reader :origin_id
+    delegate :id, :title, :published_at, :description, :mime_type, :url, :size, to: :episode
+    delegate :url, :size, to: :audio_episode, allow_nil: true, prefix: :audio
+    delegate :url, :size, to: :video_episode, allow_nil: true, prefix: :video
+
+    def initialize(origin_id, episode=nil)
+      @origin_id = origin_id
+      @episode = episode
+    end
+
+    def has_audio?
+      audio_episode.present?
+    end
+
+    def has_video?
+      video_episode.present?
+    end
+
+    private
+
+    def audio_episode
+      AudioEpisode.find_by(origin_id: origin_id)
+    end
+
+    def video_episode
+      VideoEpisode.find_by(origin_id: origin_id)
+    end
+
+    def episode
+      @episode ||= Episode.find_by(origin_id: origin_id)
+    end
+  end
+
   def create
     if playlist_id.present?
       create_podcast playlist_id, 'playlist', Yt::Playlist.new(id: playlist_id).title
@@ -19,13 +53,15 @@ class ChannelsController < ApplicationController
   def show
     @podcast = Podcast.find_by! origin_id: params[:id]
 
-    @videos = if params[:type] == 'video'
+    @videos = if type == 'video'
                 @podcast.video_episodes
               else
                 @podcast.episodes
               end
 
     @videos = @videos.order('published_at DESC').limit(10)
+    @videos = @videos.map { |v| EpisodeWrapper.new v.origin_id, v }
+    @new_videos = new_videos
 
     schedule_episodes_fetching
   end
@@ -35,6 +71,24 @@ class ChannelsController < ApplicationController
   end
 
   private
+
+  def new_videos
+    attrs = Rails.cache.fetch 'ChannelsController:#{@podcast.youtube_video_list.origin_id}:videos', expires_in: 15.minutes do
+      @podcast.youtube_video_list.videos.reject do |v|
+        Episode.exists?(origin_id: v.id)
+      end.map do |v|
+        { origin_id: v.id, title: v.title, published_at: v.published_at }
+      end
+    end
+
+    attrs.map do |attr|
+      Episode.new attr
+    end.map { |v| EpisodeWrapper.new v.origin_id, v }
+  end
+
+  def type
+    params[:type] == 'video' ? 'video' : 'audio'
+  end
 
   def create_podcast(origin_id, source_type, title)
     Podcast.find_or_create_by origin_id: origin_id, title: title, source_type: source_type
