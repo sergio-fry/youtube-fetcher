@@ -6,6 +6,61 @@ class ChannelsController < ApplicationController
     attr_accessor :url
   end
 
+  class EpisodeWrapper
+    attr_reader :origin_id
+    delegate :id, :title, :published_at, :description, :mime_type, :url, :size, to: :episode
+
+    def initialize(origin_id, type=nil)
+      @origin_id = origin_id
+      @type = type
+    end
+
+    def has_audio?
+      audio_episode.present?
+    end
+
+    def audio_size
+      audio_episode.size
+    end
+
+    def audio_url
+      audio_episode.url
+    end
+
+    def has_video?
+      video_episode.present?
+    end
+
+    def video_size
+      video_episode.size
+    end
+
+    def video_url
+      video_episode.url
+    end
+
+    private
+
+    def audio_episode
+      AudioEpisode.find_by(origin_id: origin_id)
+    end
+
+    def video_episode
+      VideoEpisode.find_by(origin_id: origin_id)
+    end
+
+    def episode
+      case (@type || '').to_sym
+      when :video
+        video_episode
+      when :audio
+        audio_episode
+      else
+        Episode.find_by(origin_id: origin_id)
+      end
+    end
+  end
+
   def create
     if playlist_id.present?
       create_podcast playlist_id, 'playlist', Yt::Playlist.new(id: playlist_id).title
@@ -19,13 +74,15 @@ class ChannelsController < ApplicationController
   def show
     @podcast = Podcast.find_by! origin_id: params[:id]
 
-    @videos = if params[:type] == 'video'
+    @videos = if type == 'video'
                 @podcast.video_episodes
               else
                 @podcast.episodes
               end
 
     @videos = @videos.order('published_at DESC').limit(10)
+
+    @videos = @videos.map { |v| EpisodeWrapper.new v.origin_id, type }
 
     schedule_episodes_fetching
   end
@@ -35,6 +92,10 @@ class ChannelsController < ApplicationController
   end
 
   private
+
+  def type
+    params[:type] == 'video' ? 'video' : 'audio'
+  end
 
   def create_podcast(origin_id, source_type, title)
     Podcast.find_or_create_by origin_id: origin_id, title: title, source_type: source_type

@@ -2,10 +2,12 @@ require 'rails_helper'
 
 RSpec.describe "channels/show", type: :view do
   subject { rendered }
-  let(:podcast) { FactoryGirl.build(:podcast, title: 'My Podcast') }
+  let(:podcast) { FactoryGirl.create(:podcast, title: 'My Podcast') }
+  let!(:episode) { FactoryGirl.create(:episode, title: 'My Episode') }
+  let!(:video_episode) { FactoryGirl.create(:video_episode, origin_id: episode.origin_id) }
   before do
     assign(:podcast, podcast)
-    assign(:videos, [FactoryGirl.build(:episode, title: 'My Episode')])
+    assign(:videos, [episode].map { |v| ChannelsController::EpisodeWrapper.new v.origin_id })
 
     render
   end
