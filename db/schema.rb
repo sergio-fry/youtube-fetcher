@@ -10,10 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170804184407) do
-
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+ActiveRecord::Schema.define(version: 20170806110227) do
 
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer "priority", default: 0, null: false
@@ -48,8 +45,8 @@ ActiveRecord::Schema.define(version: 20170804184407) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "source_type"
+    t.string "title"
     t.index ["origin_id"], name: "index_podcasts_on_origin_id", unique: true
   end
 
-  add_foreign_key "episodes", "podcasts"
 end

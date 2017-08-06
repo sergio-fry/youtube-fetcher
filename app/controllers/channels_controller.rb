@@ -8,15 +8,16 @@ class ChannelsController < ApplicationController
 
   def create
     if playlist_id.present?
+      create_podcast playlist_id, 'playlist', Yt::Playlist.new(id: playlist_id).title
       redirect_to playlist_path(playlist_id)
     else
+      create_podcast channel_id, nil, Yt::Channel.new(id: channel_id).title
       redirect_to channel_path(channel_id)
     end
   end
 
   def show
-    @podcast = Podcast.find_or_create_by origin_id: params[:id], source_type: self.class::PODCAST_SOURCE_TYPE
-    @channel = self::class::PODCAST_YT_KLASS.new id: params[:id]
+    @podcast = Podcast.find_by! origin_id: params[:id]
 
     @videos = if params[:type] == 'video'
                 @podcast.video_episodes
@@ -35,6 +36,14 @@ class ChannelsController < ApplicationController
 
   private
 
+  def create_podcast(origin_id, source_type, title)
+    Podcast.find_or_create_by origin_id: origin_id, title: title, source_type: source_type
+  end
+
+  def channel
+    @channel ||= self::class::PODCAST_YT_KLASS.new id: params[:id]
+  end
+
   def playlist_id
     m = channel_url.match(/youtube.com\/playlist\?list=(.+)/)
 
@@ -52,16 +61,6 @@ class ChannelsController < ApplicationController
   end
 
   def schedule_episodes_fetching
-    return if @podcast.updated_at > 10.minutes.ago && @podcast.updated_at > @podcast.created_at
-    new_youtube_videos.each do |video|
-      FetchAudioEpisodeJob.perform_later @podcast, video.id
-      FetchVideoEpisodeJob.perform_later @podcast, video.id
-    end
-
-    @podcast.touch
-  end
-
-  def new_youtube_videos
-    @channel.videos.where(order: 'date').take(10).reverse
+    UpdatePodcastJob.perform_later @podcast
   end
 end
