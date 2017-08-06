@@ -1,12 +1,6 @@
 class PlaylistsController < ChannelsController
-  def show
-    @podcast = Podcast.find_or_create_by origin_id: params[:id], source_type: 'playlist'
-    @channel = Yt::Playlist.new id: params[:id]
-
-    @videos = @podcast.episodes.order('published_at DESC').limit(10).map { |e| ChannelsController::Video.build e }
-
-    schedule_episodes_fetching
-  end
+  PODCAST_SOURCE_TYPE = 'playlist'.freeze
+  PODCAST_YT_KLASS = Yt::Playlist.freeze
 
   private
 

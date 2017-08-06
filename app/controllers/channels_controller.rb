@@ -1,4 +1,7 @@
 class ChannelsController < ApplicationController
+  PODCAST_SOURCE_TYPE = nil.freeze
+  PODCAST_YT_KLASS = Yt::Channel.freeze
+
   class Channel < Podcast
     attr_accessor :url
   end
@@ -12,8 +15,8 @@ class ChannelsController < ApplicationController
   end
 
   def show
-    @podcast = Podcast.find_or_create_by origin_id: params[:id]
-    @channel = Yt::Channel.new id: params[:id]
+    @podcast = Podcast.find_or_create_by origin_id: params[:id], source_type: self.class::PODCAST_SOURCE_TYPE
+    @channel = self::class::PODCAST_YT_KLASS.new id: params[:id]
 
     @videos = @podcast.episodes.order('published_at DESC').limit(10).map { |e| Video.build e }
 
