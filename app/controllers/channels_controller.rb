@@ -18,7 +18,13 @@ class ChannelsController < ApplicationController
     @podcast = Podcast.find_or_create_by origin_id: params[:id], source_type: self.class::PODCAST_SOURCE_TYPE
     @channel = self::class::PODCAST_YT_KLASS.new id: params[:id]
 
-    @videos = @podcast.episodes.order('published_at DESC').limit(10).map { |e| Video.build e }
+    @videos = if params[:type] == 'video'
+                @podcast.video_episodes
+              else
+                @podcast.episodes
+              end
+
+    @videos = @videos.order('published_at DESC').limit(10)
 
     schedule_episodes_fetching
   end

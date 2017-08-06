@@ -6,13 +6,15 @@ RSpec.describe "channels/show", type: :view do
   before do
     assign(:channel, double(:channel, title: 'My Podcast'))
     assign(:podcast, podcast)
-    assign(:videos, [ChannelsController::Video.build(FactoryGirl.build(:episode, title: 'My Episode'))])
+    assign(:videos, [FactoryGirl.build(:episode, title: 'My Episode')])
 
     render
   end
 
   it { is_expected.to include 'My Podcast' }
   it { is_expected.to include 'My Episode' }
+  it { is_expected.to include 'Audio podcast' }
+  it { is_expected.to include 'Video podcast' }
 
   it { is_expected.to include channel_url(podcast.origin_id, format: :atom) }
 
