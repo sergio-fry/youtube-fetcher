@@ -46,12 +46,6 @@ RSpec.describe ChannelsController, type: :controller do
     expect(video['href']).to include 'mp4'
   end
 
-  it 'should update updated_at field' do
-    expect do
-      make_request
-    end.to change { podcast.reload.updated_at }
-  end
-
   context 'when channel is new' do
     before { Podcast.destroy_all }
     it { expect { make_request }.to change { Podcast.count }.by(1) }
