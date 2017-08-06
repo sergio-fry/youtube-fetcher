@@ -1,14 +1,14 @@
-<h1><%= @channel.title %> Podcast</h1>
+<h1><%= @channel.title %> Podcast
+  <i class="fa fa-podcast" aria-hidden="true"></i>
+</h1>
 
-Atom feed:
-
-<% if @podcast.source_type == 'playlist' %>
-  <%= link_to 'Audio podcast', playlist_url(@podcast.origin_id, format: :atom) %>
-  <%= link_to 'Video podcast', playlist_url(@podcast.origin_id, type: :video, format: :atom) %>
-<% else %>
-  <%= link_to 'Audio podcast', channel_url(@podcast.origin_id, format: :atom) %>
-  <%= link_to 'Video podcast', channel_url(@podcast.origin_id, type: :video, format: :atom) %>
-<% end %>
+<table class='table'>
+  <% if @podcast.source_type == 'playlist' %>
+    <%= render partial: 'podcast_link', locals: { audio_feed_url: playlist_url(@podcast.origin_id, format: :atom), video_feed_url: playlist_url(@podcast.origin_id, type: :video, format: :atom) } %>
+  <% else %>
+    <%= render partial: 'podcast_link', locals: { audio_feed_url: channel_url(@podcast.origin_id, format: :atom), video_feed_url: channel_url(@podcast.origin_id, type: :video, format: :atom) } %>
+  <% end %>
+</table>
 
 <br />
 <br />
