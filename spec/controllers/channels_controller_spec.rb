@@ -3,9 +3,9 @@ require 'rails_helper'
 RSpec.describe ChannelsController, type: :controller do
   render_views
 
-  def make_request(format=:atom)
+  def make_request(format=:atom, type=nil)
     VCR.use_cassette :fetch_channel do
-      get :show, params: { id: youtube_channel_id }, format: format
+      get :show, params: { id: youtube_channel_id, type: type }, format: format
     end
   end
 
@@ -28,6 +28,18 @@ RSpec.describe ChannelsController, type: :controller do
     audio = entry['link'].find { |l| l['rel'] == 'enclosure' && l['type'] == 'audio/mpeg' }
     expect(audio).to be_present
     expect(audio['href']).to include 'mp3'
+  end
+
+  it 'should fetch video channel' do
+    make_request :atom, :video
+
+    expect(response).to be_success
+
+    data = Hash.from_xml response.body
+
+    entry = data['feed']['entry']
+    expect(entry).to be_present
+
 
     video = entry['link'].find { |l| l['rel'] == 'enclosure' && l['type'] == 'video/mp4' }
     expect(video).to be_present

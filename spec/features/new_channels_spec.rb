@@ -9,7 +9,7 @@ RSpec.feature "Add new channel", type: :feature do
 
       click_on 'Convert to podcast'
 
-      expect(page).to have_content '/channels/UCX0nHcqZWDSsAPog-LXdP7A.atom'
+      expect(find_link('Audio podcast')[:href]).to include '/channels/UCX0nHcqZWDSsAPog-LXdP7A.atom'
     end
   end
 
@@ -21,7 +21,7 @@ RSpec.feature "Add new channel", type: :feature do
 
       click_on 'Convert to podcast'
 
-      expect(page).to have_content '/playlists/PLOGi5-fAu8bH_T9HhH9V2B5izEE4G5waV.atom'
+      expect(find_link('Audio podcast')[:href]).to include '/playlists/PLOGi5-fAu8bH_T9HhH9V2B5izEE4G5waV.atom'
     end
   end
 end
