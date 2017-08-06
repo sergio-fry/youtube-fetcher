@@ -8,6 +8,7 @@ RSpec.describe "channels/show", type: :view do
   before do
     assign(:podcast, podcast)
     assign(:videos, [episode].map { |v| ChannelsController::EpisodeWrapper.new v.origin_id })
+    assign(:new_videos, [])
 
     render
   end
