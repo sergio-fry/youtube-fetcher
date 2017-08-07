@@ -74,16 +74,16 @@ class ChannelsController < ApplicationController
 
   def new_videos
     attrs = Rails.cache.fetch 'ChannelsController:#{@podcast.youtube_video_list.origin_id}:videos', expires_in: 15.minutes do
-      @podcast.youtube_video_list.videos.reject do |v|
-        Episode.exists?(origin_id: v.id)
-      end.map do |v|
+      @podcast.youtube_video_list.videos.map do |v|
         { origin_id: v.id, title: v.title, published_at: v.published_at }
       end
     end
 
     attrs.map do |attr|
       Episode.new attr
-    end.map { |v| EpisodeWrapper.new v.origin_id, v }
+    end.map { |v| EpisodeWrapper.new v.origin_id, v }.reject do |e|
+      Episode.exists?(origin_id: e.origin_id)
+    end
   end
 
   def type
