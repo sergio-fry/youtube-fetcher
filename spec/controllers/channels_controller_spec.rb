@@ -81,6 +81,16 @@ RSpec.describe ChannelsController, type: :controller do
       let(:cassette) { :fetch_channel }
       let(:youtube_url) { 'https://www.youtube.com/channel/UCX0nHcqZWDSsAPog-LXdP7A' }
       it { expect { make_request }.to change { Podcast.count }.by(1) }
+
+      context 'when channel is already exists but with another title' do
+        before do
+          make_request
+          podcast = Podcast.find_by origin_id: 'UCX0nHcqZWDSsAPog-LXdP7A'
+          podcast.update_attribute :title, 'Foo bar'
+        end
+
+        it { expect { make_request }.not_to change { Podcast.count } }
+      end
     end
 
     context 'when playlist' do
