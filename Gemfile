@@ -29,6 +29,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'yt'
 gem 'carrierwave', '~> 1.0'
 gem 'delayed_job_active_record'
+gem 'delayed_cron_job'
 
 gem 'fog-aws'
 gem "font-awesome-rails"

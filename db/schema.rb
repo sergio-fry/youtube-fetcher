@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170807051337) do
+ActiveRecord::Schema.define(version: 20170807061310) do
 
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer "priority", default: 0, null: false
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 20170807051337) do
     t.string "queue"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string "cron"
     t.index ["priority", "run_at"], name: "delayed_jobs_priority"
   end
 
@@ -46,6 +47,7 @@ ActiveRecord::Schema.define(version: 20170807051337) do
     t.datetime "updated_at", null: false
     t.string "source_type"
     t.string "title"
+    t.datetime "accessed_at"
     t.index ["origin_id"], name: "index_podcasts_on_origin_id", unique: true
   end
 
