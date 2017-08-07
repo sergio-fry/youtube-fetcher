@@ -11,4 +11,13 @@ RSpec.describe UpdateAllPodcastsJob, type: :job do
     expect(UpdatePodcastJob).to receive(:perform_later).with(podcast)
     UpdateAllPodcastsJob.new.perform
   end
+
+  context 'when podcast has not been accessed more than a day' do
+    before { podcast.update_attribute :accessed_at, 2.days.ago }
+
+    it 'should not update podcast' do
+      expect(UpdatePodcastJob).not_to receive(:perform_later).with(podcast)
+      UpdateAllPodcastsJob.new.perform
+    end
+  end
 end

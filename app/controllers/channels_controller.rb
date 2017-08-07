@@ -93,7 +93,7 @@ class ChannelsController < ApplicationController
 
   def create_podcast(origin_id, source_type, title)
     podcast = Podcast.find_or_initialize_by origin_id: origin_id
-    podcast.update_attributes title: title, source_type: source_type
+    podcast.update_attributes title: title, source_type: source_type, accessed_at: Time.now
 
     podcast
   end
