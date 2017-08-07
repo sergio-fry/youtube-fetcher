@@ -34,9 +34,9 @@ class FetchAudioEpisodeJob < ApplicationJob
     )
     t = Time.now - t0
 
-    track_event episode, t
-  ensure
     `rm #{local_media_path}`
+
+    track_event episode, t
   end
 
   private
