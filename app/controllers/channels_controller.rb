@@ -52,6 +52,7 @@ class ChannelsController < ApplicationController
 
   def show
     @podcast = Podcast.find_by! origin_id: params[:id]
+    @podcast.update_attributes accessed_at: Time.now
 
     @videos = if type == 'video'
                 @podcast.video_episodes

@@ -17,6 +17,12 @@ RSpec.describe ChannelsController, type: :controller do
     let!(:episode) { FactoryGirl.create :episode, podcast: podcast }
     let!(:video_episode) { FactoryGirl.create :video_episode, podcast: podcast, origin_id: episode.origin_id }
 
+    it 'should update accessed_at' do
+      expect do
+        make_request
+      end.to change{ podcast.reload.accessed_at }
+    end
+
     it 'should fetch channel' do
       make_request
 
