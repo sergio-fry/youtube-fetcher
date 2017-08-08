@@ -35,27 +35,6 @@ ERROR: Incomplete YouTube ID ABC123. URL https://www.youtube.com/watch?v=ABC123 
       end
     end
   end
-
-  describe '.with_user_agent' do
-    let!(:user_agent) { FactoryGirl.create :user_agent }
-
-    it 'should get free user' do
-      YoutubeDl.with_user_agent do |ua|
-        expect(ua).to eq user_agent
-      end
-    end
-
-    context 'when user_agent is used recently' do
-      before { user_agent.update_attribute :last_pageview_at, 5.seconds.ago }
-
-      it 'should get free user' do
-        expect do
-          YoutubeDl.with_user_agent do |ua|
-          end
-        end.to raise_error(YoutubeDl::NoFreeUsersLeft)
-      end
-    end
-  end
 end
 
 
