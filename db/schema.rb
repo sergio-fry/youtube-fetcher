@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 20170807182221) do
 
   create_table "user_agents", force: :cascade do |t|
     t.datetime "last_pageview_at"
+    t.string "user_agent"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

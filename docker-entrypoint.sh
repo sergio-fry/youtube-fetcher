@@ -19,6 +19,8 @@ if [ "$1" = 'worker' ]; then
   ln -s /uploads public/uploads
 
   bundle exec rake db:create db:migrate
+
+  export QUEUES=default,high_priority,low_priority 
   bundle exec rake jobs:work
 fi
 

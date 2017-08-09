@@ -18,4 +18,17 @@ class UserAgentsPool
     user_agent.update_attributes last_pageview_at: Time.now
     yield user_agent
   end
+
+  def self.generate
+    UserAgent.create! user_agent: UserAgentRandomizer::UserAgent.fetch.string
+  end
+
+  def self.clear
+    UserAgent.destroy_all
+  end
+
+  def self.size
+    UserAgent.count
+  end
 end
+
