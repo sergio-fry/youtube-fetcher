@@ -31,6 +31,14 @@
     </nav>
     <div class="container">
       <%= yield %>
+
+      <footer>
+        <center>
+          <% %w( podcasts jobs audo_count audio_size video_count video_size ).each do |key| %>
+            <span class='badge' title="<%= key.humanize %>"><%= stats(key) %></span>
+          <% end %>
+        </center>
+      </footer>
     </div>
   </body>
 </html>
