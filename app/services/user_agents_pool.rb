@@ -18,7 +18,7 @@ class UserAgentsPool
     user_agent.update_attributes last_pageview_at: Time.now
     yield user_agent
 
-    if File.exists? user_agent.cookies_jar.path
+    if File.exist? user_agent.cookies_jar.path
       user_agent.update_attributes cookies: File.read(user_agent.cookies_jar.path)
     end
   end
