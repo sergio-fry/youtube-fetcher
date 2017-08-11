@@ -39,6 +39,7 @@ gem 'slack-notifier'
 
 gem 'newrelic_rpm', group: :production
 gem 'dalli'
+gem 'user-agent-randomizer', require: 'user_agent_randomizer'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

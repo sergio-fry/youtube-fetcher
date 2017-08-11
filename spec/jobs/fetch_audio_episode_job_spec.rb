@@ -46,4 +46,21 @@ RSpec.describe FetchAudioEpisodeJob, type: :job do
     its(:origin_id) { is_expected.to eq youtube_video_id }
     its(:size) { is_expected.to eq 160749 }
   end
+
+  context 'when no free users' do
+    include ActiveJob::TestHelper
+
+    before do
+      allow(Tracker).to receive(:event)
+      allow_any_instance_of(YoutubeDl).to receive(:fetch_audio) do
+        raise UserAgentsPool::NoFreeUsersLeft
+      end
+    end
+
+    it 'should reschedule job' do
+      assert_enqueued_with(job: described_class) do
+        perform_job
+      end
+    end
+  end
 end

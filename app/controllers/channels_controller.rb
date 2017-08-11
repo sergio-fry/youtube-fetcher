@@ -64,7 +64,6 @@ class ChannelsController < ApplicationController
     @videos = @videos.map { |v| EpisodeWrapper.new v.origin_id, v }
     @new_videos = new_videos
 
-    schedule_episodes_fetching
   end
 
   def new
@@ -95,6 +94,8 @@ class ChannelsController < ApplicationController
     podcast = Podcast.find_or_initialize_by origin_id: origin_id
     podcast.update_attributes title: title, source_type: source_type, accessed_at: Time.now
 
+    UpdatePodcastJob.set(queue: :high_priority).perform_later podcast
+
     podcast
   end
 
@@ -116,9 +117,5 @@ class ChannelsController < ApplicationController
 
   def channel_url
     params[:channels_controller_channel][:url]
-  end
-
-  def schedule_episodes_fetching
-    UpdatePodcastJob.perform_later @podcast
   end
 end

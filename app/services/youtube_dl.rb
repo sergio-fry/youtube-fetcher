@@ -33,7 +33,10 @@ class YoutubeDl
   end
 
   def exec(options)
-    Rails.logger.info "youtube-dl #{options}"
-    error_handler `youtube-dl #{options}`
+    UserAgentsPool.with_user_agent do |ua|
+      cmd = "youtube-dl --user-agent \"#{ua.user_agent}\" --cookies #{ua.cookies_jar.path} #{options}"
+      Rails.logger.info cmd
+      error_handler `#{cmd}`
+    end
   end
 end

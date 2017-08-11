@@ -37,6 +37,8 @@ class FetchAudioEpisodeJob < ApplicationJob
     `rm #{local_media_path}`
 
     track_event episode, t
+  rescue UserAgentsPool::NoFreeUsersLeft
+    self.class.set(wait_untill: UserAgentsPool::IDLE_PERIOD.from_now).perform_later(podcast, youtube_video_id)
   end
 
   private
