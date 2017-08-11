@@ -23,6 +23,22 @@ RSpec.describe ChannelsController, type: :controller do
       end.to change{ podcast.reload.accessed_at }
     end
 
+    context 'when no video requested' do
+      it 'should not update video_requested_at' do
+        expect do
+          make_request
+        end.not_to change{ podcast.reload.video_requested_at }
+      end
+    end
+
+    context 'when video requested' do
+      it 'should update video_requested_at' do
+        expect do
+          make_request(:atom, :video)
+        end.to change{ podcast.reload.video_requested_at }
+      end
+    end
+
     it 'should fetch channel' do
       make_request
 
