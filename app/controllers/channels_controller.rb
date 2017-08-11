@@ -2,6 +2,8 @@ class ChannelsController < ApplicationController
   PODCAST_SOURCE_TYPE = nil.freeze
   PODCAST_YT_KLASS = Yt::Channel.freeze
 
+  helper_method :new_videos
+
   class Channel < Podcast
     attr_accessor :url
   end
@@ -63,8 +65,6 @@ class ChannelsController < ApplicationController
 
     @videos = @videos.order('published_at DESC').limit(10)
     @videos = @videos.map { |v| EpisodeWrapper.new v.origin_id, v }
-    @new_videos = new_videos
-
   end
 
   def new
