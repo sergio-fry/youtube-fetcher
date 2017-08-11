@@ -45,7 +45,6 @@ class FetchAudioEpisodeJob < ApplicationJob
 
   def track_event(episode, time)
     Tracker.event category: self.class::EVENT_CATEGORY, action: :fetch, label: "'#{episode.title}' #{episode.origin_id} in #{time.round(2)}s"
-    Tracker.event category: self.class::EVENT_CATEGORY, action: :fetchTime, label: episode.origin_id, value: time.round
   end
 
   def local_media_path
