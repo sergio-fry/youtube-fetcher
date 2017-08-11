@@ -1,8 +1,6 @@
 class UpdatePodcastJob < ApplicationJob
   queue_as :default
 
-  FORGET_ABOUT_VIDEO_PERIOD = 3.days
-
   def perform(podcast)
     @podcast = podcast
 
@@ -17,7 +15,7 @@ class UpdatePodcastJob < ApplicationJob
   private
 
   def video_required?
-    @podcast.video_requested_at > FORGET_ABOUT_VIDEO_PERIOD.ago
+    @podcast.video_required?
   end
 
   def new_youtube_videos

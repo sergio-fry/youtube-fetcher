@@ -21,7 +21,7 @@
     <th><i class="fa fa-video-camera"></i></th>
   </tr>
   <% (@new_videos + @videos).sort_by(&:published_at).reverse.each do |episode| %>
-    <tr class='episode'>
+    <tr class='episode' id='episode-<%= episode.id %>'>
       <td><%= episode.title %></td>
       <td><%= episode.published_at %></td>
 
@@ -36,7 +36,11 @@
         <% if episode.has_video? %>
           <%= link_to number_to_human_size(episode.video_size), episode.video_url %>
         <% else %>
-          <i class="fa fa-refresh fa-spin" aria-hidden="true"></i>
+          <% if @podcast.video_required? %>
+            <i class="fa fa-refresh fa-spin" aria-hidden="true"></i>
+          <% else %>
+            <i class="fa fa-times-circle" aria-hidden="true" title="Video has not been requested. Open video feed to enqueue video download."></i>
+          <% end %>
         <% end %>
       </td>
     </tr>
