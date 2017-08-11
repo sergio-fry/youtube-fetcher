@@ -71,6 +71,10 @@ class ChannelsController < ApplicationController
     @channel = Channel.new
   end
 
+  def index
+    @channels = Podcast.all
+  end
+
   private
 
   def new_videos

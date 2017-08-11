@@ -27,6 +27,13 @@
             <i class="fa fa-podcast" aria-hidden="true"></i>
           </a>
         </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li><%= link_to 'Channels', channels_path %></li>
+          </ul>
+        </div>
+
       </div>
     </nav>
     <div class="container">
@@ -34,7 +41,7 @@
 
       <footer>
         <center>
-          <% %w( podcasts jobs audo_count audio_size video_count video_size ).each do |key| %>
+          <% %w( podcasts jobs audo_count video_count ).each do |key| %>
             <span class='badge' title="<%= key.humanize %>"><%= stats(key) %></span>
           <% end %>
         </center>

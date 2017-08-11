@@ -121,4 +121,11 @@ RSpec.describe ChannelsController, type: :controller do
       it { expect { make_request }.to change { Podcast.count }.by(1) }
     end
   end
+
+  describe 'GET /index' do
+    render_views
+    it 'should work' do
+      get :index
+    end
+  end
 end
