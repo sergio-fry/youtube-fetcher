@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe UserAgent, type: :model do
   describe '#cookies_jar' do
-    after do
+    before do
       `rm -rf #{Rails.root.join('tmp', 'cookies', '*')}`
     end
 
