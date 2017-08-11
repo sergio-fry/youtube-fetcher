@@ -21,4 +21,13 @@ class Podcast < ApplicationRecord
         video_requested_at > FORGET_ABOUT_VIDEO_PERIOD.ago
       )
   end
+
+  def episodes_per_week
+    episodes.where('published_at > ?', 1.week.ago).count.to_f
+  end
+
+  HOURS_IN_A_WEEK = (7 * 24).freeze
+  def episodes_per_hour
+    episodes_per_week / HOURS_IN_A_WEEK.to_f
+  end
 end
