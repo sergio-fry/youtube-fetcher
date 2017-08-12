@@ -18,12 +18,8 @@ class ApplicationController < ActionController::Base
       Podcast.count
     when :audo_count
       AudioEpisode.count
-    when :audio_size
-      number_to_human_size AudioEpisode.sum(:media_size)
     when :video_count
       AudioEpisode.count
-    when :video_size
-      number_to_human_size VideoEpisode.sum(:media_size)
     else
       nil
     end
