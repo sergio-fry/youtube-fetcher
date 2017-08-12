@@ -1,0 +1,23 @@
+<table class="table">
+  <tr>
+    <th>Channel</th>
+    <th><i class="fa fa-headphones"></i></th>
+    <th><i class="fa fa-video-camera"></i></th>
+    <th></th>
+    <th></th>
+  </tr>
+  <% @channels.each do |channel| %>
+    <tr>
+      <td><%= link_to channel.title, channel_path(channel.origin_id) %></td>
+      <td>
+        <%= channel.episodes.count %>
+      </td>
+      <td>
+        <%= channel.video_episodes.count %>
+      </td>
+      <td><%= channel.updated_at %></td>
+      <td><%= channel.accessed_at %></td>
+    </tr>
+  <% end %>
+  
+</table>

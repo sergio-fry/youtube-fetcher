@@ -20,7 +20,7 @@
     <th><i class="fa fa-headphones"></i></th>
     <th><i class="fa fa-video-camera"></i></th>
   </tr>
-  <% (@new_videos + @videos).sort_by(&:published_at).reverse.each do |episode| %>
+  <% (new_videos + @videos).sort_by(&:published_at).reverse.each do |episode| %>
     <tr class='episode' id='episode-<%= episode.id %>'>
       <td><%= episode.title %></td>
       <td><%= episode.published_at %></td>
