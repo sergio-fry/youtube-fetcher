@@ -20,6 +20,15 @@ RSpec.describe UpdateAllPodcastsJob, type: :job do
       UpdateAllPodcastsJob.new.perform
     end
   end
+  
+  context 'when podcast has not been accessed less than a day' do
+    before { podcast.update_attributes accessed_at: 12.hours.ago, updated_at: 2.hours.ago }
+
+    it 'should not update podcast' do
+      expect(UpdatePodcastJob).to receive(:perform_later).with(podcast)
+      UpdateAllPodcastsJob.new.perform
+    end
+  end
 
   context 'when podcast is updated more often than published' do
     before do
