@@ -16,14 +16,14 @@ class UpdateAllPodcastsJob < ApplicationJob
   end
 
   def is_fresh_enough?(podcast)
-    new_episode_is_predicted?(podcast) && has_not_been_updated_more_than_hour?(podcast)
+    !new_episode_is_predicted?(podcast) && has_been_updated_less_than_hour_ago?(podcast)
   end
 
   def new_episode_is_predicted?(podcast)
-    (podcast.updated_at > episodes_period(podcast).ago)
+    (podcast.updated_at < episodes_period(podcast).ago)
   end
 
-  def has_not_been_updated_more_than_hour?(podcast)
+  def has_been_updated_less_than_hour_ago?(podcast)
     (podcast.updated_at > 1.hour.ago)
   end
 
