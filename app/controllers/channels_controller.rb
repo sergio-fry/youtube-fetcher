@@ -78,7 +78,7 @@ class ChannelsController < ApplicationController
   private
 
   def new_videos
-    attrs = Rails.cache.fetch 'ChannelsController:#{@podcast.youtube_video_list.origin_id}:videos', expires_in: 15.minutes do
+    attrs = Rails.cache.fetch "ChannelsController:#{@podcast.youtube_video_list.origin_id}:videos", expires_in: 15.minutes do
       @podcast.youtube_video_list.videos.map do |v|
         { origin_id: v.id, title: v.title, published_at: v.published_at }
       end
