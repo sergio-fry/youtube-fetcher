@@ -1,9 +1,11 @@
 class YoutubePlaylist < YoutubeVideoList
   class PlaylistItemWrapper
-    attr_reader :id
+    attr_reader :id, :title, :published_at
 
     def initialize(item)
       @id = item.video_id
+      @title = item.title
+      @published_at = item.published_at
     end
   end
 
