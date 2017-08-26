@@ -4,6 +4,8 @@ class FetchAudioEpisodeJob < ApplicationJob
   EPISODES_RELATION = 'episodes'.freeze
   EVENT_CATEGORY = 'audio'.freeze
 
+  class LiveStreamIsNotFinished < StandardError; end;
+
   class Fetcher
     def fetch(id)
       fetch_media id
@@ -22,8 +24,12 @@ class FetchAudioEpisodeJob < ApplicationJob
   def perform(podcast, youtube_video_id, fetcher=Fetcher.new)
     return if podcast.send(self.class::EPISODES_RELATION).exists?(origin_id: youtube_video_id)
 
+
     @youtube_video_id = youtube_video_id
     @fetcher = fetcher
+
+    # We should ignore not finished videos because downloading takes too long
+    raise LiveStreamIsNotFinished.new('Live stream is not finished yet') if is_video_on_air?
 
     raise "No media file downloaded: #{podcast.inspect}, #{youtube_video_id}" unless File.exists?(local_media_path)
 
@@ -44,6 +50,10 @@ class FetchAudioEpisodeJob < ApplicationJob
   end
 
   private
+
+  def is_video_on_air?
+    video.live_broadcast_content != 'none' && video.actual_end_time.nil?
+  end
 
   def track_event(episode, time)
     Tracker.event category: self.class::EVENT_CATEGORY, action: :fetch, label: "'#{episode.title}' #{episode.origin_id} in #{time.round(2)}s"

@@ -1,0 +1,117 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://www.googleapis.com/youtube/v3/videos?id=UCtaBak-I3w&key=AIzaSyD5F8jWLoWYO0qQGKChQ5uiTw1EvRO3N9w&part=snippet
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Length:
+      - '0'
+      User-Agent:
+      - Yt::Request (gzip)
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Expires:
+      - Sat, 26 Aug 2017 12:18:56 GMT
+      Date:
+      - Sat, 26 Aug 2017 12:18:56 GMT
+      Cache-Control:
+      - private, max-age=300, must-revalidate, no-transform
+      Etag:
+      - '"m2yskBQFythfE4irbTIeOgYYfBU/LAdxt14dA-FYbY1pKxYlLru43Ms"'
+      Vary:
+      - Origin
+      - X-Origin
+      Content-Type:
+      - application/json; charset=UTF-8
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      Content-Length:
+      - '2157'
+      Server:
+      - GSE
+      Alt-Svc:
+      - quic=":443"; ma=2592000; v="39,38,37,35"
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        ewogImtpbmQiOiAieW91dHViZSN2aWRlb0xpc3RSZXNwb25zZSIsCiAiZXRhZyI6ICJcIm0yeXNrQlFGeXRoZkU0aXJiVEllT2dZWWZCVS9MQWR4dDE0ZEEtRlliWTFwS3hZbExydTQzTXNcIiIsCiAicGFnZUluZm8iOiB7CiAgInRvdGFsUmVzdWx0cyI6IDEsCiAgInJlc3VsdHNQZXJQYWdlIjogMQogfSwKICJpdGVtcyI6IFsKICB7CiAgICJraW5kIjogInlvdXR1YmUjdmlkZW8iLAogICAiZXRhZyI6ICJcIm0yeXNrQlFGeXRoZkU0aXJiVEllT2dZWWZCVS9ScWJMaVBBUXJVaHFwUVB2d3lBRmhXVzI4S0FcIiIsCiAgICJpZCI6ICJVQ3RhQmFrLUkzdyIsCiAgICJzbmlwcGV0IjogewogICAgInB1Ymxpc2hlZEF0IjogIjIwMTctMDgtMjZUMDE6MTc6MDkuMDAwWiIsCiAgICAiY2hhbm5lbElkIjogIlVDTkdrOWFrZVgyaDBVMGt3QmUwSjl4USIsCiAgICAidGl0bGUiOiAiTFogdnMuIFNLVCB8IEZpbmFscyAtIExDSyBTdW1tZXIgU3BsaXQgLSBMT0wgRXNwb3J0cyBMSVZFICB8IExvbmd6aHUgR2FtaW5nIHZzLiBTSyB0ZWxlY29tIFQxIiwKICAgICJkZXNjcmlwdGlvbiI6ICLilrpUaGlzIGlzIFJlYnJvYWRjYXN0IFNLVCB2cyBMWiAtIFdlZWsgNy0yLiBMQ0sgU3VtbWVyIFNwbGl0IEZpbmFscyB3aWxsIGxpdmUgYXQgNTowMCBQTSBLciB0aW1lIHwgU0sgVGVsZWNvbSBUMSB2cyBMb25nenUgR2FtaW5nXG7ilrogXG7ilrpIZWxwIFVzIGdldCAxMDBrIFNVQlNDUklCRSAgOiIsCiAgICAidGh1bWJuYWlscyI6IHsKICAgICAiZGVmYXVsdCI6IHsKICAgICAgInVybCI6ICJodHRwczovL2kueXRpbWcuY29tL3ZpL1VDdGFCYWstSTN3L2RlZmF1bHRfbGl2ZS5qcGciLAogICAgICAid2lkdGgiOiAxMjAsCiAgICAgICJoZWlnaHQiOiA5MAogICAgIH0sCiAgICAgIm1lZGl1bSI6IHsKICAgICAgInVybCI6ICJodHRwczovL2kueXRpbWcuY29tL3ZpL1VDdGFCYWstSTN3L21xZGVmYXVsdF9saXZlLmpwZyIsCiAgICAgICJ3aWR0aCI6IDMyMCwKICAgICAgImhlaWdodCI6IDE4MAogICAgIH0sCiAgICAgImhpZ2giOiB7CiAgICAgICJ1cmwiOiAiaHR0cHM6Ly9pLnl0aW1nLmNvbS92aS9VQ3RhQmFrLUkzdy9ocWRlZmF1bHRfbGl2ZS5qcGciLAogICAgICAid2lkdGgiOiA0ODAsCiAgICAgICJoZWlnaHQiOiAzNjAKICAgICB9LAogICAgICJzdGFuZGFyZCI6IHsKICAgICAgInVybCI6ICJodHRwczovL2kueXRpbWcuY29tL3ZpL1VDdGFCYWstSTN3L3NkZGVmYXVsdF9saXZlLmpwZyIsCiAgICAgICJ3aWR0aCI6IDY0MCwKICAgICAgImhlaWdodCI6IDQ4MAogICAgIH0sCiAgICAgIm1heHJlcyI6IHsKICAgICAgInVybCI6ICJodHRwczovL2kueXRpbWcuY29tL3ZpL1VDdGFCYWstSTN3L21heHJlc2RlZmF1bHRfbGl2ZS5qcGciLAogICAgICAid2lkdGgiOiAxMjgwLAogICAgICAiaGVpZ2h0IjogNzIwCiAgICAgfQogICAgfSwKICAgICJjaGFubmVsVGl0bGUiOiAiTE9MIEVzcG9ydHMgTElWRSIsCiAgICAidGFncyI6IFsKICAgICAiTE9MIEVzcG9ydHMiLAogICAgICJsb2xlc3BvcnRzIiwKICAgICAibG9sIGVzcG9ydHMgbGl2ZSIsCiAgICAgIm5hbGNzIiwKICAgICAibmFsY3Mgc3VtbWVyIiwKICAgICAibmFsY3MgMjAxNyIsCiAgICAgImV1bGNzIiwKICAgICAiZXVsY3MgMjAxNyIsCiAgICAgImV1bGNzIHN1bW1lciIsCiAgICAgImxjayIsCiAgICAgImxjayBzdW1tZXIiLAogICAgICJsY2sgMjAxNyIsCiAgICAgImx6IHZzIHNrdCIsCiAgICAgInNrdCB2cyBseiBmaW5hbHMiCiAgICBdLAogICAgImNhdGVnb3J5SWQiOiAiMjAiLAogICAgImxpdmVCcm9hZGNhc3RDb250ZW50IjogImxpdmUiLAogICAgImxvY2FsaXplZCI6IHsKICAgICAidGl0bGUiOiAiTFogdnMuIFNLVCB8IEZpbmFscyAtIExDSyBTdW1tZXIgU3BsaXQgLSBMT0wgRXNwb3J0cyBMSVZFICB8IExvbmd6aHUgR2FtaW5nIHZzLiBTSyB0ZWxlY29tIFQxIiwKICAgICAiZGVzY3JpcHRpb24iOiAi4pa6VGhpcyBpcyBSZWJyb2FkY2FzdCBTS1QgdnMgTFogLSBXZWVrIDctMi4gTENLIFN1bW1lciBTcGxpdCBGaW5hbHMgd2lsbCBsaXZlIGF0IDU6MDAgUE0gS3IgdGltZSB8IFNLIFRlbGVjb20gVDEgdnMgTG9uZ3p1IEdhbWluZ1xu4pa6IFxu4pa6SGVscCBVcyBnZXQgMTAwayBTVUJTQ1JJQkUgIDoiCiAgICB9CiAgIH0KICB9CiBdCn0K
+    http_version: 
+  recorded_at: Sat, 26 Aug 2017 12:18:56 GMT
+- request:
+    method: get
+    uri: https://www.googleapis.com/youtube/v3/videos?id=UCtaBak-I3w&key=AIzaSyD5F8jWLoWYO0qQGKChQ5uiTw1EvRO3N9w&maxResults=50&part=liveStreamingDetails
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Length:
+      - '0'
+      User-Agent:
+      - Yt::Request (gzip)
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Expires:
+      - Sat, 26 Aug 2017 12:18:56 GMT
+      Date:
+      - Sat, 26 Aug 2017 12:18:56 GMT
+      Cache-Control:
+      - private, max-age=0, must-revalidate, no-transform
+      Etag:
+      - '"m2yskBQFythfE4irbTIeOgYYfBU/yuDeFt2KHw9nkumU9HCSvfX7fvw"'
+      Vary:
+      - Origin
+      - X-Origin
+      Content-Type:
+      - application/json; charset=UTF-8
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      Content-Length:
+      - '545'
+      Server:
+      - GSE
+      Alt-Svc:
+      - quic=":443"; ma=2592000; v="39,38,37,35"
+    body:
+      encoding: UTF-8
+      string: |
+        {
+         "kind": "youtube#videoListResponse",
+         "etag": "\"m2yskBQFythfE4irbTIeOgYYfBU/yuDeFt2KHw9nkumU9HCSvfX7fvw\"",
+         "pageInfo": {
+          "totalResults": 1,
+          "resultsPerPage": 1
+         },
+         "items": [
+          {
+           "kind": "youtube#video",
+           "etag": "\"m2yskBQFythfE4irbTIeOgYYfBU/1i0Wu66Kv0A0q9Hkfl3EK9a-O_8\"",
+           "id": "UCtaBak-I3w",
+           "liveStreamingDetails": {
+            "actualStartTime": "2017-08-26T01:23:01.542Z",
+            "scheduledStartTime": "2017-08-26T02:00:00.000Z",
+            "concurrentViewers": "12921",
+            "activeLiveChatId": "Cg0KC1VDdGFCYWstSTN3"
+           }
+          }
+         ]
+        }
+    http_version: 
+  recorded_at: Sat, 26 Aug 2017 12:18:56 GMT
+recorded_with: VCR 3.0.3
