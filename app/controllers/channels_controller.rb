@@ -63,7 +63,7 @@ class ChannelsController < ApplicationController
                 @podcast.episodes
               end
 
-    @videos = @videos.order('published_at DESC').limit(10)
+    @videos = @videos.recent.limit(10)
     @videos = @videos.map { |v| EpisodeWrapper.new v.origin_id, v }
   end
 

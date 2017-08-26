@@ -4,6 +4,7 @@ class Episode < ApplicationRecord
 
   validates :title, presence: true
   validates :published_at, presence: true
+  scope :recent, -> { order('published_at DESC') }
 
   def size
     media.size
