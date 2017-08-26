@@ -29,6 +29,7 @@ VOLUME /uploads
 VOLUME /app/node_modules
 VOLUME /app/tmp/cache
 VOLUME /app/public/assets
+VOLUME /app/tmp/youtube
 
 COPY docker-entrypoint.sh /usr/local/bin/
 ENTRYPOINT ["docker-entrypoint.sh"]
