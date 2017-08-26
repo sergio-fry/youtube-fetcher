@@ -42,6 +42,8 @@ gem 'dalli'
 gem 'user-agent-randomizer', require: 'user_agent_randomizer'
 
 gem 'simple_metric'
+gem 'cells-rails'
+gem 'cells-erb'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -51,6 +53,7 @@ group :development, :test do
   gem 'selenium-webdriver'
   gem 'rspec-rails'
   gem 'rspec-its'
+  gem 'rspec-cells'
   gem 'factory_girl_rails'
   gem 'pry'
 end
