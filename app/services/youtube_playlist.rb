@@ -10,9 +10,7 @@ class YoutubePlaylist < YoutubeVideoList
   end
 
   def videos
-    yt_list.playlist_items.where(order: 'date').take(10).reverse.map do |item|
-      PlaylistItemWrapper.new item
-    end
+    yt_list.playlist_items.where(order: 'date').take(10).reverse.map(&:video)
   end
 
   private
