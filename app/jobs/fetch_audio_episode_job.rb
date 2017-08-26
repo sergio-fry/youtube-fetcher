@@ -52,7 +52,7 @@ class FetchAudioEpisodeJob < ApplicationJob
   private
 
   def is_video_on_air?
-    video.live_broadcast_content == 'live' && video.actual_end_time.nil?
+    video.live_broadcast_content != 'none' && video.actual_end_time.nil?
   end
 
   def track_event(episode, time)
