@@ -3,13 +3,13 @@ class YoutubeDl
   class IncompleteYoutubeId < UnknownError; end;
 
   def fetch_audio(id)
-    exec "--extract-audio --audio-format mp3 --audio-quality 9 -o '#{Rails.root.join('tmp', 'youtube', '%(id)s.%(ext)s')}' https://www.youtube.com/watch?v=#{id}"
+    exec "--extract-audio --audio-format mp3 --audio-quality 9 -o '#{Rails.root.join('tmp', 'youtube', 'audios', '%(id)s.%(ext)s')}' https://www.youtube.com/watch?v=#{id}"
 
     normalizer.normalize Rails.root.join('tmp', 'youtube', 'audios', "#{id}.mp3")
   end
 
   def fetch_video(id)
-    exec "-f 'best[ext=mp4][height<=480]/worst[ext=mp4]' -o '#{Rails.root.join('tmp', 'youtube-videos', '%(id)s.%(ext)s')}' https://www.youtube.com/watch?v=#{id}"
+    exec "-f 'best[ext=mp4][height<=480]/worst[ext=mp4]' -o '#{Rails.root.join('tmp', 'youtube', 'videos', '%(id)s.%(ext)s')}' https://www.youtube.com/watch?v=#{id}"
 
     Rails.root.join('tmp', 'youtube', 'videos', "#{id}.mp4")
   end
