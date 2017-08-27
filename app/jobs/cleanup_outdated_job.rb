@@ -1,5 +1,5 @@
 class CleanupOutdatedJob < ApplicationJob
-  queue_as :default
+  queue_as :high_priority
 
   PERIOD_TO_KEEP = 1.week
 
