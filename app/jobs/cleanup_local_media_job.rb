@@ -1,5 +1,5 @@
 class CleanupLocalMediaJob < ApplicationJob
-  queue_as :default
+  queue_as :high_priority
 
   def perform
     Dir.glob(Rails.root.join('tmp', 'youtube', '**', '*')).each do |path|
