@@ -16,6 +16,7 @@ class UpdateAllPodcastsJob < ApplicationJob
   end
 
   def is_fresh_enough?(podcast)
+    return false if podcast.fetched_at.nil?
     !new_episode_is_predicted?(podcast) && has_been_updated_less_than_hour_ago?(podcast)
   end
 
