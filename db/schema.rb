@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170811061038) do
+ActiveRecord::Schema.define(version: 20170830052516) do
 
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer "priority", default: 0, null: false
@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 20170811061038) do
     t.string "title"
     t.datetime "accessed_at"
     t.datetime "video_requested_at"
+    t.datetime "fetched_at"
     t.index ["origin_id"], name: "index_podcasts_on_origin_id", unique: true
   end
 
