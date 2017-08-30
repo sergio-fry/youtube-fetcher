@@ -20,11 +20,11 @@ class UpdateAllPodcastsJob < ApplicationJob
   end
 
   def new_episode_is_predicted?(podcast)
-    (podcast.updated_at < episodes_period(podcast).ago)
+    (podcast.fetched_at < episodes_period(podcast).ago)
   end
 
   def has_been_updated_less_than_hour_ago?(podcast)
-    (podcast.updated_at > 1.hour.ago)
+    (podcast.fetched_at > 1.hour.ago)
   end
 
   def episodes_period(podcast)

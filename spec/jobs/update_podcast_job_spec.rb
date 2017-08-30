@@ -9,11 +9,11 @@ RSpec.describe UpdatePodcastJob, type: :job do
     end
   end
 
-  it 'should update updated_at field' do
+  it 'should update fetched_at field' do
     VCR.use_cassette :fetch_channel do
       expect do
         UpdatePodcastJob.new.perform(podcast)
-      end.to change { podcast.reload.updated_at }
+      end.to change { podcast.reload.fetched_at }
     end
   end
 
