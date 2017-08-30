@@ -7,7 +7,7 @@ class Episode < ApplicationRecord
   scope :recent, -> { order('published_at DESC') }
 
   def size
-    media.size
+    media_size || media.size
   end
 
   def url

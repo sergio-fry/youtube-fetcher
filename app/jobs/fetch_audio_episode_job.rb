@@ -37,6 +37,7 @@ class FetchAudioEpisodeJob < ApplicationJob
     episode = podcast.send(self.class::EPISODES_RELATION).create(
       origin_id: youtube_video_id,
       media: File.open(local_media_path),
+      media_size: File.size(local_media_path),
       title: video.title,
       published_at: video.published_at
     )

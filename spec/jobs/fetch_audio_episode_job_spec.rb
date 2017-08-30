@@ -45,6 +45,7 @@ RSpec.describe FetchAudioEpisodeJob, type: :job do
     its(:published_at) { is_expected.to be_a Time }
     its(:origin_id) { is_expected.to eq youtube_video_id }
     its(:size) { is_expected.to eq 160749 }
+    its(:media_size) { is_expected.to eq 160749 }
   end
 
   context 'when no free users' do
