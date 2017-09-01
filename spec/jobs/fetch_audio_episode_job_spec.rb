@@ -18,6 +18,7 @@ RSpec.describe FetchAudioEpisodeJob, type: :job do
     allow(Tracker).to receive(:event)
     allow_any_instance_of(YoutubeDl).to receive(:fetch_audio) { temp_audio_file_path }
     Rails.cache.clear
+    allow(UserAgentsPool).to receive(:has_free_users?) { true }
   end
 
   it 'should save media' do
@@ -54,9 +55,7 @@ RSpec.describe FetchAudioEpisodeJob, type: :job do
 
     before do
       allow(Tracker).to receive(:event)
-      allow_any_instance_of(YoutubeDl).to receive(:fetch_audio) do
-        raise UserAgentsPool::NoFreeUsersLeft
-      end
+      allow(UserAgentsPool).to receive(:has_free_users?) { false }
     end
 
     it 'should reschedule job' do

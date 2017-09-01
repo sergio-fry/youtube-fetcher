@@ -18,6 +18,7 @@ RSpec.describe FetchVideoEpisodeJob, type: :job do
     allow(Tracker).to receive(:event)
     allow_any_instance_of(YoutubeDl).to receive(:fetch_video) { temp_video_file_path }
     Rails.cache.clear
+    allow(UserAgentsPool).to receive(:has_free_users?) { true }
   end
 
   it 'should save media' do

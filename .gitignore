@@ -24,3 +24,4 @@ node_modules/
 .DS_Store
 /public/packs
 /node_modules
+tags

@@ -27,22 +27,24 @@ class FetchAudioEpisodeJob < ApplicationJob
   def perform(podcast, youtube_video_id, fetcher=Fetcher.new)
     return if podcast.send(self.class::EPISODES_RELATION).exists?(origin_id: youtube_video_id)
 
-    Throttler.throttle "#{self.class} #{youtube_video_id}", THROTTLE_PERIOD do
-      @youtube_video_id = youtube_video_id
-      @fetcher = fetcher
+    @youtube_video_id = youtube_video_id
+    @fetcher = fetcher
 
-      # We should ignore not finished videos because downloading takes too long
-      raise LiveStreamIsNotFinished.new('Live stream is not finished yet') if is_video_on_air?
+    if UserAgentsPool.has_free_users?
+      Throttler.throttle "#{self.class} #{youtube_video_id}", THROTTLE_PERIOD do
 
-      raise "No media file downloaded: #{podcast.inspect}, #{youtube_video_id}" unless File.exists?(local_media_path)
+        # We should ignore not finished videos because downloading takes too long
+        raise LiveStreamIsNotFinished.new('Live stream is not finished yet') if is_video_on_air?
 
-      create_episode(podcast)
+        raise "No media file downloaded: #{podcast.inspect}, #{youtube_video_id}" unless File.exists?(local_media_path)
 
-      `rm #{local_media_path}`
+        create_episode(podcast)
+
+        `rm #{local_media_path}`
+      end
+    else
+      self.class.set(wait_untill: UserAgentsPool::IDLE_PERIOD.from_now).perform_later(podcast, youtube_video_id)
     end
-
-  rescue UserAgentsPool::NoFreeUsersLeft
-    self.class.set(wait_untill: UserAgentsPool::IDLE_PERIOD.from_now).perform_later(podcast, youtube_video_id)
   end
 
   private
