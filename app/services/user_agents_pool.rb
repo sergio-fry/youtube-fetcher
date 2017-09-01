@@ -9,11 +9,9 @@ class UserAgentsPool
   #   # do something with user_agent here
   # end
   def self.with_user_agent
-    user_agent = UserAgent.where('last_pageview_at IS NULL OR last_pageview_at < ?', IDLE_PERIOD.ago).
-      order('last_pageview_at').
-      first
+    raise NoFreeUsersLeft unless has_free_users?
 
-    raise NoFreeUsersLeft if user_agent.blank?
+    user_agent = free_users.first
 
     user_agent.update_attributes last_pageview_at: Time.now
     yield user_agent
@@ -21,6 +19,10 @@ class UserAgentsPool
     if File.exist? user_agent.cookies_jar.path
       user_agent.update_attributes cookies: File.read(user_agent.cookies_jar.path)
     end
+  end
+
+  def self.has_free_users?
+    free_users.exists?
   end
 
   def self.generate
@@ -33,6 +35,13 @@ class UserAgentsPool
 
   def self.size
     UserAgent.count
+  end
+
+  private
+
+  def self.free_users
+    UserAgent.where('last_pageview_at IS NULL OR last_pageview_at < ?', IDLE_PERIOD.ago).
+      order('last_pageview_at')
   end
 end
 
