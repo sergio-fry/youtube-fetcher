@@ -71,4 +71,5 @@ group :test do
   gem 'webmock'
   gem 'database_cleaner'
   gem 'simplecov', require: false
+  gem 'timecop'
 end
