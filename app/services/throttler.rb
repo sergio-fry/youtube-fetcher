@@ -14,7 +14,7 @@ class Throttler
   end
 
   def self.throttle(name, period, &block)
-    new(period, name).action &block
+    new(period, name).action(&block)
   end
 
   private

@@ -36,7 +36,7 @@ class FetchAudioEpisodeJob < ApplicationJob
 
       raise "No media file downloaded: #{podcast.inspect}, #{youtube_video_id}" unless File.exists?(local_media_path)
 
-      episode = create_episode(podcast)
+      create_episode(podcast)
 
       `rm #{local_media_path}`
     end
