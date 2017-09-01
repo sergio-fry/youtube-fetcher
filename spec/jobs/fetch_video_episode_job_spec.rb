@@ -17,6 +17,7 @@ RSpec.describe FetchVideoEpisodeJob, type: :job do
   before do
     allow(Tracker).to receive(:event)
     allow_any_instance_of(YoutubeDl).to receive(:fetch_video) { temp_video_file_path }
+    Rails.cache.clear
   end
 
   it 'should save media' do

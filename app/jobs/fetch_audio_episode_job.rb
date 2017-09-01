@@ -4,6 +4,9 @@ class FetchAudioEpisodeJob < ApplicationJob
   EPISODES_RELATION = 'episodes'.freeze
   EVENT_CATEGORY = 'audio'.freeze
 
+  # Do not try to fetche the same episode more often then THROTTLE_PERIOD
+  THROTTLE_PERIOD = 1.hour.freeze
+
   class LiveStreamIsNotFinished < StandardError; end;
 
   class Fetcher
@@ -24,18 +27,30 @@ class FetchAudioEpisodeJob < ApplicationJob
   def perform(podcast, youtube_video_id, fetcher=Fetcher.new)
     return if podcast.send(self.class::EPISODES_RELATION).exists?(origin_id: youtube_video_id)
 
+    Throttler.throttle "#{self.class} #{youtube_video_id}", THROTTLE_PERIOD do
+      @youtube_video_id = youtube_video_id
+      @fetcher = fetcher
 
-    @youtube_video_id = youtube_video_id
-    @fetcher = fetcher
+      # We should ignore not finished videos because downloading takes too long
+      raise LiveStreamIsNotFinished.new('Live stream is not finished yet') if is_video_on_air?
 
-    # We should ignore not finished videos because downloading takes too long
-    raise LiveStreamIsNotFinished.new('Live stream is not finished yet') if is_video_on_air?
+      raise "No media file downloaded: #{podcast.inspect}, #{youtube_video_id}" unless File.exists?(local_media_path)
 
-    raise "No media file downloaded: #{podcast.inspect}, #{youtube_video_id}" unless File.exists?(local_media_path)
+      create_episode(podcast)
 
+      `rm #{local_media_path}`
+    end
+
+  rescue UserAgentsPool::NoFreeUsersLeft
+    self.class.set(wait_untill: UserAgentsPool::IDLE_PERIOD.from_now).perform_later(podcast, youtube_video_id)
+  end
+
+  private
+
+  def create_episode(podcast)
     t0 = Time.now
     episode = podcast.send(self.class::EPISODES_RELATION).create(
-      origin_id: youtube_video_id,
+      origin_id: @youtube_video_id,
       media: File.open(local_media_path),
       media_size: File.size(local_media_path),
       title: video.title,
@@ -43,14 +58,10 @@ class FetchAudioEpisodeJob < ApplicationJob
     )
     t = Time.now - t0
 
-    `rm #{local_media_path}`
-
     track_event episode, t
-  rescue UserAgentsPool::NoFreeUsersLeft
-    self.class.set(wait_untill: UserAgentsPool::IDLE_PERIOD.from_now).perform_later(podcast, youtube_video_id)
-  end
 
-  private
+    episode
+  end
 
   def is_video_on_air?
     video.live_broadcast_content != 'none' && video.actual_end_time.nil?
