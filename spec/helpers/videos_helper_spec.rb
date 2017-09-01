@@ -1,15 +1,15 @@
 require 'rails_helper'
 
 # Specs in this file have access to a helper object that includes
-# the VideoHelper. For example:
+# the VideosHelper. For example:
 #
-# describe VideoHelper do
+# describe VideosHelper do
 #   describe "string concat" do
 #     it "concats two strings with spaces" do
 #       expect(helper.concat_strings("this","that")).to eq("this that")
 #     end
 #   end
 # end
-RSpec.describe VideoHelper, type: :helper do
+RSpec.describe VideosHelper, type: :helper do
   pending "add some examples to (or delete) #{__FILE__}"
 end

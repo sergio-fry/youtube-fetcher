@@ -1,0 +1,30 @@
+<% content_for :meta_title, "#{@video.title}. Podcast" %>
+
+
+<ol class="breadcrumb">
+  <li><%= link_to @video.channel.title, channel_path(@video.channel.origin_id) %></li>
+  <li class="active"><%= @video.title %></li>
+</ol>
+
+
+<h1><%= @video.title %></h1>
+
+<%= image_tag @video.preview_image_url %>
+
+<br />
+Download:
+
+<div class="btn-group" role="group">
+  <% if @video.has_audio? %>
+    <%= link_to @video.audio_url, class: 'btn btn-default' do %>
+      <%= number_to_human_size(@video.audio_size) %> (mp3)
+    <% end %>
+  <% end %>
+
+  <% if @video.has_video? %>
+    <%= link_to @video.video_url, class: 'btn btn-default' do %>
+      <%= number_to_human_size(@video.video_size) %> (mp4)
+    <% end %>
+  <% end %>
+
+</div>

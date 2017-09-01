@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe VideoController, type: :controller do
+RSpec.describe VideosController, type: :controller do
 
   describe "GET #show" do
     it "returns http success" do

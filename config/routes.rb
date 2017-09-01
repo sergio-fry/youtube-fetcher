@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   get 'stats', to: 'stats#index'
-  get 'video/show'
 
+  resources :videos, only: %w( show )
   resources :playlists, only: %w( show )
   resources :channels, only: %w( show new create index )
 
