@@ -37,8 +37,6 @@ class UserAgentsPool
     UserAgent.count
   end
 
-  private
-
   def self.free_users
     UserAgent.where('last_pageview_at IS NULL OR last_pageview_at < ?', IDLE_PERIOD.ago).
       order('last_pageview_at')
