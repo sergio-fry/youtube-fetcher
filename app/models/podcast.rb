@@ -16,6 +16,10 @@ class Podcast < ApplicationRecord
     end
   end
 
+  def audo_required?
+    true
+  end
+
   def video_required?
     (video_requested_at.nil? && created_at > FORGET_ABOUT_VIDEO_PERIOD.ago) ||
       (

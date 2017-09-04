@@ -13,4 +13,10 @@ class FetchVideoEpisodeJob < FetchAudioEpisodeJob
   def perform(podcast, youtube_video_id, fetcher=Fetcher.new)
     super
   end
+
+  private
+
+  def remove_pending_episode
+    PendingEpisode.where(origin_id: @youtube_video_id, episode_type: 'video').destroy_all
+  end
 end

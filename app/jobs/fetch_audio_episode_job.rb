@@ -66,8 +66,13 @@ class FetchAudioEpisodeJob < ApplicationJob
     t = Time.now - t0
 
     track_event episode, t
+    remove_pending_episode
 
     episode
+  end
+
+  def remove_pending_episode
+    PendingEpisode.where(origin_id: @youtube_video_id, episode_type: 'audio').destroy_all
   end
 
   def is_video_on_air?
