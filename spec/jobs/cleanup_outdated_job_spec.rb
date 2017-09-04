@@ -11,7 +11,7 @@ RSpec.describe CleanupOutdatedJob, type: :job do
 
   context 'when episode is outdated ' do
     before do
-      episode.update_attribute :published_at, 1.year.ago
+      episode.update_attribute :created_at, 1.year.ago
       10.times { FactoryGirl.create :episode, podcast: podcast }
     end
     it { expect(episode_is_deleted).to eq true }

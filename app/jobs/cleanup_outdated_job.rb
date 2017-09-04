@@ -15,6 +15,6 @@ class CleanupOutdatedJob < ApplicationJob
   def cleanup_episodes_scope(scope)
     cant_be_deleted = scope.recent.limit(Podcast::MIN_EPISODES_TO_STORE).pluck(:id)
 
-    scope.where.not(id: cant_be_deleted).where('published_at < ?', PERIOD_TO_KEEP.ago).destroy_all
+    scope.where.not(id: cant_be_deleted).where('created_at < ?', PERIOD_TO_KEEP.ago).destroy_all
   end
 end
