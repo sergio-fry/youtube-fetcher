@@ -56,7 +56,7 @@ class FetchAudioEpisodeJob < ApplicationJob
 
     raise "No media file downloaded: #{podcast.inspect}, #{youtube_video_id}" unless File.exists?(local_media_path)
 
-    episode = podcast.send(self.class::EPISODES_RELATION).create(
+    episode = podcast.send(self.class::EPISODES_RELATION).create!(
       origin_id: @youtube_video_id,
       media: File.open(local_media_path),
       media_size: File.size(local_media_path),
