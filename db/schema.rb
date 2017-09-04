@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170830052516) do
+ActiveRecord::Schema.define(version: 20170904150353) do
 
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer "priority", default: 0, null: false
@@ -39,6 +39,14 @@ ActiveRecord::Schema.define(version: 20170830052516) do
     t.datetime "published_at"
     t.string "origin_id"
     t.string "type", default: "AudioEpisode", null: false
+  end
+
+  create_table "metrics", force: :cascade do |t|
+    t.string "key"
+    t.text "data_set"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["key"], name: "index_metrics_on_key", unique: true
   end
 
   create_table "podcasts", force: :cascade do |t|

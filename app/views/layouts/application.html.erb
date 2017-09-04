@@ -11,6 +11,7 @@
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
   </head>
 
   <body>
@@ -37,14 +38,6 @@
     </nav>
     <div class="container">
       <%= yield %>
-
-      <footer>
-        <center>
-          <% %w( podcasts jobs audo_count video_count ).each do |key| %>
-            <span class='badge' title="<%= key.humanize %>"><%= stats(key) %></span>
-          <% end %>
-        </center>
-      </footer>
     </div>
   </body>
 </html>

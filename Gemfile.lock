@@ -206,6 +206,10 @@ GEM
     selenium-webdriver (3.5.1)
       childprocess (~> 0.5)
       rubyzip (~> 1.0)
+    simple_metric (0.0.3)
+      activesupport (>= 3.1)
+      railties (>= 3.1)
+      spliner (~> 1.0.5)
     simplecov (0.15.0)
       docile (~> 1.1.0)
       json (>= 1.8, < 3)
@@ -213,6 +217,7 @@ GEM
     simplecov-html (0.10.2)
     slack-notifier (2.3.1)
     slop (3.6.0)
+    spliner (1.0.6)
     spring (2.0.2)
       activesupport (>= 4.2)
     spring-commands-rspec (1.0.4)
@@ -288,6 +293,7 @@ DEPENDENCIES
   rspec-rails
   sass-rails (~> 5.0)
   selenium-webdriver
+  simple_metric
   simplecov
   slack-notifier
   spring
