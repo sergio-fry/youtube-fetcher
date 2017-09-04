@@ -1,2 +1,10 @@
 <h1>Stats</h1>
+
+<h2>Episodes</h2>
+<%= simple_metric_graph StatsController::AUDIO_EPISODES_KEY, StatsController::VIDEO_EPISODES_KEY %>
+
+<h2>Queue</h2>
 <%= simple_metric_graph StatsController::PENDING_EPISODES_KEY %>
+
+<h2>Podcasts</h2>
+<%= simple_metric_graph StatsController::PODCASTS_KEY %>

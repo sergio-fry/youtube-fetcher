@@ -2,7 +2,7 @@ class StatsController < ApplicationController
   PENDING_EPISODES_KEY = 'pending episodes'
   VIDEO_EPISODES_KEY = 'video episodes'
   AUDIO_EPISODES_KEY = 'audio episodes'
-  PODCASTS_EPISODES_KEY = 'podcasts'
+  PODCASTS_KEY = 'podcasts'
 
   def index
   end
