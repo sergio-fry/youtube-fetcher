@@ -7,7 +7,7 @@ RSpec.describe "channels/show", type: :view do
   let!(:video_episode) { FactoryGirl.create(:video_episode, origin_id: episode.origin_id) }
   before do
     assign(:podcast, podcast)
-    assign(:videos, [episode].map { |v| ChannelsController::EpisodeWrapper.new v.origin_id })
+    assign(:videos, [episode].map { |v| Video.new v.origin_id })
 
     controller.class_eval do
       helper_method :new_videos
