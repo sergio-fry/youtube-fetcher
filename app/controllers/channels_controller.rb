@@ -8,40 +8,6 @@ class ChannelsController < ApplicationController
     attr_accessor :url
   end
 
-  class EpisodeWrapper
-    attr_reader :origin_id
-    delegate :id, :title, :published_at, :description, :mime_type, :url, :size, to: :episode
-    delegate :url, :size, to: :audio_episode, allow_nil: true, prefix: :audio
-    delegate :url, :size, to: :video_episode, allow_nil: true, prefix: :video
-
-    def initialize(origin_id, episode=nil)
-      @origin_id = origin_id
-      @episode = episode
-    end
-
-    def has_audio?
-      audio_episode.present?
-    end
-
-    def has_video?
-      video_episode.present?
-    end
-
-    private
-
-    def audio_episode
-      AudioEpisode.find_by(origin_id: origin_id)
-    end
-
-    def video_episode
-      VideoEpisode.find_by(origin_id: origin_id)
-    end
-
-    def episode
-      @episode ||= Episode.find_by(origin_id: origin_id)
-    end
-  end
-
   def create
     if playlist_id.present?
       create_podcast playlist_id, 'playlist', Yt::Playlist.new(id: playlist_id).title
@@ -64,7 +30,7 @@ class ChannelsController < ApplicationController
               end
 
     @videos = @videos.recent.limit(10)
-    @videos = @videos.map { |v| EpisodeWrapper.new v.origin_id, v }
+    @videos = @videos.map { |v| Video.new v.origin_id, v }
   end
 
   def new
@@ -87,7 +53,7 @@ class ChannelsController < ApplicationController
 
     attrs.map do |attr|
       Episode.new attr
-    end.map { |v| EpisodeWrapper.new v.origin_id, v }.reject do |e|
+    end.map { |v| Video.new v.origin_id, v }.reject do |e|
       Episode.exists?(origin_id: e.origin_id)
     end
   end

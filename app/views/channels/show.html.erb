@@ -24,7 +24,7 @@
   </tr>
   <% (new_videos + @videos).sort_by(&:published_at).reverse.each do |episode| %>
     <tr class='episode' id='episode-<%= episode.id %>'>
-      <td><%= episode.title %></td>
+      <td><%= link_to episode.title, video_path(episode.origin_id) %></td>
       <td><%= episode.published_at %></td>
 
       <td class='episode__media'>

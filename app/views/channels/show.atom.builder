@@ -4,7 +4,7 @@ atom_feed do |feed|
   feed.updated @videos.first.published_at if @videos.present?
 
   @videos.each do |video|
-    feed.entry video, url: "https://www.youtube.com/watch?v=#{video.origin_id}" do |entry|
+    feed.entry video, url: video_url(video.origin_id, utm_medium: :feed, utm_source: @podcast.origin_id, utm_campaign: video.origin_id) do |entry|
       entry.author do |author|
         author.name @podcast.title
       end
