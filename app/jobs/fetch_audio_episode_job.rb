@@ -9,7 +9,7 @@ class FetchAudioEpisodeJob < ApplicationJob
 
   class LiveStreamIsNotFinished < StandardError; end;
 
-  attr_reader :local_media_path
+  attr_reader :local_media_path, :youtube_video_id
 
   class Fetcher
     def fetch(id)
