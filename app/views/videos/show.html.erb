@@ -1,30 +1,34 @@
-<% content_for :meta_title, "#{@video.title}. Podcast" %>
-
+<% content_for :meta_title, @video.title %>
 
 <ol class="breadcrumb">
-  <li><%= link_to @video.channel.title, channel_path(@video.channel.origin_id) %></li>
+  <li><%= link_to "#{@video.channel.title} Podcast", channel_path(@video.channel.origin_id) %></li>
   <li class="active"><%= @video.title %></li>
 </ol>
 
 
 <h1><%= @video.title %></h1>
 
-<%= image_tag @video.preview_image_url %>
+<% image_tag @video.preview_image_url %>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/<%= @video.origin_id %>" frameborder="0" allowfullscreen></iframe>
 
 <br />
-Download:
+<br />
+<div>
+  Download:
+  &nbsp;
+  &nbsp;
 
-<div class="btn-group" role="group">
   <% if @video.has_audio? %>
-    <%= link_to @video.audio_url, class: 'btn btn-default' do %>
-      <%= number_to_human_size(@video.audio_size) %> (mp3)
-    <% end %>
+    <%= link_to 'mp3 audio', @video.audio_url %>
+    (<%= number_to_human_size(@video.audio_size) %>)
+    &nbsp;
+    &nbsp;
+    &nbsp;
   <% end %>
 
   <% if @video.has_video? %>
-    <%= link_to @video.video_url, class: 'btn btn-default' do %>
-      <%= number_to_human_size(@video.video_size) %> (mp4)
-    <% end %>
+    <%= link_to 'mp4 video', @video.video_url %>
+    (<%= number_to_human_size(@video.video_size) %>)
   <% end %>
-
 </div>

@@ -21,6 +21,10 @@ class Video
     "https://img.youtube.com/vi/#{origin_id}/hqdefault.jpg"
   end
 
+  def origin_url
+    "https://www.youtube.com/watch?v=#{origin_id}"
+  end
+
   def channel
     episode.podcast
   end
