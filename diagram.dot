@@ -1,0 +1,25 @@
+digraph G {
+  node [shape="box"]
+  db [shape="cylinder" label="Database"]
+  youtube_dl [label="YoutubeDL"]
+  ui [label="UI"]
+  sessions_pool [label="Sessions Pool"]
+  youtube [label="Youtube.com"]
+  fetcher [label="Fetcher"]
+
+
+
+  subgraph cluster_0 {
+		label = "Worker";
+
+    fetcher -> youtube_dl
+    youtube_dl -> sessions_pool
+  }
+
+  ui -> db
+  fetcher -> db
+  sessions_pool -> db
+  youtube_dl -> youtube
+
+  scheduler -> fetcher
+}
