@@ -10,6 +10,7 @@ class UpdatePodcastJob < ApplicationJob
       FetchVideoEpisodeJob.perform_later(@podcast, video.id) if video_required?
     end
 
+  ensure
     @podcast.touch :fetched_at
   end
 
