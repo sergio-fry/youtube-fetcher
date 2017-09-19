@@ -9,6 +9,10 @@ class Video
     @episode = episode
   end
 
+  def has_media?
+    has_audio? || has_video?
+  end
+
   def has_audio?
     audio_episode.present?
   end
