@@ -10,25 +10,29 @@
 
 <% image_tag @video.preview_image_url %>
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/<%= @video.origin_id %>" frameborder="0" allowfullscreen></iframe>
-
-<br />
-<br />
-<div>
-  Download:
-  &nbsp;
-  &nbsp;
-
-  <% if @video.has_audio? %>
-    <%= link_to 'mp3 audio', @video.audio_url %>
-    (<%= number_to_human_size(@video.audio_size) %>)
-    &nbsp;
-    &nbsp;
-    &nbsp;
-  <% end %>
-
-  <% if @video.has_video? %>
-    <%= link_to 'mp4 video', @video.video_url %>
-    (<%= number_to_human_size(@video.video_size) %>)
-  <% end %>
+<div class="embed-responsive embed-responsive-16by9">
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/<%= @video.origin_id %>" frameborder="0" allowfullscreen></iframe>
 </div>
+
+<% if @video.has_media? %>
+  <br />
+  <br />
+  <div>
+    Download:
+    &nbsp;
+    &nbsp;
+
+    <% if @video.has_audio? %>
+      <%= link_to 'mp3 audio', @video.audio_url %>
+      (<%= number_to_human_size(@video.audio_size) %>)
+      &nbsp;
+      &nbsp;
+      &nbsp;
+    <% end %>
+
+    <% if @video.has_video? %>
+      <%= link_to 'mp4 video', @video.video_url %>
+      (<%= number_to_human_size(@video.video_size) %>)
+    <% end %>
+  </div>
+<% end %>
