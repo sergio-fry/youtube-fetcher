@@ -4,6 +4,6 @@ class VideosController < ApplicationController
   end
 
   def index
-    @videos = Episode.group(:origin_id).page(params[:page]).per(10)
+    @videos = Episode.select('DISTINCT ON (origin_id) *').page(params[:page]).per(10)
   end
 end

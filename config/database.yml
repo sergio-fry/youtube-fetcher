@@ -1,6 +1,6 @@
 default: &default
   pool: 20
-  url: <%= ENV.fetch('DATABASE_URL', "sqlite3:db/#{Rails.env}.sqlite3") %>
+  url: <%= ENV.fetch('DATABASE_URL') %>
 
 development:
   <<: *default
