@@ -1,0 +1,27 @@
+<% content_for :meta_title, 'Recent episodes' %>
+
+<h1>Recent episodes</h1>
+
+<div class="videos-list">
+  <% @videos.map { |v| Video.new(v.origin_id) }.each do |video| %>
+    <div class="videos-list__item">
+      
+    </div>
+    <div class="media">
+      <div class="media-left">
+        <%= link_to video_path(video.origin_id) do %>
+          <img class="media-object" src="<%= video.preview_image_url %>" alt="<%= video.title %>" style="width: 64px;">
+        <% end %>
+      </div>
+      <div class="media-body">
+        <h4 class="media-heading"><%= link_to video.title, video_path(video.origin_id) %></h4>
+
+        <%= video.published_at %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<div class="pagination">
+  <%= paginate @videos %>
+</div>
