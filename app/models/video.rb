@@ -1,6 +1,6 @@
 class Video
   attr_reader :origin_id
-  delegate :id, :title, :published_at, :description, :mime_type, :url, :size, to: :episode
+  delegate :id, :title, :description, :mime_type, :url, :size, to: :episode
   delegate :url, :size, to: :audio_episode, allow_nil: true, prefix: :audio
   delegate :url, :size, to: :video_episode, allow_nil: true, prefix: :video
 
@@ -31,6 +31,10 @@ class Video
 
   def channel
     episode.podcast
+  end
+
+  def published_at
+    episode.created_at || episode.published_at
   end
 
   private
