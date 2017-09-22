@@ -14,7 +14,6 @@ gem 'uglifier', '>= 1.3.0'
 gem 'webpacker', '~> 2.0'
 
 gem 'pg'
-gem 'sqlite3'
 
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
