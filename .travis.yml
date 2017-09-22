@@ -5,6 +5,9 @@ cache:
   - bundler
   - yarn
 
+services:
+  - postgresql
+
 env:
   global:
     - RAILS_ENV=test
