@@ -24,4 +24,16 @@ RSpec.feature "Add new channel", type: :feature do
       expect(find_link('Audio podcast')[:href]).to include '/playlists/PLOGi5-fAu8bH_T9HhH9V2B5izEE4G5waV.atom'
     end
   end
+
+  it 'should add new channel by user id' do
+    VCR.use_cassette :fetch_user do
+      visit new_channel_url
+
+      fill_in 'Paste Youtube channel/playlist URL here', with: 'https://www.youtube.com/user/TheKiberpop'
+
+      click_on 'Convert to podcast'
+
+      expect(find_link('Audio podcast')[:href]).to include '/channels/UCyt4Uriznp9Y6H0JkOZfcHA.atom'
+    end
+  end
 end
