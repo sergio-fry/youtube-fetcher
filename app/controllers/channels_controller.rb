@@ -12,12 +12,14 @@ class ChannelsController < ApplicationController
     if playlist_id.present?
       create_podcast playlist_id, 'playlist', Yt::Playlist.new(id: playlist_id).title
       redirect_to playlist_path(playlist_id)
+    elsif channel_id.present?
+      create_podcast channel_id, nil, Yt::Channel.new(id: channel_id).title
+      redirect_to channel_path(channel_id)
     elsif channel_id_by_user_id.present?
       create_podcast channel_id_by_user_id, nil, Yt::Channel.new(id: channel_id_by_user_id).title
       redirect_to channel_path(channel_id_by_user_id)
     else
-      create_podcast channel_id, nil, Yt::Channel.new(id: channel_id).title
-      redirect_to channel_path(channel_id)
+      redirect_to root_path
     end
   end
 
