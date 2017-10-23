@@ -3,14 +3,19 @@ class YoutubePlaylist < YoutubeVideoList
     attr_reader :id, :title, :published_at
 
     def initialize(item)
-      @id = item.video_id
+      @id = item.id
       @title = item.title
-      @published_at = item.published_at
+      @published_at = nil
     end
   end
 
   def videos
-    yt_list.playlist_items.where(order: 'date').take(10).reverse.map(&:video)
+    yt_list.playlist_items.take(100).reverse[0..10].map(&:video).map do |v|
+      begin
+        PlaylistItemWrapper.new(v)
+      rescue
+      end
+    end.compact
   end
 
   private
