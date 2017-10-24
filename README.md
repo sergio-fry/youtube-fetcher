@@ -1,6 +1,6 @@
 # Youtube Fetcher
 
-[![Youtube Compatible](https://img.shields.io/badge/youtube-podcasting-brightgreen.svg)](http://youtube-fetcher.russianpulse.ru)
+[![Youtube Compatible](https://img.shields.io/badge/youtube-podcasting-brightgreen.svg)](http://yt.mazavr.com)
 [![Build Status](https://travis-ci.org/sergio-fry/youtube-fetcher.svg?branch=master)](https://travis-ci.org/sergio-fry/youtube-fetcher)
 [![Code Climate](https://codeclimate.com/github/sergio-fry/youtube-fetcher.png)](https://codeclimate.com/github/sergio-fry/youtube-fetcher)
 [![Test Coverage](https://codeclimate.com/github/sergio-fry/youtube-fetcher/badges/coverage.svg)](https://codeclimate.com/github/sergio-fry/youtube-fetcher/coverage)
@@ -9,9 +9,9 @@
 [![license](https://img.shields.io/github/license/sergio-fry/youtube-fetcher.svg)](https://github.com/sergio-fry/youtube-fetcher)
 [![Gitter](https://img.shields.io/gitter/room/youtube-fetcher/Lobby.svg)](https://gitter.im/youtube-fetcher/Lobby)
 
-Convert Youtube channel into audio podcasts with 1 click. Free webservice is [available](http://youtube-fetcher.russianpulse.ru). With *YF* you can listen to your favorite Youtube channels as audio podcasts offline. Choose any podcast player you want.
+Convert Youtube channel into audio podcasts with 1 click. Free webservice is [available](http://yt.mazavr.com). With *YF* you can listen to your favorite Youtube channels as audio podcasts offline. Choose any podcast player you want.
 
-Try [Youtube Fetcher](http://youtube-fetcher.russianpulse.ru/) online.
+Try [Youtube Fetcher](http://yt.mazavr.com/) online.
 
 ![Form Example](form-example.png)
 
@@ -32,7 +32,7 @@ Try [Youtube Fetcher](http://youtube-fetcher.russianpulse.ru/) online.
 
 Let's turn [TEDx Talks into](https://www.youtube.com/channel/UCsT0YIqwnpJCM-mx7-gSA4Q) *podcast*:
 
-http://youtube-fetcher.russianpulse.ru/channels/UCsT0YIqwnpJCM-mx7-gSA4Q
+http://yt.mazavr.com/channels/UCsT0YIqwnpJCM-mx7-gSA4Q
 
 ## Run
 
