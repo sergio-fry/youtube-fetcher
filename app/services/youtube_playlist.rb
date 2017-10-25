@@ -13,7 +13,7 @@ class YoutubePlaylist < YoutubeVideoList
     yt_list.playlist_items.take(100).reverse[0..10].map(&:video).map do |v|
       begin
         PlaylistItemWrapper.new(v)
-      rescue
+      rescue Exception
       end
     end.compact
   end
