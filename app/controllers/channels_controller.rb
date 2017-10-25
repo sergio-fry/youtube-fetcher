@@ -52,8 +52,12 @@ class ChannelsController < ApplicationController
     return [] if @podcast.created_at < 1.hour.ago
     attrs = Rails.cache.fetch "ChannelsController:#{@podcast.youtube_video_list.origin_id}:videos", expires_in: 15.minutes do
       @podcast.youtube_video_list.videos.map do |v|
+        begin
         { origin_id: v.id, title: v.title, published_at: v.published_at }
-      end
+        rescue
+          nil
+        end
+      end.compact
     end
 
     attrs.map do |attr|
