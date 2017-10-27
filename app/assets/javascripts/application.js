@@ -1,3 +1,3 @@
 //= require jquery/dist/jquery
-//= require dygraphs/dygraph-combined
+//= require dygraphs/dist/dygraph
 //= require bootstrap/dist/js/bootstrap
