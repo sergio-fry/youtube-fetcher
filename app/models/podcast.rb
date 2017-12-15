@@ -1,6 +1,5 @@
 class Podcast < ApplicationRecord
   FORGET_ABOUT_VIDEO_PERIOD = 3.days
-  MIN_EPISODES_TO_STORE = 10
 
   validates :origin_id, :title, :accessed_at, presence: true
   has_many :episodes, dependent: :destroy, class_name: 'AudioEpisode'

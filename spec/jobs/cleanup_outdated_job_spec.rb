@@ -27,4 +27,17 @@ RSpec.describe CleanupOutdatedJob, type: :job do
       it { expect(episode_exists).to eq true }
     end
   end
+
+  context 'when there are too many new episodes' do
+    before do
+      Episode.delete_all
+      51.times { FactoryGirl.create :episode, podcast: podcast }
+    end
+
+    it 'should create an ArchivedEpisode' do
+      expect do
+        described_class.new.perform
+      end.to change { ArchivedEpisode.count }.by(1)
+    end
+  end
 end
