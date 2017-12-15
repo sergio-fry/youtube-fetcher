@@ -2,6 +2,8 @@ class CleanupOutdatedJob < ApplicationJob
   queue_as :high_priority
 
   PERIOD_TO_KEEP = 1.week
+  MIN_EPISODES_TO_STORE = 10
+  MAX_EPISODES_TO_STORE = ENV.fetch('MAX_EPISODES_TO_STORE', 50)
 
   def perform
     Podcast.find_each do |podcast|
@@ -13,11 +15,24 @@ class CleanupOutdatedJob < ApplicationJob
   private
 
   def cleanup_episodes_scope(scope)
-    cant_be_deleted = scope.recent.limit(Podcast::MIN_EPISODES_TO_STORE).pluck(:id)
+    old_episodes(scope).find_each { |episode| archive_episode episode }
+    episodes_exceeded_limit(scope).find_each { |episode| archive_episode episode }
+  end
 
-    scope.where.not(id: cant_be_deleted).where('created_at < ?', PERIOD_TO_KEEP.ago).find_each do |episode|
-      archive_episode episode
-    end
+  def old_episodes(scope)
+    scope.where.not(id: cant_be_deleted(scope)).where('created_at < ?', PERIOD_TO_KEEP.ago)
+  end
+
+  def episodes_exceeded_limit(scope)
+    scope.where.not(id: episodes_allowed_to_keep(scope))
+  end
+
+  def episodes_allowed_to_keep(scope)
+    scope.order(:created_at).limit(MAX_EPISODES_TO_STORE)
+  end
+
+  def cant_be_deleted(scope)
+    scope.recent.limit(MIN_EPISODES_TO_STORE).pluck(:id)
   end
 
   def archive_episode(episode)

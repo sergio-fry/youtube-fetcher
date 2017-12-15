@@ -23,6 +23,7 @@ COPY . ./
 
 ENV DATABASE_URL=sqlite3:///db/production.sqlite3
 ENV RAILS_LOG_TO_STDOUT=true
+ENV MAX_EPISODES_TO_STORE=50
 
 VOLUME /db
 VOLUME /uploads
