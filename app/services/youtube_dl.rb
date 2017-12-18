@@ -12,9 +12,7 @@ class YoutubeDl
   end
 
   def fetch_video(id)
-    exec "-f 'best[ext=mp4][height<=480]/worst[ext=mp4]' --max-filesize #{MAX_FILE_SIZE} -o '#{Rails.root.join('tmp', 'youtube', 'videos', '%(id)s.%(ext)s')}' https://www.youtube.com/watch?v=#{id}"
-
-    Rails.root.join('tmp', 'youtube', 'videos', "#{id}.mp4")
+    raise 'Deprecated: use fetch_video_url'
   end
 
   MAX_RETRIES = 10.freeze
