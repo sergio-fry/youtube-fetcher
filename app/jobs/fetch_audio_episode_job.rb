@@ -40,7 +40,7 @@ class FetchAudioEpisodeJob < ApplicationJob
 
         fetch_and_save_episode(podcast)
 
-        `rm #{local_media_path}`
+        cleanup
       end
     else
       self.class.set(wait_untill: UserAgentsPool::IDLE_PERIOD.from_now).perform_later(podcast, youtube_video_id)
@@ -48,6 +48,10 @@ class FetchAudioEpisodeJob < ApplicationJob
   end
 
   private
+
+  def cleanup
+    `rm #{local_media_path}`
+  end
 
   def fetch_and_save_episode(podcast)
     t0 = Time.now

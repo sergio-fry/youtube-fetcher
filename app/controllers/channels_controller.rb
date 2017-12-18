@@ -23,6 +23,13 @@ class ChannelsController < ApplicationController
     end
   end
 
+  class VideoEpisodeWrapper < ProxyObject
+    def url
+      Rails.application.routes.url_helpers.
+        video_url(origin_id, format: :mp4, host: ENV.fetch('VIRTUAL_HOST', 'yt.mazavr.com'))
+    end
+  end
+
   def show
     @podcast = Podcast.find_by! origin_id: params[:id]
     @podcast.update_attributes accessed_at: Time.now
@@ -35,6 +42,7 @@ class ChannelsController < ApplicationController
               end
 
     @videos = @videos.recent.limit(10)
+    @videos = @videos.map { |v| VideoEpisodeWrapper.new v } if type == 'video'
     @videos = @videos.map { |v| Video.new v.origin_id, v }
   end
 

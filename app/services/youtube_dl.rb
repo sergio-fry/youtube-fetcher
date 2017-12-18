@@ -12,9 +12,19 @@ class YoutubeDl
   end
 
   def fetch_video(id)
-    exec "-f 'best[ext=mp4][height<=480]/worst[ext=mp4]' --max-filesize #{MAX_FILE_SIZE} -o '#{Rails.root.join('tmp', 'youtube', 'videos', '%(id)s.%(ext)s')}' https://www.youtube.com/watch?v=#{id}"
+    raise 'Deprecated: use fetch_video_url'
+  end
 
-    Rails.root.join('tmp', 'youtube', 'videos', "#{id}.mp4")
+  MAX_RETRIES = 10.freeze
+
+  def fetch_video_url(id)
+    MAX_RETRIES.times do
+      url = exec "-f 'best[ext=mp4][height<=480]/worst[ext=mp4]' --max-filesize #{MAX_FILE_SIZE} -g https://www.youtube.com/watch?v=#{id}"
+
+      return url if url.present?
+    end
+
+    raise 'Failed to get Video URL'
   end
 
   private
@@ -24,7 +34,7 @@ class YoutubeDl
   end
 
   def error_handler(response)
-    return unless response.match(/ERROR/)
+    return response unless response.match(/ERROR/)
 
     error = response.match(/ERROR: (.+)/)[1]
 
@@ -39,6 +49,7 @@ class YoutubeDl
     UserAgentsPool.with_user_agent do |ua|
       cmd = "youtube-dl --user-agent \"#{ua.user_agent}\" --cookies #{ua.cookies_jar.path} #{options}"
       Rails.logger.info cmd
+
       error_handler `#{cmd}`
     end
   end

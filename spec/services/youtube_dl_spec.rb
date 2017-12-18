@@ -4,7 +4,7 @@ RSpec.describe YoutubeDl do
   let(:youtube_dl) { YoutubeDl.new }
 
   before do
-    allow(youtube_dl).to receive(:exec)
+    allow(youtube_dl).to receive(:exec) { 'some-response' }
     allow_any_instance_of(Normalizer).to receive(:normalize)
   end
 
@@ -14,9 +14,9 @@ RSpec.describe YoutubeDl do
     end
   end
 
-  describe '#fetch_video' do
+  describe '#fetch_video_url' do
     it 'should work' do
-      youtube_dl.fetch_video 'ABC123'
+      youtube_dl.fetch_video_url 'ABC123'
     end
   end
 

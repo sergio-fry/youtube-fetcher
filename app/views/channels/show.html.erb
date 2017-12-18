@@ -38,7 +38,7 @@
       </td>
       <td class='episode__media'>
         <% if episode.has_video? %>
-          <%= link_to number_to_human_size(episode.video_size), episode.video_url %>
+          <%= link_to number_to_human_size(episode.video_size), video_path(episode.origin_id, format: :mp4) %>
         <% else %>
           <% if @podcast.video_required? %>
             <i class="fa fa-refresh fa-spin" aria-hidden="true"></i>
