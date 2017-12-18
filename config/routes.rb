@@ -7,6 +7,4 @@ Rails.application.routes.draw do
 
   get '/audio/:id.mp3', to: 'media#audio', as: :media 
   root 'channels#new'
-
-  get 'stream', to: 'welcome#stream'
 end
