@@ -36,23 +36,9 @@ RSpec.describe UpdatePodcastJob, type: :job do
       end
     end
 
-    context 'when video has not been requested more than 3 days' do
-      before { podcast.update_attributes video_requested_at: 4.days.ago }
-
-      it 'should not enqueue video fetching' do
-        assert_enqueued_jobs(0, only: FetchVideoEpisodeJob) do
-          UpdatePodcastJob.new.perform(podcast)
-        end
-      end
-    end
-
-    context 'when video has been requested recently' do
-      before { podcast.update_attributes video_requested_at: 2.hours.ago }
-
-      it 'should enqueue video fetching' do
-        assert_enqueued_jobs(10, only: FetchVideoEpisodeJob) do
-          UpdatePodcastJob.new.perform(podcast)
-        end
+    it 'should enqueue video fetching' do
+      assert_enqueued_jobs(10, only: FetchVideoEpisodeJob) do
+        UpdatePodcastJob.new.perform(podcast)
       end
     end
   end
