@@ -8,7 +8,6 @@ class CleanupOutdatedJob < ApplicationJob
   def perform
     Podcast.find_each do |podcast|
       cleanup_episodes_scope podcast.audio_episodes
-      cleanup_episodes_scope podcast.video_episodes
     end
   end
 
