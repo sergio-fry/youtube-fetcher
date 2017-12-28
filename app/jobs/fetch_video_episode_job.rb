@@ -26,6 +26,7 @@ class FetchVideoEpisodeJob < FetchAudioEpisodeJob
     fetch_media
 
     raise "No media file fetched: #{podcast.inspect}, #{youtube_video_id}" if @media_url.blank?
+    raise "Empty media fecthed: #{podcast.inspect}, #{youtube_video_id}" if media_size.zero?
 
     episode = podcast.send(self.class::EPISODES_RELATION).create!(
       origin_id: @youtube_video_id,
@@ -42,6 +43,10 @@ class FetchVideoEpisodeJob < FetchAudioEpisodeJob
   end
 
   def media_size
+    @media_size ||= fetch_media_size
+  end
+
+  def fetch_media_size
     uri = URI(@media_url)
 
     response = nil
