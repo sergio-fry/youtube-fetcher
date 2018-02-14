@@ -28,7 +28,7 @@ if [ "$1" = 'test' ]; then
   echo 'Specs...'
   export RAILS_ENV=test
   yarn install
-  bundle exec rake db:migrate
+  bundle exec rake db:create db:migrate
   bundle exec rspec
 
   exit 0
