@@ -1,14 +1,15 @@
 web:
   build: .
-  volumes:
-    - "./:/app"
+# volumes:
+#   - "./:/app"
   links:
     - db
     - memcached
   environment:
-    - RAILS_ENV=development
+    - RAILS_ENV=production
     - DATABASE_URL=postgresql://postgres:postgres@db/development
     - MEMCACHED_URL=memcached
+    - SECRET_KEY_BASE=eiud238ur82hd8wehiuf2h
 
   ports:
     - "3000:80"

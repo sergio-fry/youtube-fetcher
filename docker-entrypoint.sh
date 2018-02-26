@@ -7,8 +7,7 @@ if [ "$1" = 'web' ]; then
   rm -rf public/uploads/
   ln -s /uploads public/uploads
 
-  yarn install
-  bundle exec rake assets:precompile db:migrate
+  bundle exec rake db:migrate
   bundle exec rails server puma -p 80 --binding 0.0.0.0
 fi
 
