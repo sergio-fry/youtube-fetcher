@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe UserAgentsPool do
+  before { UserAgent.delete_all }
   describe '.with_user_agent' do
     context 'a single user exists' do
       let!(:user_agent) { FactoryGirl.create :user_agent }
