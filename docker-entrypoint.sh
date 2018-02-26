@@ -23,14 +23,4 @@ if [ "$1" = 'worker' ]; then
   bundle exec rake jobs:work
 fi
 
-if [ "$1" = 'test' ]; then
-  echo 'Specs...'
-  export RAILS_ENV=test
-  yarn install
-  bundle exec rake db:create db:migrate
-  bundle exec rspec
-
-  exit 0
-fi
-
 exec "$@"
