@@ -17,19 +17,21 @@ RUN curl -L https://sourceforge.net/projects/mp3gain/files/mp3gain/1.5.2/mp3gain
 
 WORKDIR /app 
 COPY Gemfile* ./
-RUN bundle install
+RUN bundle install --deployment --without test development --jobs=4 
 
 COPY . ./
 
 ENV DATABASE_URL=sqlite3:///db/production.sqlite3
+
+ENV RAILS_ENV=production
+RUN yarn install
+RUN rake assets:precompile
+
 ENV RAILS_LOG_TO_STDOUT=true
 ENV MAX_EPISODES_TO_STORE=50
 
 VOLUME /db
 VOLUME /uploads
-VOLUME /app/node_modules
-VOLUME /app/tmp/cache
-VOLUME /app/public/assets
 VOLUME /app/tmp/youtube
 
 COPY docker-entrypoint.sh /usr/local/bin/
