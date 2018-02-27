@@ -51,7 +51,7 @@ class ChannelsController < ApplicationController
   end
 
   def index
-    @channels = Podcast.all
+    @channels = Podcast.page(params[:page]).per(10)
   end
 
   private
