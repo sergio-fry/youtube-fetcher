@@ -1,0 +1,9 @@
+<meta name="description" content="<%= strip_tags(text.to_s).gsub(/\s+/, " ").mb_chars.truncate(160) %>" /> 
+<meta property="og:type" content="article" /> 
+<meta property="og:url" content="<%= url %>" /> 
+<meta property="og:title" content="<%= title.to_s.truncate(140) %>" /> 
+
+<meta property="og:image" content="<%= image rescue nil %>" />
+<link rel="image_src" href="<%= image rescue nil %>" />
+
+<meta property="og:description" content="<%= strip_tags(text.to_s).gsub(/\s+/, " ").mb_chars.truncate(160) %>" />
