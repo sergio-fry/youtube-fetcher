@@ -1,5 +1,9 @@
 <% content_for :meta_title, @video.title %>
 
+<% content_for :meta_description do %>
+  <%= render partial: 'shared/meta_description', locals: { title: strip_tags(@video.title), image: @video.preview_image_url, text: '', url: video_url(@video.origin_id, utm_medium: :social, utm_source: :share, utm_campaign: @video.origin_id) } %>
+<% end %>
+
 <ol class="breadcrumb">
   <li><%= link_to "#{@video.channel.title} Podcast", channel_path(@video.channel.origin_id) %></li>
   <li class="active"><%= @video.title %></li>
