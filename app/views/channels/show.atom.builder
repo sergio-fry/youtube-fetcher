@@ -10,7 +10,7 @@ atom_feed do |feed|
       end
       entry.updated video.published_at.rfc3339
       entry.title video.title
-      entry.content video.description, type: 'html'
+      entry.content simple_format(video.description), type: 'html'
 
       entry.link rel: 'enclosure', type: video.mime_type, title: video.title, href: video.url, length: video.size
       entry.link rel: 'enclosure', type: 'image/jpeg', title: 'preview', href: video.preview_image_url

@@ -44,6 +44,7 @@ RSpec.describe FetchAudioEpisodeJob, type: :job do
     end
 
     its(:title) { is_expected.to eq 'Порошенко и дети' }
+    its(:description) { is_expected.to match(/Дети, а теперь я вам расскажу о/) }
     its(:published_at) { is_expected.to be_a Time }
     its(:origin_id) { is_expected.to eq youtube_video_id }
     its(:size) { is_expected.to eq 160749 }

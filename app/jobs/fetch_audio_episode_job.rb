@@ -65,6 +65,7 @@ class FetchAudioEpisodeJob < ApplicationJob
       media: File.open(local_media_path),
       media_size: File.size(local_media_path),
       title: video.title,
+      description: video.description,
       published_at: video.published_at
     )
     t = Time.now - t0
