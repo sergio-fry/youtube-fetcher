@@ -24,7 +24,7 @@ COPY . ./
 ENV DATABASE_URL=sqlite3:///db/production.sqlite3
 
 ENV RAILS_ENV=production
-RUN yarn install
+RUN rake webpacker:yarn_install
 RUN rake assets:precompile
 
 ENV RAILS_LOG_TO_STDOUT=true
