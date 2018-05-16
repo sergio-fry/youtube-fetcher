@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <%= google_tag_manager_head %>
 
     <title><%= yield(:meta_title).presence || 'Youtube Fetcher: convert youtube channel to a mp3 podcast' %></title>
 
@@ -16,6 +17,7 @@
   </head>
 
   <body>
+    <%= google_tag_manager_body %>
     <%= render partial: 'shared/google_analytics' %>
 
     <nav class="navbar navbar-default">
