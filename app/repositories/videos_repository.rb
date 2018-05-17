@@ -7,7 +7,9 @@ class VideosRepository
     scope = Episode.select('*').from("(#{SUBQUERY}) AS videos").order('created_at DESC').page(number)
 
     def scope.count
-      Episode.connection.select_value "SELECT COUNT(*) FROM (#{SUBQUERY}) AS videos"
+      Rails.cache.fetch 'VideosRepository#page:count', expires_in: 10.minutes do
+        Episode.connection.select_value "SELECT COUNT(*) FROM (#{SUBQUERY}) AS videos"
+      end
     end
 
     scope
