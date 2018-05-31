@@ -27,6 +27,7 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'yt'
 gem 'carrierwave', '~> 1.0'
+gem 'carrierwave-ftp', require: 'carrierwave/storage/ftp'
 gem 'delayed_job_active_record'
 gem 'delayed_cron_job'
 

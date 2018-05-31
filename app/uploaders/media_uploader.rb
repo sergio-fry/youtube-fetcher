@@ -8,6 +8,8 @@ class MediaUploader < CarrierWave::Uploader::Base
 
   if ENV['AWS_ACCESS_KEY_ID'].present?
     storage :fog
+  elsif ENV['FTP_HOST'].present?
+    storage :ftp
   else
     storage :file
   end
