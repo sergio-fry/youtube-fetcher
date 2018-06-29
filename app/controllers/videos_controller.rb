@@ -4,8 +4,10 @@ class VideosController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.mp4 do
-        redirect_to video_url(@video.origin_id)
+      if Flipper.enabled? :video
+        format.mp4 do
+          redirect_to video_url(@video.origin_id)
+        end
       end
     end
   end

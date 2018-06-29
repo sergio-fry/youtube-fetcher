@@ -7,7 +7,9 @@ class UpdatePodcastJob < ApplicationJob
     new_youtube_videos.each do |video|
       add_pending_episode video.id
       FetchAudioEpisodeJob.perform_later(@podcast, video.id) if audo_required?
-      FetchVideoEpisodeJob.perform_later(@podcast, video.id) if video_required?
+      if Flipper.enabled?(:video)
+        FetchVideoEpisodeJob.perform_later(@podcast, video.id) if video_required?
+      end
     end
 
   ensure

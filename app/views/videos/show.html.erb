@@ -36,9 +36,11 @@
       &nbsp;
     <% end %>
 
-    <% if @video.has_video? %>
-      <%= link_to 'mp4 video', url_for(id: @video.origin_id, format: :mp4) %>
-      (<%= number_to_human_size(@video.video_size) %>)
+    <% if Flipper.enabled? :video %>
+      <% if @video.has_video? %>
+        <%= link_to 'mp4 video', url_for(id: @video.origin_id, format: :mp4) %>
+        (<%= number_to_human_size(@video.video_size) %>)
+      <% end %>
     <% end %>
   </div>
 <% end %>
