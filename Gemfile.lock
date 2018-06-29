@@ -107,6 +107,10 @@ GEM
       factory_girl (~> 4.9.0)
       railties (>= 3.0.0)
     ffi (1.9.23)
+    flipper (0.15.0)
+    flipper-active_record (0.15.0)
+      activerecord (>= 3.2, < 6)
+      flipper (~> 0.15.0)
     fog-aws (2.0.0)
       fog-core (~> 1.38)
       fog-json (~> 1.0)
@@ -327,6 +331,8 @@ DEPENDENCIES
   delayed_job_active_record
   dotenv-rails
   factory_girl_rails
+  flipper
+  flipper-active_record
   fog-aws
   font-awesome-rails
   jbuilder (~> 2.5)

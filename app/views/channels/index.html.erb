@@ -2,7 +2,9 @@
   <tr>
     <th>Channel</th>
     <th><i class="fa fa-headphones"></i></th>
-    <th><i class="fa fa-video-camera"></i></th>
+    <% if Flipper.enabled?(:video) %>
+      <th><i class="fa fa-video-camera"></i></th>
+    <% end %>
     <th></th>
     <th></th>
   </tr>
@@ -12,9 +14,11 @@
       <td>
         <%= channel.episodes.count %>
       </td>
-      <td>
-        <%= channel.video_episodes.count %>
-      </td>
+      <% if Flipper.enabled?(:video) %>
+        <td>
+          <%= channel.video_episodes.count %>
+        </td>
+      <% end %>
       <td><%= channel.updated_at %></td>
       <td><%= channel.accessed_at %></td>
     </tr>

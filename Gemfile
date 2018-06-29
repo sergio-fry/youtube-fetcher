@@ -9,46 +9,34 @@ end
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.2'
 
-gem 'sass-rails', '~> 5.0'
-gem 'uglifier', '>= 1.3.0'
-gem 'webpacker', '~> 3.0'
-
 gem 'pg', '~> 0.21'
+gem 'sqlite3'
 
-# Use Puma as the app server
-gem 'puma', '~> 3.7'
-# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.5'
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
-
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
-
-gem 'yt'
+gem 'font-awesome-rails'
 gem 'carrierwave', '~> 1.0'
 gem 'carrierwave-ftp', require: 'carrierwave/storage/ftp'
-gem 'delayed_job_active_record'
-gem 'delayed_cron_job'
-
-gem 'fog-aws'
-gem "font-awesome-rails"
-gem 'dotenv-rails'
-gem 'staccato'
-gem 'slack-notifier'
-
-gem 'newrelic_rpm', group: :production
-gem 'dalli'
-gem 'user-agent-randomizer', require: 'user_agent_randomizer'
-
-gem 'simple_metric'
-gem 'cells-rails'
 gem 'cells-erb'
-
+gem 'cells-rails'
+gem 'dalli'
+gem 'delayed_cron_job'
+gem 'delayed_job_active_record'
+gem 'dotenv-rails'
+gem 'fog-aws'
+gem 'flipper'
+gem 'flipper-active_record'
+gem 'jbuilder', '~> 2.5'
 gem 'kaminari'
-gem 'sqlite3'
+gem 'newrelic_rpm', group: :production
+gem 'puma', '~> 3.7'
 gem 'rails-html-sanitizer', '~> 1.0'
-
+gem 'sass-rails', '~> 5.0'
+gem 'simple_metric'
+gem 'slack-notifier'
+gem 'staccato'
+gem 'uglifier', '>= 1.3.0'
+gem 'user-agent-randomizer', require: 'user_agent_randomizer'
+gem 'webpacker', '~> 3.0'
+gem 'yt'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

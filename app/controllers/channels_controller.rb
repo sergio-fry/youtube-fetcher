@@ -35,7 +35,7 @@ class ChannelsController < ApplicationController
     @podcast.update_attributes accessed_at: Time.now
     @podcast.update_attributes(video_requested_at: Time.now) if type == 'video'
 
-    @videos = if type == 'video'
+    @videos = if type == 'video' && Flipper.enabled?(:video)
                 @podcast.video_episodes
               else
                 @podcast.episodes

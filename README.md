@@ -27,6 +27,10 @@ Try [Youtube Fetcher](http://yt.mazavr.com/) online.
 :metal:    | It's a Ruby on Rails application
 :+1:       | Well tested
 
+## Tips
+
+  * to enable Video fetching type in rails console `Flipper.enable(:video)`
+
 ## Example
 
 Let's turn [TEDx Talks into](https://www.youtube.com/channel/UCsT0YIqwnpJCM-mx7-gSA4Q) *podcast*:

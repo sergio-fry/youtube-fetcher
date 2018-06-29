@@ -22,7 +22,9 @@
     <th>Title</th>
     <th>Published At</th>
     <th><i class="fa fa-headphones"></i></th>
-    <th><i class="fa fa-video-camera"></i></th>
+    <% if Flipper.enabled? :video %>
+      <th><i class="fa fa-video-camera"></i></th>
+    <% end %>
   </tr>
   <% (new_videos + @videos).sort_by(&:published_at).reverse.each do |episode| %>
     <tr class='episode' id='episode-<%= episode.id %>'>
@@ -36,17 +38,19 @@
           <i class="fa fa-refresh fa-spin" aria-hidden="true"></i>
         <% end %>
       </td>
-      <td class='episode__media'>
-        <% if episode.has_video? %>
-          <%= link_to number_to_human_size(episode.video_size), video_path(episode.origin_id, format: :mp4) %>
-        <% else %>
-          <% if @podcast.video_required? %>
-            <i class="fa fa-refresh fa-spin" aria-hidden="true"></i>
+      <% if Flipper.enabled? :video %>
+        <td class='episode__media'>
+          <% if episode.has_video? %>
+            <%= link_to number_to_human_size(episode.video_size), video_path(episode.origin_id, format: :mp4) %>
           <% else %>
-            <i class="fa fa-times-circle" aria-hidden="true" title="Video has not been requested. Open video feed to enqueue video download."></i>
+            <% if @podcast.video_required? %>
+              <i class="fa fa-refresh fa-spin" aria-hidden="true"></i>
+            <% else %>
+              <i class="fa fa-times-circle" aria-hidden="true" title="Video has not been requested. Open video feed to enqueue video download."></i>
+            <% end %>
           <% end %>
-        <% end %>
-      </td>
+        </td>
+      <% end %>
     </tr>
   <% end %>
 </table>
