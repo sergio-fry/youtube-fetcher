@@ -25,7 +25,7 @@ class UpdatePodcastJob < ApplicationJob
       end
     end
 
-    if video_required? && !VideoEpisode.exists?(origin_id: origin_id)
+    if Flipper.enabled?(:video) && video_required? && !VideoEpisode.exists?(origin_id: origin_id)
       PendingEpisode.find_or_create_by origin_id: origin_id, episode_type: 'video' do |pe|
         pe.updated_at = Time.now
       end
