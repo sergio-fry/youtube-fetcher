@@ -21,7 +21,7 @@ CarrierWave.configure do |config|
     config.ftp_passwd = ENV.fetch('FTP_PASSWORD')
     config.ftp_folder = ENV.fetch('FTP_PATH')
     config.ftp_url = ENV.fetch('FTP_BASE_URL')
-    # config.ftp_passive = false # false by default
+    config.ftp_passive = ENV.fetch('FTP_PASSIVE') == 'true' # false by default
     # config.ftp_tls = false # false by default
   end
 end
