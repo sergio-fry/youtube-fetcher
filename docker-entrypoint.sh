@@ -19,6 +19,7 @@ if [ "$1" = 'worker' ]; then
 
   bundle exec rake db:migrate
 
+  export SCHEDULER_CONFIGURE=true
   export QUEUES=default,high_priority,low_priority 
   bundle exec rake jobs:work
 fi
