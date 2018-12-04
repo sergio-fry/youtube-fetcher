@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180628172821) do
+ActiveRecord::Schema.define(version: 20181204211000) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 20180628172821) do
     t.datetime "published_at"
     t.string "origin_id"
     t.string "type", default: "AudioEpisode", null: false
+    t.index ["origin_id"], name: "index_episodes_on_origin_id"
   end
 
   create_table "flipper_features", force: :cascade do |t|

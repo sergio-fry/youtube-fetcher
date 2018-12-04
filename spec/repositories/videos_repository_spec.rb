@@ -12,5 +12,10 @@ RSpec.describe VideosRepository do
       before { FactoryGirl.create :video_episode, origin_id: episode.origin_id }
       its(:count) { is_expected.to eq 1 }
     end
+
+    context 'when video is disabled' do
+      before { Flipper.disable(:video) }
+      its(:count) { is_expected.to eq 1 }
+    end
   end
 end

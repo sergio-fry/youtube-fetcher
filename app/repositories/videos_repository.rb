@@ -4,7 +4,21 @@ class VideosRepository
   SQL
 
   def page(number)
-    scope = Episode.select('*').from("(#{SUBQUERY}) AS videos").order('created_at DESC').page(number)
+    if Flipper.enabled?(:video)
+      scope_all.page(number)
+    else
+      scope_audio.page(number)
+    end
+  end
+
+  private
+
+  def scope_audio
+    AudioEpisode.order('created_at DESC')
+  end
+
+  def scope_all
+    scope = Episode.select('*').from("(#{SUBQUERY}) AS videos").order('created_at DESC')
 
     def scope.count
       Rails.cache.fetch 'VideosRepository#page:count', expires_in: 10.minutes do
