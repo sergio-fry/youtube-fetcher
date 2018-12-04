@@ -4,7 +4,7 @@ RSpec.describe "channels/show", type: :view do
   subject { rendered }
   let(:podcast) { FactoryGirl.create(:podcast, title: 'My Podcast') }
   let!(:episode) { FactoryGirl.create(:episode, title: 'My Episode') }
-  let!(:video_episode) { FactoryGirl.create(:video_episode, origin_id: episode.origin_id) }
+  let!(:video_episode) { FactoryGirl.create(:video_episode, origin_id: episode.origin_id, title: 'My Episode') }
   before do
     assign(:podcast, podcast)
     assign(:videos, [episode].map { |v| Video.new v.origin_id })
