@@ -26,3 +26,4 @@ node_modules/
 /public/packs
 /node_modules
 tags
+vendor

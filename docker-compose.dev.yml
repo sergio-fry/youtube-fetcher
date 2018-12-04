@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+
+  app:
+    build:
+      dockerfile: Dockerfile.dev
+      context: .
+    volumes:
+      - "./:/app"
+    links:
+      - db
+      - memcached
+    environment:
+      - RAILS_ENV=development
+      - DATABASE_URL=postgresql://postgres:postgres@db/development
+      - MEMCACHED_URL=memcached
+      - SECRET_KEY_BASE=abc123
+        #- BUNDLE_APP_CONFIG=/app/.bundle
+
+    ports:
+      - "4001:80"
+    command: ["bundle", "exec", "spring", "rails", "server", "-p", "80", "--binding", "0.0.0.0"]
+
+  db:
+    image: postgres:10-alpine
+
+  memcached:
+    image: memcached:alpine
