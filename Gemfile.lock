@@ -106,7 +106,7 @@ GEM
     factory_girl_rails (4.9.0)
       factory_girl (~> 4.9.0)
       railties (>= 3.0.0)
-    ffi (1.9.23)
+    ffi (1.9.24)
     flipper (0.15.0)
     flipper-active_record (0.15.0)
       activerecord (>= 3.2, < 6)
@@ -155,7 +155,7 @@ GEM
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
       ruby_dep (~> 1.2)
-    loofah (2.2.2)
+    loofah (2.2.3)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     mail (2.7.0)
@@ -173,7 +173,7 @@ GEM
     net-ssh (4.2.0)
     newrelic_rpm (4.8.0.341)
     nio4r (2.2.0)
-    nokogiri (1.8.2)
+    nokogiri (1.8.5)
       mini_portile2 (~> 2.3.0)
     pg (0.21.0)
     pry (0.11.3)
@@ -181,7 +181,7 @@ GEM
       method_source (~> 0.9.0)
     public_suffix (3.0.2)
     puma (3.11.2)
-    rack (2.0.5)
+    rack (2.0.6)
     rack-proxy (0.6.3)
       rack
     rack-test (0.8.2)
@@ -237,7 +237,7 @@ GEM
       rspec-support (~> 3.7.0)
     rspec-support (3.7.1)
     ruby_dep (1.5.0)
-    rubyzip (1.2.1)
+    rubyzip (1.2.2)
     safe_yaml (1.0.4)
     sass (3.5.5)
       sass-listen (~> 4.0.0)
@@ -342,7 +342,7 @@ DEPENDENCIES
   pg (~> 0.21)
   pry
   puma (~> 3.7)
-  rails (~> 5.1.2)
+  rails (~> 5.1.5)
   rails-html-sanitizer (~> 1.0)
   rspec-cells
   rspec-its
@@ -368,4 +368,4 @@ DEPENDENCIES
   yt
 
 BUNDLED WITH
-   1.16.1
+   1.17.1
