@@ -17,6 +17,19 @@ class YoutubePlaylist < YoutubeVideoList
       end
     end.compact
   end
+  
+  def exists?
+    begin
+      videos
+    rescue Yt::Errors::RequestError => ex
+      code = JSON.parse(ex.to_s)['response_body']['error']['code']
+
+      return false if code == 404
+    end
+
+    true
+  end
+
 
   private
 
