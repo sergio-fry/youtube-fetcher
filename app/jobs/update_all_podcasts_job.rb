@@ -2,7 +2,7 @@ class UpdateAllPodcastsJob < ApplicationJob
   queue_as :high_priority
 
   def perform
-    Podcast.find_each do |podcast|
+    Podcast.where.not(deleted: true).find_each do |podcast|
       next unless is_popular?(podcast)
       next if is_fresh_enough?(podcast)
       UpdatePodcastJob.perform_later(podcast)

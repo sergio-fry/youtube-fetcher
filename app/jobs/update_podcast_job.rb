@@ -4,6 +4,10 @@ class UpdatePodcastJob < ApplicationJob
   def perform(podcast)
     @podcast = podcast
 
+    MarkPodcastAsRemovedJob.perform_later podcast
+
+    return if podcast.deleted?
+
     new_youtube_videos.each do |video|
       add_pending_episode video.id
       FetchAudioEpisodeJob.perform_later(@podcast, video.id) if audo_required?
