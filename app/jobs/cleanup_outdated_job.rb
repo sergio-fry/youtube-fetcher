@@ -2,7 +2,7 @@ class CleanupOutdatedJob < ApplicationJob
   queue_as :high_priority
 
   PERIOD_TO_KEEP = 1.week
-  MIN_EPISODES_TO_STORE = 10
+  MIN_EPISODES_TO_STORE = ENV.fetch('MIN_EPISODES_TO_STORE', 10)
   MAX_EPISODES_TO_STORE = ENV.fetch('MAX_EPISODES_TO_STORE', 50)
 
   def perform
