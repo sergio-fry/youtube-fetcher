@@ -17,10 +17,18 @@ RSpec.describe ChannelsController, type: :controller do
     let!(:episode) { FactoryGirl.create :episode, podcast: podcast }
     let!(:video_episode) { FactoryGirl.create :video_episode, podcast: podcast, origin_id: episode.origin_id }
 
-    it 'should update accessed_at' do
-      expect do
-        make_request
-      end.to change{ podcast.reload.accessed_at }
+    describe 'accessed_at' do
+      it 'should update accessed_at when atom requested' do
+        expect do
+          make_request :atom
+        end.to change{ podcast.reload.accessed_at }
+      end
+
+      it 'should NOT update accessed_at when html requestes' do
+        expect do
+          make_request :html
+        end.not_to change{ podcast.reload.accessed_at }
+      end
     end
 
     context 'when no video requested' do

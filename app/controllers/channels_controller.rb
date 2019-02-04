@@ -32,8 +32,6 @@ class ChannelsController < ApplicationController
 
   def show
     @podcast = Podcast.find_by! origin_id: params[:id]
-    @podcast.update_attributes accessed_at: Time.now
-    @podcast.update_attributes(video_requested_at: Time.now) if type == 'video'
 
     @videos = if type == 'video' && Flipper.enabled?(:video)
                 @podcast.video_episodes
@@ -44,6 +42,14 @@ class ChannelsController < ApplicationController
     @videos = @videos.recent.limit(10)
     @videos = @videos.map { |v| VideoEpisodeWrapper.new v } if type == 'video'
     @videos = @videos.map { |v| Video.new v.origin_id, v }
+
+    respond_to do |format|
+      format.html
+      format.atom do
+        @podcast.update_attributes accessed_at: Time.now
+        @podcast.update_attributes(video_requested_at: Time.now) if type == 'video'
+      end
+    end
   end
 
   def new
