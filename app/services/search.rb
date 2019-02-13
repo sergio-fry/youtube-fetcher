@@ -1,4 +1,6 @@
 class Search
+  LIMIT = 100
+
   def self.call(query)
     Search.new.call query
   end
@@ -21,9 +23,9 @@ class Search
 
   def select(query)
     ApplicationRecord.connection.select_all <<-SQL
-    (SELECT id, origin_id, 'Podcast' AS type FROM podcasts WHERE title ILIKE '%#{query}%')
+    (SELECT id, origin_id, 'Podcast' AS type FROM podcasts WHERE title ILIKE '%#{query}%' ORDER BY created_at DESC LIMIT #{LIMIT})
     UNION
-    (SELECT id, origin_id, 'Episode' AS type FROM episodes WHERE title ILIKE '%#{query}%')
+    (SELECT id, origin_id, 'Episode' AS type FROM episodes WHERE title ILIKE '%#{query}%' ORDER BY created_at DESC LIMIT #{LIMIT})
     SQL
   end
 end
