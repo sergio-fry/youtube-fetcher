@@ -1,0 +1,43 @@
+<h1>Search</h1>
+
+<%= form_tag search_path, method: 'GET', class: 'form' do %>
+  <div class="input-group">
+    <%= text_field_tag :q, params[:q], class: 'form-control', placeholder: 'Search' %>
+    <span class="input-group-btn">
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </span>
+  </div><!-- /input-group -->
+<% end %>
+
+<br />
+<br />
+
+<% if @results.present? %>
+  <ul class="list-group">
+    <% @results.each do |item| %>
+      <% case item %>
+      <% when Podcast %>
+        <li class="list-group-item"><%= link_to item.title, channel_path(item.origin_id) %> <span class="badge">podcast</span></li>
+      <% when Video %>
+        <li class="list-group-item">
+        <div class="media">
+          <div class="media-left">
+            <%= link_to video_path(item.origin_id) do %>
+              <%= image_tag item.preview_image_url, height: 80 %>
+            <% end %>
+          </div>
+          <div class="media-body">
+            <h4 class="media-heading">
+              <%= link_to video_path(item.origin_id) do %>
+                <%= item.title %>
+              <% end %>
+            </h4>
+          </div>
+        </div>
+        </li>
+      <% end %>
+    <% end %>
+  </ul>
+<% else %>
+  <strong>No results</strong>
+<% end %>

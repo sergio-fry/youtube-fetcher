@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'search/index'
+
   get 'stats', to: 'stats#index'
 
   resources :videos, only: %w( show index )
@@ -7,4 +9,6 @@ Rails.application.routes.draw do
 
   get '/audio/:id.mp3', to: 'media#audio', as: :media 
   root 'channels#new'
+
+  get 'search', to: 'search#index'
 end
