@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'about', to: 'pages#about'
+
   get 'search/index'
 
   get 'stats', to: 'stats#index'
