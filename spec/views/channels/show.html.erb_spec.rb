@@ -22,8 +22,8 @@ RSpec.describe "channels/show", type: :view do
 
   it { is_expected.to include 'My Podcast' }
   it { is_expected.to include 'My Episode' }
-  it { is_expected.to include 'Audio podcast' }
-  it { is_expected.to include 'Video podcast' }
+  it { is_expected.to include 'Subscribe' }
+  it { is_expected.to include 'Subscribe Video' }
 
   it { is_expected.to include channel_url(podcast.origin_id, format: :atom) }
 

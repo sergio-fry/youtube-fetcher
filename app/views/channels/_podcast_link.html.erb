@@ -3,8 +3,7 @@
 <% end %>
 
 <% if Flipper.enabled? :video %>
-  <tr>
-    <td><i class="fa fa-video-camera"></i> <%= link_to 'Video podcast', video_feed_url %></td>
-    <td><%= link_to video_feed_url, video_feed_url %></td>
-  </tr>
+  <%= link_to video_feed_url, class: 'btn btn-primary' do %>
+    <i class="fa fa-video-camera"></i> Subscribe Video
+  <% end %>
 <% end %>

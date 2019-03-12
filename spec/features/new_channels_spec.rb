@@ -9,7 +9,7 @@ RSpec.feature "Add new channel", type: :feature do
 
       click_on 'Convert to podcast'
 
-      expect(find_link('Audio podcast')[:href]).to include '/channels/UCX0nHcqZWDSsAPog-LXdP7A.atom'
+      expect(find_link('Subscribe')[:href]).to include '/channels/UCX0nHcqZWDSsAPog-LXdP7A.atom'
     end
   end
 
@@ -21,7 +21,7 @@ RSpec.feature "Add new channel", type: :feature do
 
       click_on 'Convert to podcast'
 
-      expect(find_link('Audio podcast')[:href]).to include '/playlists/PLOGi5-fAu8bH_T9HhH9V2B5izEE4G5waV.atom'
+      expect(find_link('Subscribe')[:href]).to include '/playlists/PLOGi5-fAu8bH_T9HhH9V2B5izEE4G5waV.atom'
     end
   end
 
@@ -33,7 +33,7 @@ RSpec.feature "Add new channel", type: :feature do
 
       click_on 'Convert to podcast'
 
-      expect(find_link('Audio podcast')[:href]).to include '/channels/UCyt4Uriznp9Y6H0JkOZfcHA.atom'
+      expect(find_link('Subscribe')[:href]).to include '/channels/UCyt4Uriznp9Y6H0JkOZfcHA.atom'
     end
   end
 end
