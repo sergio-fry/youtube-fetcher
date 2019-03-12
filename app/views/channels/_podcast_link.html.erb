@@ -1,7 +1,7 @@
-<tr>
-  <td><i class="fa fa-headphones"></i> <%= link_to 'Audio podcast', audio_feed_url %></td>
-  <td><%= link_to audio_feed_url, audio_feed_url %></td>
-</tr>
+<%= link_to audio_feed_url, class: 'btn btn-primary' do %>
+  <i class="fa fa-headphones"></i> Subscribe
+<% end %>
+
 <% if Flipper.enabled? :video %>
   <tr>
     <td><i class="fa fa-video-camera"></i> <%= link_to 'Video podcast', video_feed_url %></td>

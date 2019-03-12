@@ -2,17 +2,13 @@
 
 <h1><%= @podcast.title %> Podcast
   <i class="fa fa-podcast" aria-hidden="true"></i>
-  <%= image_tag "https://chart.googleapis.com/chart?cht=qr&chs=100x100&chl=#{request.original_url}" %>
 </h1>
 
-<table class='table'>
-  <% if @podcast.source_type == 'playlist' %>
-    <%= render partial: 'podcast_link', locals: { audio_feed_url: playlist_url(@podcast.origin_id, format: :atom), video_feed_url: playlist_url(@podcast.origin_id, type: :video, format: :atom) } %>
-  <% else %>
-    <%= render partial: 'podcast_link', locals: { audio_feed_url: channel_url(@podcast.origin_id, format: :atom), video_feed_url: channel_url(@podcast.origin_id, type: :video, format: :atom) } %>
-  <% end %>
-</table>
-
+<% if @podcast.source_type == 'playlist' %>
+  <%= render partial: 'podcast_link', locals: { audio_feed_url: playlist_url(@podcast.origin_id, format: :atom), video_feed_url: playlist_url(@podcast.origin_id, type: :video, format: :atom) } %>
+<% else %>
+  <%= render partial: 'podcast_link', locals: { audio_feed_url: channel_url(@podcast.origin_id, format: :atom), video_feed_url: channel_url(@podcast.origin_id, type: :video, format: :atom) } %>
+<% end %>
 
 <br />
 <br />
