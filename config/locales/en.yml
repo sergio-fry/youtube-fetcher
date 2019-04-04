@@ -1,22 +1,44 @@
 en:
-  hello: 
-  channels: Channels
-  slogan: Simple and free service that lets you listen to any YouTube channels in podcast format.
-  slogan2: Youtube Fetcher: convert youtube channel to a mp3 podcast
-  paste_url_here: Paste Youtube channel/playlist URL here
-  video_has_not_been_requested: Video has not been requested. Open video feed to enqueue video download.
-  send_feedback: Send Feedback
   activerecord:
     attributes:
+      feedback:
+        body: Feedback Body
+        email: Email
+        title: Title
+    help:
+      feedback:
+        body: Body
+        body_html: Body HTML
+        email: Email
+        email_html: Email HTML
+        title: Title
+  audio: Audio
+  channel: Channel
+  channels: Channels
+  convert_to_podcast: Convert to Podcast!
+  download: Download
+  feature_request: Feature Request
+  feedback: Feedback
+  feedbacks_list: Feedback List
+  happy: Happy
+  helpers:
+    label:
       feedback:
         body: Body
         email: Email
         title: Title
-  helpers:
-    label:
-      feedback:
-        title: 
-  feature_request: 
-  happy: 
-  unhappy: 
-  feedbacks_list: 
+  leave_feedback: 
+  listen_youtube_channel: 
+  paste_url_here: Paste Youtube channel/playlist URL here
+  podcast: 
+  published_at: 
+  recent_episodes: 
+  search: 
+  send_feedback: Send Feedback
+  slogan: Simple and free service that lets you listen to any YouTube channels in podcast format.
+  slogan2: 'Youtube Fetcher: convert youtube channel to a mp3 podcast'
+  submit: 
+  subscribe: 
+  title: Title
+  unhappy: Unhappy
+  video_has_not_been_requested: Video has not been requested. Open video feed to enqueue video download.

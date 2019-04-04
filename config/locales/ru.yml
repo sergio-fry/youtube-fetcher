@@ -1,31 +1,44 @@
 ru:
-  hello: Привет
   activerecord:
     attributes:
       feedback:
-        body: 
-        email: 
-        title: 
+        body: Отзыв
+        email: Email
+        title: Заголовок
     help:
       feedback:
+        body: 
         body_html: 
-        body:
-          html: 
+        email: 
         email_html: 
-        email:
-          html: 
-        title: 
-        title_html: 
+        title: Заголовок
+  audio: 
+  channel: 
+  channels: 
+  convert_to_podcast: 
+  download: 
+  feature_request: Нужна возможность
+  feedback: 
+  feedbacks_list: Список отзывов
+  happy: 
   helpers:
     label:
       feedback:
         body: 
         email: 
         title: 
-  title: 
-  title11: 
-  feature_request: 
-  happy: 
+  leave_feedback: 
+  listen_youtube_channel: 
+  paste_url_here: 
+  podcast: 
+  published_at: 
+  recent_episodes: 
+  search: 
   send_feedback: 
+  slogan: 
+  slogan2: 
+  submit: 
+  subscribe: 
+  title: 
   unhappy: 
-  feedbacks_list: 
+  video_has_not_been_requested: 
