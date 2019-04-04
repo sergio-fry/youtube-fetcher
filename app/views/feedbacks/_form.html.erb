@@ -1,0 +1,14 @@
+<%= bootstrap_form_for(feedback) do |f| %>
+  <%= f.text_field :title %>
+  <%= f.email_field :email %>
+  <%= f.text_area :body %>
+
+
+  <%= f.radio_button :category, :feature_request, label: "Feature Request", inline: true, checked: true %>
+  <%= f.radio_button :category, :happy, label: "Happy", inline: true %>
+  <%= f.radio_button :category, :unhappy, label: "Unhappy", inline: true %>
+
+  <br />
+  <br />
+  <%= f.submit 'Send Feedback', class: 'btn btn-primary' %>
+<% end %>

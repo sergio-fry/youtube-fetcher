@@ -1,0 +1,18 @@
+.feedback-button {
+  height: 40px;
+  // border: solid 3px #CCCCCC;
+  width: 100px;
+  line-height: 28px;
+  -webkit-transform: rotate(-90deg);
+  font-weight: 600;
+  transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
+  -moz-transform: rotate(-90deg);
+  text-align: center;
+  font-size: 17px;
+  position: fixed;
+  right: -35px;
+  top: 45%;
+  z-index: 999;
+  text-decoration: none;
+}
