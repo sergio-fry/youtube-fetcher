@@ -8,13 +8,11 @@
       
     </div>
     <div class="media">
-      <div class="media-left">
-        <%= link_to video_path(video.origin_id) do %>
-          <img class="media-object" src="<%= video.preview_image_url %>" alt="<%= video.title %>" style="width: 64px;">
-        <% end %>
-      </div>
+      <%= link_to video_path(video.origin_id) do %>
+        <img class="mr-3" src="<%= video.preview_image_url %>" alt="<%= video.title %>" style="width: 64px;">
+      <% end %>
       <div class="media-body">
-        <h4 class="media-heading"><%= link_to video.title, video_path(video.origin_id) %></h4>
+        <h5 class="mt-0"><%= link_to video.title, video_path(video.origin_id) %></h5>
 
         <%= video.published_at %>
       </div>
