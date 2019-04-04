@@ -8,7 +8,7 @@
 
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
-    <li class="breadcrumb-item"><%= link_to "#{@video.channel.title} Podcast", channel_path(@video.channel.origin_id) %></li>
+    <li class="breadcrumb-item"><%= link_to "#{@video.channel.title} #{t(:podcast)}", channel_path(@video.channel.origin_id) %></li>
     <li class="breadcrumb-item active"><%= @video.title %></li>
   </ol>
 </nav>
@@ -27,12 +27,12 @@
   <br />
   <br />
   <div>
-    Download:
+    <%= t :download %>:
     &nbsp;
     &nbsp;
 
     <% if @video.has_audio? %>
-      <%= link_to 'mp3 audio', @video.audio_url %>
+      <%= link_to "mp3 #{t(:audio)}", @video.audio_url %>
       (<%= number_to_human_size(@video.audio_size) %>)
       &nbsp;
       &nbsp;
@@ -41,7 +41,7 @@
 
     <% if Flipper.enabled? :video %>
       <% if @video.has_video? %>
-        <%= link_to 'mp4 video', url_for(id: @video.origin_id, format: :mp4) %>
+        <%= link_to "mp4 #{t(:video)}", url_for(id: @video.origin_id, format: :mp4) %>
         (<%= number_to_human_size(@video.video_size) %>)
       <% end %>
     <% end %>

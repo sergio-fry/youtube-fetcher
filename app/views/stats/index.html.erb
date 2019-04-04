@@ -1,10 +1,10 @@
-<h1>Stats</h1>
+<h1><%= t :stats %></h1>
 
-<h2>Episodes</h2>
+<h2><%= t :episodes %></h2>
 <%= simple_metric_graph StatsController::AUDIO_EPISODES_KEY, StatsController::VIDEO_EPISODES_KEY %>
 
-<h2>Pending</h2>
+<h2><%= t :pending %></h2>
 <%= simple_metric_graph StatsController::PENDING_AUDIO_EPISODES_KEY, StatsController::PENDING_VIDEO_EPISODES_KEY %>
 
-<h2>Podcasts</h2>
+<h2><%= t :podcasts %></h2>
 <%= simple_metric_graph StatsController::PODCASTS_KEY %>
