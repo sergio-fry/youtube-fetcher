@@ -13,7 +13,7 @@ atom_feed do |feed|
       entry.content simple_format(video.description), type: 'html'
 
       entry.link rel: 'enclosure', type: video.mime_type, title: video.title, href: video.url, length: video.size
-      entry.link rel: 'enclosure', type: 'image/jpeg', title: 'preview', href: video.preview_image_url
+      entry.link rel: 'enclosure', type: 'image/jpeg', title: t(:preview), href: video.preview_image_url
     end
   end
 end

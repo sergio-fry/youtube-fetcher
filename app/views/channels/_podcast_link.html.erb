@@ -1,9 +1,9 @@
 <%= link_to audio_feed_url, class: 'btn btn-primary' do %>
-  <i class="fa fa-headphones"></i> Subscribe
+  <i class="fa fa-headphones"></i> <%= t :subscribe %>
 <% end %>
 
 <% if Flipper.enabled? :video %>
   <%= link_to video_feed_url, class: 'btn btn-primary' do %>
-    <i class="fa fa-video-camera"></i> Subscribe Video
+    <i class="fa fa-video-camera"></i> <%= t :subscribe_video %>
   <% end %>
 <% end %>

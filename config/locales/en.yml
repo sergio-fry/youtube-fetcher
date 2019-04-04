@@ -1,2 +1,6 @@
 en:
   hello: "Hello world"
+  channels: "Channels"
+  slogan: "Simple and free service that lets you listen to any YouTube channels in podcast format."
+  paste_url_here: "Paste Youtube channel/playlist URL here"
+  video_has_not_been_requested: "Video has not been requested. Open video feed to enqueue video download."
