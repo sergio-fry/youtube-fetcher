@@ -1,4 +1,5 @@
 en:
+  about: About
   activerecord:
     attributes:
       feedback:
@@ -17,6 +18,7 @@ en:
   channels: Channels
   convert_to_podcast: Convert to Podcast!
   download: Download
+  episodes: Episodes
   feature_request: Feature Request
   feedback: Feedback
   feedbacks_list: Feedback List
@@ -27,18 +29,26 @@ en:
         body: Body
         email: Email
         title: Title
-  leave_feedback: 
-  listen_youtube_channel: 
+  leave_feedback: Leave Feedback
+  listen_youtube_channel: Listen to Youtube Channel!
+  no_results: No Results
   paste_url_here: Paste Youtube channel/playlist URL here
-  podcast: 
-  published_at: 
-  recent_episodes: 
-  search: 
+  pending: Pending
+  podcast: Podcast
+  podcasts: Podcasts
+  preview: Preview
+  published_at: Published At
+  recent_episodes: Recent Episodes
+  search: Search
   send_feedback: Send Feedback
   slogan: Simple and free service that lets you listen to any YouTube channels in podcast format.
   slogan2: 'Youtube Fetcher: convert youtube channel to a mp3 podcast'
-  submit: 
-  subscribe: 
+  stats: Stats
+  submit: Submit
+  subscribe: Subscribe
+  subscribe_video: Subscribe Video
+  thank_you: Thank You
   title: Title
   unhappy: Unhappy
+  video: Video
   video_has_not_been_requested: Video has not been requested. Open video feed to enqueue video download.

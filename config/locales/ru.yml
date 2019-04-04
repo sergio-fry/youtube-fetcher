@@ -1,4 +1,5 @@
 ru:
+  about: 
   activerecord:
     attributes:
       feedback:
@@ -17,6 +18,7 @@ ru:
   channels: 
   convert_to_podcast: 
   download: 
+  episodes: 
   feature_request: Нужна возможность
   feedback: 
   feedbacks_list: Список отзывов
@@ -29,16 +31,24 @@ ru:
         title: 
   leave_feedback: 
   listen_youtube_channel: 
+  no_results: 
   paste_url_here: 
+  pending: 
   podcast: 
+  podcasts: 
+  preview: 
   published_at: 
   recent_episodes: 
   search: 
   send_feedback: 
   slogan: 
   slogan2: 
+  stats: 
   submit: 
   subscribe: 
+  subscribe_video: 
+  thank_you: 
   title: 
   unhappy: 
+  video: 
   video_has_not_been_requested: 
