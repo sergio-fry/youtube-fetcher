@@ -13,6 +13,7 @@ gem 'pg', '~> 0.21'
 gem 'sqlite3'
 
 gem 'font-awesome-rails'
+gem 'bootstrap_form', '>= 4.2.0'
 gem 'carrierwave', '~> 1.0'
 gem 'carrierwave-ftp', require: 'carrierwave/storage/ftp'
 gem 'cells-erb'

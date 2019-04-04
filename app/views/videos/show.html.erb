@@ -4,11 +4,14 @@
   <%= render partial: 'shared/meta_description', locals: { title: strip_tags(@video.title), image: @video.preview_image_url, text: '', url: video_url(@video.origin_id, utm_medium: :social, utm_source: :share, utm_campaign: @video.origin_id) } %>
 <% end %>
 
-<ol class="breadcrumb">
-  <li><%= link_to "#{@video.channel.title} Podcast", channel_path(@video.channel.origin_id) %></li>
-  <li class="active"><%= @video.title %></li>
-</ol>
+<div class="m-4"></div>
 
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><%= link_to "#{@video.channel.title} Podcast", channel_path(@video.channel.origin_id) %></li>
+    <li class="breadcrumb-item active"><%= @video.title %></li>
+  </ol>
+</nav>
 
 <h1><%= @video.title %></h1>
 

@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
-  resources :feedbacks
+  resources :feedbacks do
+    collection do
+      get 'thank_you', action: :thank_you
+    end
+
+  end
+
   get 'about', to: 'pages#about'
 
   get 'search/index'
