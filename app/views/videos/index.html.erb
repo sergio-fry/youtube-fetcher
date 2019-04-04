@@ -1,6 +1,6 @@
 <% content_for :meta_title, 'Recent episodes' %>
 
-<h1 class="mt-5 mb-5">Recent Episodes</h1>
+<h1>Recent Episodes</h1>
 
 <div class="videos-list">
   <% @videos.map { |v| Video.new(v.origin_id) }.each do |video| %>

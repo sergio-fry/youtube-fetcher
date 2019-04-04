@@ -44,17 +44,12 @@
 
     <div class="container">
       <div class="row">
-        <div class="col-md-9">
-          <%= yield %>
-        </div>
-        <div class="col-md-3 sidebar sidebar--right">
-        </div>
-      </div>
-      <div class="row">
         <div class="col-md-12">
-          <%= link_to 'Leave Feedback', new_feedback_path %>
+          <%= yield %>
         </div>
       </div>
     </div>
+
+    <%= link_to 'Feedback', new_feedback_path, class: 'feedback-button badge badge-secondary' %>
   </body>
 </html>

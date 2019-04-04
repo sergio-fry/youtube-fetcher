@@ -16,6 +16,10 @@
  *= require_self
  */
 
+h1 {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
 
 .fa-youtube {
   color: #CD201F;
