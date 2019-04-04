@@ -3,7 +3,10 @@ class FeedbacksController < ApplicationController
 
   # GET /feedbacks
   def index
-    @feedbacks = Feedback.all
+    @feedbacks = Feedback.order('created_at DESC').limit(20)
+    respond_to do |format|
+      format.atom
+    end
   end
 
   # GET /feedbacks/1
@@ -34,6 +37,6 @@ class FeedbacksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def feedback_params
-      params.require(:feedback).permit(:title, :email, :category)
+      params.require(:feedback).permit(:title, :email, :category, :body)
     end
 end
