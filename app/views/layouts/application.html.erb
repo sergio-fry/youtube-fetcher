@@ -3,7 +3,7 @@
   <head>
     <%= google_tag_manager_head %>
 
-    <title><%= yield(:meta_title).presence || 'Youtube Fetcher: convert youtube channel to a mp3 podcast' %></title>
+    <title><%= yield(:meta_title).presence || t(:slogan2) %></title>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -32,12 +32,12 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="nav navbar-nav mr-auto">
-          <li class="nav-item"><%= link_to 'Channels', channels_path, class: 'nav-link' %></li>
-          <li class="nav-item"><%= link_to 'Recent Episodes', videos_path, class: 'nav-link' %></li>
+          <li class="nav-item"><%= link_to t(:channels), channels_path, class: 'nav-link' %></li>
+          <li class="nav-item"><%= link_to t(:recent_episodes), videos_path, class: 'nav-link' %></li>
         </ul>
         <%= form_tag search_path, method: 'GET', class: 'form-inline my-2 my-lg-0' do %>
-          <%= text_field_tag :q, nil, class: 'form-control mr-sm-2', placeholder: 'Search' %>
-          <button type="submit" class="btn btn-outline-secondary my-2 my-sm-0">Submit</button>
+          <%= text_field_tag :q, nil, class: 'form-control mr-sm-2', placeholder: t(:search) %>
+          <button type="submit" class="btn btn-outline-secondary my-2 my-sm-0"><%= t :submit %></button>
         <% end %>
       </div>
     </nav>
@@ -50,6 +50,6 @@
       </div>
     </div>
 
-    <%= link_to 'Feedback', new_feedback_path, class: 'feedback-button badge badge-secondary' %>
+    <%= link_to t(:feedback), new_feedback_path, class: 'feedback-button badge badge-secondary' %>
   </body>
 </html>

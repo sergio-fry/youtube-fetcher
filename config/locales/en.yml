@@ -1,6 +1,22 @@
 en:
-  hello: "Hello world"
-  channels: "Channels"
-  slogan: "Simple and free service that lets you listen to any YouTube channels in podcast format."
-  paste_url_here: "Paste Youtube channel/playlist URL here"
-  video_has_not_been_requested: "Video has not been requested. Open video feed to enqueue video download."
+  hello: 
+  channels: Channels
+  slogan: Simple and free service that lets you listen to any YouTube channels in podcast format.
+  slogan2: Youtube Fetcher: convert youtube channel to a mp3 podcast
+  paste_url_here: Paste Youtube channel/playlist URL here
+  video_has_not_been_requested: Video has not been requested. Open video feed to enqueue video download.
+  send_feedback: Send Feedback
+  activerecord:
+    attributes:
+      feedback:
+        body: Body
+        email: Email
+        title: Title
+  helpers:
+    label:
+      feedback:
+        title: 
+  feature_request: 
+  happy: 
+  unhappy: 
+  feedbacks_list: 
