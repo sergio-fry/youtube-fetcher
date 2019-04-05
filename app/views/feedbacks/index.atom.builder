@@ -1,5 +1,5 @@
 atom_feed do |feed|
-  feed.title("My great blog!")
+  feed.title(t(:feedbacks_list))
   feed.updated(@feedbacks[0].created_at) if @feedbacks.length > 0
 
   @feedbacks.each do |feedback|

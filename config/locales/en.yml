@@ -1,33 +1,54 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# The following keys must be escaped otherwise they will not be retrieved by
-# the default I18n backend:
-#
-# true, false, on, off, yes, no
-#
-# Instead, surround them with single quotes.
-#
-# en:
-#   'true': 'foo'
-#
-# To learn more, please read the Rails Internationalization guide
-# available at http://guides.rubyonrails.org/i18n.html.
-
 en:
-  hello: "Hello world"
+  about: About
+  activerecord:
+    attributes:
+      feedback:
+        body: Feedback Body
+        email: Email
+        title: Title
+    help:
+      feedback:
+        body: Body
+        body_html: Body HTML
+        email: Email
+        email_html: Email HTML
+        title: Title
+  audio: Audio
+  channel: Channel
+  channels: Channels
+  convert_to_podcast: Convert to podcast
+  download: Download
+  episodes: Episodes
+  feature_request: Feature Request
+  feedback: Feedback
+  feedbacks_list: Feedback List
+  happy: Happy
+  helpers:
+    label:
+      feedback:
+        body: Body
+        email: Email
+        title: Title
+  leave_feedback: Leave Feedback
+  listen_youtube_channel: Listen to Youtube Channel!
+  no_results: No Results
+  paste_url_here: Paste Youtube channel/playlist URL here
+  pending: Pending
+  podcast: Podcast
+  podcasts: Podcasts
+  preview: Preview
+  published_at: Published At
+  recent_episodes: Recent Episodes
+  search: Search
+  send_feedback: Send Feedback
+  slogan: Simple and free service that lets you listen to any YouTube channels in podcast format.
+  slogan2: 'Youtube Fetcher: convert youtube channel to a mp3 podcast'
+  stats: Stats
+  submit: Submit
+  subscribe: Subscribe
+  subscribe_video: Subscribe Video
+  thank_you: Thank You
+  title: Title
+  unhappy: Unhappy
+  video: Video
+  video_has_not_been_requested: Video has not been requested. Open video feed to enqueue video download.

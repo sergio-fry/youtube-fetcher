@@ -4,11 +4,11 @@
   <%= f.text_area :body %>
 
 
-  <%= f.radio_button :category, :feature_request, label: "Feature Request", inline: true, checked: true %>
-  <%= f.radio_button :category, :happy, label: "Happy", inline: true %>
-  <%= f.radio_button :category, :unhappy, label: "Unhappy", inline: true %>
+  <%= f.radio_button :category, :happy, label: t(:happy), inline: true, checked: true %>
+  <%= f.radio_button :category, :feature_request, label: t(:feature_request), inline: true %>
+  <%= f.radio_button :category, :unhappy, label: t(:unhappy), inline: true %>
 
   <br />
   <br />
-  <%= f.submit 'Send Feedback', class: 'btn btn-primary' %>
+  <%= f.submit t(:send_feedback), class: 'btn btn-primary' %>
 <% end %>

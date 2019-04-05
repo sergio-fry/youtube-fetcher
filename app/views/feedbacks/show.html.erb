@@ -1,4 +1,7 @@
 <p id="notice"><%= notice %></p>
 
-<%= link_to 'Edit', edit_feedback_path(@feedback) %> |
-<%= link_to 'Back', feedbacks_path %>
+<h1><%= @feedback.title %></h1>
+
+<%= @feedback.created_at %>
+<%= @feedback.category %>
+<%= simple_format @feedback.body %>

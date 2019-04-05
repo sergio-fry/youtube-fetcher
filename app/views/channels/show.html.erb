@@ -1,6 +1,6 @@
 <% content_for :meta_title, "#{@podcast.title} Podcast feed" %>
 
-<h1><%= @podcast.title %> Podcast
+<h1><%= @podcast.title %> <%= t :podcast %>
   <i class="fa fa-podcast" aria-hidden="true"></i>
 </h1>
 
@@ -15,8 +15,8 @@
 
 <table class='episodes table'>
   <tr>
-    <th>Title</th>
-    <th>Published At</th>
+    <th><%= t :title %></th>
+    <th><%= t :published_at %></th>
     <th><i class="fa fa-headphones"></i></th>
     <% if Flipper.enabled? :video %>
       <th><i class="fa fa-video-camera"></i></th>
@@ -42,7 +42,7 @@
             <% if @podcast.video_required? %>
               <i class="fa fa-refresh fa-spin" aria-hidden="true"></i>
             <% else %>
-              <i class="fa fa-times-circle" aria-hidden="true" title="Video has not been requested. Open video feed to enqueue video download."></i>
+              <i class="fa fa-times-circle" aria-hidden="true" title="<%= t :video_has_not_been_requested %>"></i>
             <% end %>
           <% end %>
         </td>

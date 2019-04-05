@@ -38,6 +38,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'user-agent-randomizer', require: 'user_agent_randomizer'
 gem 'webpacker', '~> 3.0'
 gem 'yt'
+gem 'localeapp'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -60,6 +61,7 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'spring-commands-rspec'
+  gem 'i18n-tasks', '~> 0.9.29'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
