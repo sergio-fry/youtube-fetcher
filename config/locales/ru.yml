@@ -1,5 +1,5 @@
 ru:
-  about: 
+  about: О сайте
   activerecord:
     attributes:
       feedback:
@@ -8,47 +8,47 @@ ru:
         title: Заголовок
     help:
       feedback:
-        body: 
-        body_html: 
-        email: 
-        email_html: 
-        title: Заголовок
-  audio: 
-  channel: 
-  channels: 
-  convert_to_podcast: 
-  download: 
-  episodes: 
+        body: Полный текст отзыва
+        body_html: Полный текст отзыва
+        email: скрыт от пользователей
+        email_html: скрыт от пользователей
+        title: Краткость - сестра таланта
+  audio: Звук
+  channel: Канал
+  channels: Каналы
+  convert_to_podcast: Конвертировать в подкаст
+  download: Скачать
+  episodes: Выпуски
   feature_request: Нужна возможность
-  feedback: 
+  feedback: Отзыв
   feedbacks_list: Список отзывов
-  happy: 
+  happy: Доволен
   helpers:
     label:
       feedback:
-        body: 
-        email: 
-        title: 
-  leave_feedback: 
-  listen_youtube_channel: 
-  no_results: 
-  paste_url_here: 
-  pending: 
-  podcast: 
-  podcasts: 
-  preview: 
-  published_at: 
-  recent_episodes: 
-  search: 
-  send_feedback: 
-  slogan: 
-  slogan2: 
-  stats: 
-  submit: 
-  subscribe: 
-  subscribe_video: 
-  thank_you: 
-  title: 
-  unhappy: 
-  video: 
-  video_has_not_been_requested: 
+        body: Отзыв
+        email: Emil
+        title: Заголовок
+  leave_feedback: Оставь отзыв
+  listen_youtube_channel: Слушай Youtube канал
+  no_results: Ничего не найдено
+  paste_url_here: Вставьте URL-адрес Youtube канала/плейлиста
+  pending: Ожидается
+  podcast: Подкаст
+  podcasts: Подкасты
+  preview: Предпросмотр
+  published_at: Опубликовано
+  recent_episodes: Последние эпизоды
+  search: Поиск
+  send_feedback: Отправить отзыв
+  slogan: Простой и бесплатный сервис, который позволяет тебе слушать любой Youtube канал в формате подкаста
+  slogan2: 'Youtube Fetcher: конвертируй Youtube канал в mp3 подкаст'
+  stats: Статистика
+  submit: Отправить
+  subscribe: Подписаться
+  subscribe_video: Подписаться на видео
+  thank_you: Спасибо
+  title: Заголовок
+  unhappy: Не доволен
+  video: Видео
+  video_has_not_been_requested: Видео не было запрошено. Откройте видео feed, чтобы видео начало загружаться
