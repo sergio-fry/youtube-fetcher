@@ -1,5 +1,4 @@
-if Rails.env.development?
-
+if ENV['LOCALEAPP_API_KEY'].present?
   require 'localeapp/rails'
 
   Localeapp.configure do |config|
