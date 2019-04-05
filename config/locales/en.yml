@@ -8,11 +8,11 @@ en:
         title: Title
     help:
       feedback:
-        body: Body
-        body_html: Body HTML
-        email: Email
-        email_html: Email HTML
-        title: Title
+        body: Full text here
+        body_html: Full text here
+        email: hidden from users
+        email_html: hidden from users
+        title: Feedback shortly
   audio: Audio
   channel: Channel
   channels: Channels
@@ -42,7 +42,7 @@ en:
   search: Search
   send_feedback: Send Feedback
   slogan: Simple and free service that lets you listen to any YouTube channels in podcast format.
-  slogan2: 'Youtube Fetcher: convert youtube channel to a mp3 podcast'
+  slogan2: 'Youtube Fetcher: convert Youtube channel to a mp3 podcast'
   stats: Stats
   submit: Submit
   subscribe: Subscribe
