@@ -46,6 +46,7 @@ GEM
     bootstrap_form (4.2.0)
       actionpack (>= 5.0)
       activemodel (>= 5.0)
+    browser (2.5.3)
     builder (3.2.3)
     byebug (10.0.2)
     capybara (2.18.0)
@@ -363,6 +364,7 @@ PLATFORMS
 
 DEPENDENCIES
   bootstrap_form (>= 4.2.0)
+  browser
   byebug
   capybara (~> 2.13)
   carrierwave (~> 1.0)

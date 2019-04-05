@@ -31,5 +31,8 @@ module YoutubeFetcher
 
     # FIXME: does not work. This config is overriden in a ApplicationJob
     ActiveJob::Base.queue_adapter = :delayed_job
+
+    config.i18n.default_locale = :en
+    config.i18n.available_locales = [:en, :ru]
   end
 end
