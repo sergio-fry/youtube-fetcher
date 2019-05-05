@@ -2,7 +2,7 @@ class YoutubeDl
   class UnknownError < StandardError; end;
   class IncompleteYoutubeId < UnknownError; end;
 
-  MAX_FILE_SIZE = '1G'.freeze
+  MAX_FILE_SIZE = ENV.fetch('MAX_FILE_SIZE', '1G').freeze
 
 
   def fetch_audio(id)
