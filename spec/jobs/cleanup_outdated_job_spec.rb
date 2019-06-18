@@ -4,7 +4,7 @@ RSpec.describe CleanupOutdatedJob, type: :job do
   let(:podcast) { FactoryGirl.create :podcast }
   let!(:episode) { FactoryGirl.create :audio_episode, podcast: podcast }
 
-  let(:episode_exists) { described_class.new.perform; AudioEpisode.exists?(episode.id)}
+  let(:episode_exists) { described_class.new.perform(podcast); AudioEpisode.exists?(episode.id)}
   let(:episode_is_deleted) { !episode_exists }
 
   it { expect(episode_exists).to eq true }
@@ -18,7 +18,7 @@ RSpec.describe CleanupOutdatedJob, type: :job do
 
     it 'should create an ArchivedEpisode' do
       expect do
-        described_class.new.perform
+        described_class.new.perform(podcast)
       end.to change { ArchivedEpisode.count }.by(1)
     end
 
@@ -36,7 +36,7 @@ RSpec.describe CleanupOutdatedJob, type: :job do
 
     it 'should create an ArchivedEpisode' do
       expect do
-        described_class.new.perform
+        described_class.new.perform(podcast)
       end.to change { ArchivedEpisode.count }.by(1)
     end
   end

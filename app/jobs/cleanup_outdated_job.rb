@@ -1,13 +1,17 @@
 class CleanupOutdatedJob < ApplicationJob
-  queue_as :high_priority
+  queue_as :low_priority
 
   PERIOD_TO_KEEP = 1.week
   MIN_EPISODES_TO_STORE = ENV.fetch('MIN_EPISODES_TO_STORE', 10)
   MAX_EPISODES_TO_STORE = ENV.fetch('MAX_EPISODES_TO_STORE', 50)
 
-  def perform
-    Podcast.find_each do |podcast|
+  def perform(podcast=nil)
+    if podcast.present?
       cleanup_episodes_scope podcast.audio_episodes
+    else
+      Podcast.find_each do |podcast|
+        self.class.perform_later podcast
+      end
     end
   end
 
