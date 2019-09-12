@@ -21,6 +21,7 @@
     "glob": "^7.1.2",
     "jquery": "^3.2.1",
     "js-yaml": "^3.10.0",
+    "lodash": "^4.17.15",
     "mime": "^2.0.3",
     "node-sass": "^4.5.3",
     "path-complete-extname": "^0.1.0",
