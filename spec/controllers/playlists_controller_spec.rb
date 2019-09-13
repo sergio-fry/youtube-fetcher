@@ -33,7 +33,7 @@ RSpec.describe PlaylistsController, type: :controller do
     audio = entry['link'].find { |l| l['rel'] == 'enclosure' }
     expect(audio).to be_present
 
-    expect(audio['href']).to include 'mp3'
+    expect(audio['href']).to include 'm4a'
   end
 
   context 'when playlist not found' do

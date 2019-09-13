@@ -3,7 +3,7 @@ FactoryGirl.define do
     podcast
     sequence(:title) { |n| "Video #{n}" }
     published_at { Time.now }
-    media File.open(Rails.root.join('spec', 'fixtures', 'audio.mp3'))
+    media File.open(Rails.root.join('spec', 'fixtures', 'audio.m4a'))
     sequence(:origin_id) { |n| "ABC-#{n}" }
   end
 

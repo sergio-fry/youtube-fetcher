@@ -57,9 +57,9 @@ RSpec.describe ChannelsController, type: :controller do
       entry = data['feed']['entry']
       expect(entry).to be_present
 
-      audio = entry['link'].find { |l| l['rel'] == 'enclosure' && l['type'] == 'audio/mpeg' }
+      audio = entry['link'].find { |l| l['rel'] == 'enclosure' && l['type'] == 'audio/mp4' }
       expect(audio).to be_present
-      expect(audio['href']).to include 'mp3'
+      expect(audio['href']).to include 'm4a'
     end
 
     it 'should fetch video channel' do

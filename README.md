@@ -22,7 +22,7 @@ Try [Youtube Fetcher](http://yt.udalovs.ru) online.
 :tv:       | Youtube channels support
 :speaker:  | Playlists are supported too!
 :rocket:   | Background media download
-:radio:    | Video converted into MP3 audio
+:radio:    | Video converted into audio
 :ship:     | Ships as a Docker image
 :metal:    | It's a Ruby on Rails application
 :+1:       | Well tested

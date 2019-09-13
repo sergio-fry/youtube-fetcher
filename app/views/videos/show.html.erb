@@ -32,7 +32,7 @@
     &nbsp;
 
     <% if @video.has_audio? %>
-      <%= link_to "mp3 #{t(:audio)}", @video.audio_url %>
+      <%= link_to "#{t(:audio)}", @video.audio_url %>
       (<%= number_to_human_size(@video.audio_size) %>)
       &nbsp;
       &nbsp;

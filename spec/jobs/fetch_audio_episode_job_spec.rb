@@ -40,15 +40,15 @@ RSpec.describe FetchAudioEpisodeJob, type: :job do
 
     it 'should have media' do
       expect(subject.media).to be_present
-      expect(subject.media.url).to include '.mp3'
+      expect(subject.media.url).to include '.m4a'
     end
 
     its(:title) { is_expected.to eq 'Порошенко и дети' }
     its(:description) { is_expected.to match(/Дети, а теперь я вам расскажу о/) }
     its(:published_at) { is_expected.to be_a Time }
     its(:origin_id) { is_expected.to eq youtube_video_id }
-    its(:size) { is_expected.to eq 160749 }
-    its(:media_size) { is_expected.to eq 160749 }
+    its(:size) { is_expected.to eq 164539 }
+    its(:media_size) { is_expected.to eq 164539 }
   end
 
   context 'when no free users' do

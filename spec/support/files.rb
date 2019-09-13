@@ -1,8 +1,8 @@
 module MediaFilesHelper
   # this file is safe to remove
   def audio_file_example_path
-    src = Rails.root.join('spec', 'fixtures', 'audio.mp3')
-    dst = Rails.root.join('tmp', 'test', "audio-#{rand}.mp3")
+    src = Rails.root.join('spec', 'fixtures', 'audio.m4a')
+    dst = Rails.root.join('tmp', 'test', "audio-#{rand}.m4a")
 
     `cp #{src} #{dst}`
 
