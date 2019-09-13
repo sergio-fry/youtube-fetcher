@@ -6,9 +6,10 @@ class YoutubeDl
 
 
   def fetch_audio(id)
-    exec "--extract-audio --audio-format mp3 --audio-quality 9 --max-filesize #{MAX_FILE_SIZE} -o '#{Rails.root.join('tmp', 'youtube', 'audios', '%(id)s.%(ext)s')}' https://www.youtube.com/watch?v=#{id}"
+    exec "-f worstaudio[ext=m4a] --max-filesize #{MAX_FILE_SIZE} -o '#{Rails.root.join('tmp', 'youtube', 'audios', '%(id)s.%(ext)s')}' https://www.youtube.com/watch?v=#{id}"
 
-    normalizer.normalize Rails.root.join('tmp', 'youtube', 'audios', "#{id}.mp3")
+    # TODO: normilize m4a audio
+    Rails.root.join('tmp', 'youtube', 'audios', "#{id}.m4a")
   end
 
   def fetch_video(id)

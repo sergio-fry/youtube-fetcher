@@ -89,6 +89,7 @@ class ChannelsController < ApplicationController
     podcast = Podcast.find_or_initialize_by origin_id: origin_id
     podcast.update_attributes title: title, source_type: source_type, accessed_at: Time.now, video_requested_at: Time.now
 
+    # TODO: limit episodes
     UpdatePodcastJob.set(queue: :high_priority).perform_later podcast
 
     podcast
