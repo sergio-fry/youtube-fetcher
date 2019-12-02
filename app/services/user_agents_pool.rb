@@ -1,7 +1,7 @@
 class UserAgentsPool
   class NoFreeUsersLeft < StandardError; end;
 
-  IDLE_PERIOD = 30.seconds
+  IDLE_PERIOD = ENV.fetch('USER_AGENT_IDLE_PERIOD', '30').to_i.seconds
 
   # Get exclusive lock for a free user
   #
