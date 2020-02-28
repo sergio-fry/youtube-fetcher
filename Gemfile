@@ -30,7 +30,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'kaminari'
 gem 'localeapp', group: :production
 gem 'newrelic_rpm', group: :production
-gem 'puma', '~> 3.7'
+gem 'puma', '~> 3.12'
 gem 'rails-html-sanitizer', '~> 1.0'
 gem 'sass-rails', '~> 5.0'
 gem 'simple_metric'
