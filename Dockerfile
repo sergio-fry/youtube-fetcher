@@ -9,23 +9,21 @@ RUN apt-get update && apt-get install -y ffmpeg python-pip
 RUN pip install --upgrade youtube_dl
 
 WORKDIR /app 
-COPY Gemfile* ./
-RUN bundle install --deployment --without test development --jobs=4 
 
 COPY . ./
 
 ENV DATABASE_URL=sqlite3:///db/production.sqlite3
 
 ENV RAILS_ENV=production
-RUN bundle exec rake webpacker:yarn_install
-RUN bundle exec rake assets:precompile
 
 ENV RAILS_LOG_TO_STDOUT=true
 ENV MAX_EPISODES_TO_STORE=50
 
+VOLUME /app/node_modules
+VOLUME /app/tmp/youtube
 VOLUME /db
 VOLUME /uploads
-VOLUME /app/tmp/youtube
+# VOLUME /usr/local/bundle
 
 COPY docker-entrypoint.sh /usr/local/bin/
 ENTRYPOINT ["docker-entrypoint.sh"]

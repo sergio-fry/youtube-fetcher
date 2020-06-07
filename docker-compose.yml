@@ -1,35 +1,43 @@
-web:
-  build: .
-# volumes:
-#   - "./:/app"
-  links:
-    - db
-    - memcached
-  environment:
-    - RAILS_ENV=production
-    - DATABASE_URL=postgresql://postgres:postgres@db/development
-    - MEMCACHED_URL=memcached
-    - SECRET_KEY_BASE=eiud238ur82hd8wehiuf2h
+version: "3"
 
-  ports:
-    - "3000:80"
+services:
+  web:
+    build: .
+    links:
+      - db
+      - memcached
+    environment:
+      - RAILS_ENV=production
+      - DATABASE_URL=postgresql://postgres:postgres@db/development
+      - MEMCACHED_URL=memcached
+      - SECRET_KEY_BASE=eiud238ur82hd8wehiuf2h
 
-worker:
-  build: .
-  volumes:
-    - "./:/app"
-  links:
-    - db
-    - memcached
-  environment:
-    - RAILS_ENV=development
-    - DATABASE_URL=postgresql://postgres:postgres@db/development
-    - MEMCACHED_URL=memcached
+    ports:
+      - "3000:80"
+    volumes:
+      - gems:/usr/local/bundle
+      - node_modules:/app/node_modules
 
-  command: ["worker"]
+  worker:
+    build: .
+    volumes:
+      - "./:/app"
+    links:
+      - db
+      - memcached
+    environment:
+      - RAILS_ENV=development
+      - DATABASE_URL=postgresql://postgres:postgres@db/development
+      - MEMCACHED_URL=memcached
 
-db:
-  image: postgres:9.6
+    command: ["worker"]
 
-memcached:
-  image: memcached:1.4.27
+  db:
+    image: postgres:9.6
+
+  memcached:
+    image: memcached:1.4.27
+
+volumes:
+  gems:
+  node_modules:

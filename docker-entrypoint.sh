@@ -1,6 +1,10 @@
 #!/bin/bash
 set -e
 
+yarn install
+# bundle install --jobs=4 
+# bundle exec rake assets:precompile
+
 if [ "$1" = 'web' ]; then
   rm -rf tmp/pids/*
 

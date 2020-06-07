@@ -9,3 +9,4 @@ public/assets
 public/packs
 public/uploads
 tmp
+vendor/bundle
