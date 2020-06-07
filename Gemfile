@@ -7,7 +7,7 @@ end
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '5.1.6.2'
+gem 'rails', '5.2.4.3'
 
 gem 'pg', '~> 0.21'
 gem 'sqlite3'
@@ -30,7 +30,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'kaminari'
 gem 'localeapp', group: :production
 gem 'newrelic_rpm', group: :production
-gem 'puma', '~> 3.7'
+gem 'puma', '>= 3.12.6'
 gem 'rails-html-sanitizer', '~> 1.0'
 gem 'sass-rails', '~> 5.0'
 gem 'simple_metric'
