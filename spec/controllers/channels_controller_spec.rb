@@ -47,7 +47,7 @@ RSpec.describe ChannelsController, type: :controller do
       end
     end
 
-    it 'should fetch channel' do
+    xit 'should fetch channel' do
       make_request
 
       expect(response).to be_success
