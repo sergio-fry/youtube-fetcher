@@ -8,6 +8,8 @@ RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - && \
 RUN apt-get update && apt-get install -y ffmpeg python-pip
 RUN pip install --upgrade youtube_dl
 
+RUN apt-get install shared-mime-info
+
 WORKDIR /app 
 COPY Gemfile* ./
 RUN bundle install --deployment --without test development --jobs=4 
