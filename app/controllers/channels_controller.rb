@@ -48,6 +48,7 @@ class ChannelsController < ApplicationController
       format.atom do
         @podcast.update_attributes accessed_at: Time.now
         @podcast.update_attributes(video_requested_at: Time.now) if type == 'video'
+        render content_type: :podcast
       end
     end
   end
