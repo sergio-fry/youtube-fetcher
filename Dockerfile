@@ -1,11 +1,11 @@
-FROM ruby:2.4
+FROM ruby:2.7
 
 RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - && \
     curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
     echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list && \
     apt-get update && apt-get install -y yarn nodejs unzip
 
-RUN apt-get update && apt-get install -y ffmpeg python-pip
+RUN apt-get update && apt-get install -y ffmpeg python3-pip
 RUN pip install --upgrade youtube_dl
 
 RUN apt-get install shared-mime-info

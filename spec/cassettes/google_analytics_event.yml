@@ -2,10 +2,10 @@
 http_interactions:
 - request:
     method: post
-    uri: https://ssl.google-analytics.com/collect
+    uri: https://www.google-analytics.com/collect
     body:
       encoding: US-ASCII
-      string: v=1&tid=UA-102692795-1&cid=5bd774c9-85bc-48df-b516-ac609b56738b&t=event&ec=video&ea=download&el=ABC123
+      string: v=1&tid=UA-102692795-1&cid=008f1d8a-bff7-4580-a27d-af8cce4fafd2&t=event&ec=video&ea=download&el=ABC123
     headers:
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
@@ -23,7 +23,7 @@ http_interactions:
       Access-Control-Allow-Origin:
       - "*"
       Date:
-      - Mon, 17 Jul 2017 05:29:35 GMT
+      - Tue, 20 Sep 2022 13:25:25 GMT
       Pragma:
       - no-cache
       Expires:
@@ -36,16 +36,18 @@ http_interactions:
       - nosniff
       Content-Type:
       - image/gif
+      Cross-Origin-Resource-Policy:
+      - cross-origin
       Server:
       - Golfe2
       Content-Length:
       - '35'
       Alt-Svc:
-      - quic=":443"; ma=2592000; v="39,38,37,36,35"
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000,h3-Q050=":443"; ma=2592000,h3-Q046=":443";
+        ma=2592000,h3-Q043=":443"; ma=2592000,quic=":443"; ma=2592000; v="46,43"
     body:
       encoding: ASCII-8BIT
       string: !binary |-
         R0lGODlhAQABAID/AP///wAAACwAAAAAAQABAAACAkQBADs=
-    http_version: 
-  recorded_at: Mon, 17 Jul 2017 05:29:34 GMT
-recorded_with: VCR 3.0.3
+  recorded_at: Tue, 20 Sep 2022 13:25:25 GMT
+recorded_with: VCR 6.1.0
