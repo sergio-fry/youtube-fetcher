@@ -46,8 +46,8 @@ class ChannelsController < ApplicationController
     respond_to do |format|
       format.html
       format.atom do
-        @podcast.update_attributes accessed_at: Time.now
-        @podcast.update_attributes(video_requested_at: Time.now) if type == 'video'
+        @podcast.update accessed_at: Time.now
+        @podcast.update(video_requested_at: Time.now) if type == 'video'
         render content_type: :podcast
       end
     end
@@ -88,7 +88,7 @@ class ChannelsController < ApplicationController
 
   def create_podcast(origin_id, source_type, title)
     podcast = Podcast.find_or_initialize_by origin_id: origin_id
-    podcast.update_attributes title: title, source_type: source_type, accessed_at: Time.now, video_requested_at: Time.now
+    podcast.update title: title, source_type: source_type, accessed_at: Time.now, video_requested_at: Time.now
 
     # TODO: limit episodes
     UpdatePodcastJob.set(queue: :high_priority).perform_later podcast

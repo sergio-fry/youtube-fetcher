@@ -7,9 +7,9 @@ end
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.2.8'
+gem 'rails', '~> 6.1'
 
-gem 'pg', '~> 0.21'
+gem 'pg'
 gem 'sqlite3'
 
 gem 'bootstrap_form', '>= 4.2.0'
