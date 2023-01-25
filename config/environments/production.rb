@@ -49,6 +49,14 @@ Rails.application.configure do
 
   # Use a different cache store in production.
   # config.cache_store = :mem_cache_store
+  config.cache_store = :dalli_store,
+    ENV.fetch('MEMCACHED_URL', :memcached),
+    { username: nil,
+      password: nil,
+      failover: true,
+      socket_timeout: 1.5,
+      socket_failure_delay: 0.2,
+      race_condition_ttl: 5 }
 
   # Use a real queuing backend for Active Job (and separate queues per environment).
   # config.active_job.queue_adapter     = :resque

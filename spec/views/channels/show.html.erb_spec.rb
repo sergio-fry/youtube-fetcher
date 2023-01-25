@@ -9,14 +9,6 @@ RSpec.describe "channels/show", type: :view do
     assign(:podcast, podcast)
     assign(:videos, [episode].map { |v| Video.new v.origin_id })
 
-    controller.class_eval do
-      helper_method :new_videos
-
-      def new_videos
-        []
-      end
-    end
-
     render
   end
 

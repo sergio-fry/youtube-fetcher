@@ -2,8 +2,6 @@ class ChannelsController < ApplicationController
   PODCAST_SOURCE_TYPE = nil.freeze
   PODCAST_YT_KLASS = Yt::Channel.freeze
 
-  helper_method :new_videos
-
   class Channel < Podcast
     attr_accessor :url
   end
@@ -42,6 +40,7 @@ class ChannelsController < ApplicationController
     @videos = @videos.recent.limit(10)
     @videos = @videos.map { |v| VideoEpisodeWrapper.new v } if type == 'video'
     @videos = @videos.map { |v| Video.new v.origin_id, v }
+    @videos += new_videos
 
     respond_to do |format|
       format.html
