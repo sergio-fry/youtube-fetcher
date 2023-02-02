@@ -39,5 +39,6 @@ module YoutubeFetcher
 
     config.i18n.default_locale = :en
     config.i18n.available_locales = [:en, :ru]
+    config.active_record.legacy_connection_handling = false
   end
 end
