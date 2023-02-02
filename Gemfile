@@ -13,6 +13,7 @@ gem 'pg'
 gem 'sqlite3'
 
 gem 'bootstrap_form', '>= 4.2.0'
+gem 'bootstrap-sass', '~> 3.4.1'
 gem 'browser'
 gem 'carrierwave', '~> 1.0'
 gem 'carrierwave-ftp', require: 'carrierwave/storage/ftp'
@@ -49,9 +50,7 @@ group :development, :test do
   gem 'selenium-webdriver'
   gem 'rspec-rails'
   gem 'rspec-its'
-  gem 'rspec-cells'
   gem 'factory_girl_rails'
-  gem 'pry'
 end
 
 group :development do

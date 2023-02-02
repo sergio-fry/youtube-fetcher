@@ -15,6 +15,9 @@
  *= require_self
  */
 
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
 h1 {
   margin-top: 20px;
   margin-bottom: 20px;
