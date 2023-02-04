@@ -3,7 +3,7 @@ class ChannelsController < ApplicationController
 
   def create
     if playlist_id.present?
-      create_podcast playlist_id, 'playlist', YoutubePlaylist.new(id: playlist_id).title
+      create_podcast playlist_id, 'playlist', YoutubePlaylist.new(playlist_id).title
       redirect_to playlist_path(playlist_id)
     elsif channel_id.present?
       create_podcast channel_id, nil, YoutubeChannel.new(channel_id).title
