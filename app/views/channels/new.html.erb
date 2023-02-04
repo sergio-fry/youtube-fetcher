@@ -11,10 +11,10 @@
 
   <p></p>
 
-  <%= form_for @channel, url: channels_path, html: { class: 'form' } do |f| %>
-    <%= f.text_field :url, type: :url, class: 'form-control input-lg', placeholder: t(:paste_url_here) %>
+  <%= form_tag channels_path, html: { class: 'form' } do |f| %>
+    <%= text_field_tag :url, nil, type: :url, class: 'form-control input-lg', placeholder: t(:paste_url_here) %>
     <br />
 
-    <%= f.submit t(:convert_to_podcast), class: 'btn btn-primary btn-lg' %>
+    <%= submit_tag t(:convert_to_podcast), class: 'btn btn-primary btn-lg' %>
   <% end %>
 </div>

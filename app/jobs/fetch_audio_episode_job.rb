@@ -34,10 +34,6 @@ class FetchAudioEpisodeJob < ApplicationJob
 
     if UserAgentsPool.has_free_users?
       Throttler.throttle "#{self.class} #{youtube_video_id}", THROTTLE_PERIOD do
-
-        # We should ignore not finished videos because downloading takes too long
-        raise LiveStreamIsNotFinished.new('Live stream is not finished yet') if is_video_on_air?
-
         fetch_and_save_episode(podcast)
 
         cleanup
@@ -80,10 +76,6 @@ class FetchAudioEpisodeJob < ApplicationJob
     PendingEpisode.where(origin_id: @youtube_video_id, episode_type: 'audio').destroy_all
   end
 
-  def is_video_on_air?
-    video.live_broadcast_content != 'none' && video.actual_end_time.nil?
-  end
-
   def track_event(episode, time)
     Tracker.event category: self.class::EVENT_CATEGORY, action: :fetch, label: "'#{episode.title}' #{episode.origin_id} in #{time.round(2)}s"
   end
@@ -94,6 +86,6 @@ class FetchAudioEpisodeJob < ApplicationJob
   end
 
   def video
-    @video ||= Yt::Video.new id: @youtube_video_id
+    @video ||= Video.new id: @youtube_video_id
   end
 end

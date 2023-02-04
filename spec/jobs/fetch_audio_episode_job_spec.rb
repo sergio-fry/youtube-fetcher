@@ -65,17 +65,4 @@ RSpec.describe FetchAudioEpisodeJob, type: :job do
       end
     end
   end
-
-  context 'when live stream is not finished' do
-    # To update this VCR cassete you must pick another live video from Youtube
-    let(:youtube_video_id) { 'UCtaBak-I3w' }
-
-    it 'should fail' do
-      VCR.use_cassette :fetch_live_video do
-        expect do
-          job.perform(podcast, youtube_video_id)
-        end.to raise_error(FetchAudioEpisodeJob::LiveStreamIsNotFinished)
-      end
-    end
-  end
 end

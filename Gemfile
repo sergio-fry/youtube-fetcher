@@ -40,7 +40,6 @@ gem 'staccato'
 gem 'uglifier', '>= 1.3.0'
 gem 'user-agent-randomizer', require: 'user_agent_randomizer'
 gem 'webpacker', '~> 3.0'
-gem 'yt'
 
 group :development, :test do
   gem 'debug'

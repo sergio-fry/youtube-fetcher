@@ -1,20 +1,15 @@
 class ChannelsController < ApplicationController
   PODCAST_SOURCE_TYPE = nil.freeze
-  PODCAST_YT_KLASS = Yt::Channel.freeze
-
-  class Channel < Podcast
-    attr_accessor :url
-  end
 
   def create
     if playlist_id.present?
-      create_podcast playlist_id, 'playlist', Yt::Playlist.new(id: playlist_id).title
+      create_podcast playlist_id, 'playlist', YoutubePlaylist.new(id: playlist_id).title
       redirect_to playlist_path(playlist_id)
     elsif channel_id.present?
-      create_podcast channel_id, nil, Yt::Channel.new(id: channel_id).title
+      create_podcast channel_id, nil, YoutubeChannel.new(channel_id).title
       redirect_to channel_path(channel_id)
     elsif channel_id_by_user_id.present?
-      create_podcast channel_id_by_user_id, nil, Yt::Channel.new(id: channel_id_by_user_id).title
+      create_podcast channel_id_by_user_id, nil, YoutubeChannel.new(channel_id_by_user_id).title
       redirect_to channel_path(channel_id_by_user_id)
     else
       redirect_to root_path
@@ -53,7 +48,7 @@ class ChannelsController < ApplicationController
   end
 
   def new
-    @channel = Channel.new
+    @channel = channel
   end
 
   def index
@@ -64,7 +59,7 @@ class ChannelsController < ApplicationController
 
   def new_videos
     return [] if @podcast.created_at < 1.hour.ago
-    attrs = Rails.cache.fetch "ChannelsController:#{@podcast.youtube_video_list.origin_id}:videos", expires_in: 15.minutes do
+    attrs = Rails.cache.fetch "ChannelsController:#{@podcast.youtube_video_list.id}:videos", expires_in: 15.minutes do
       @podcast.youtube_video_list.videos.map do |v|
         begin
         { origin_id: v.id, title: v.title, published_at: v.published_at }
@@ -96,7 +91,7 @@ class ChannelsController < ApplicationController
   end
 
   def channel
-    @channel ||= self::class::PODCAST_YT_KLASS.new id: params[:id]
+    @channel ||= YoutubeChannel.new params[:id]
   end
 
   def playlist_id
@@ -131,6 +126,6 @@ class ChannelsController < ApplicationController
   end
 
   def channel_url
-    params[:channels_controller_channel][:url]
+    params[:url]
   end
 end

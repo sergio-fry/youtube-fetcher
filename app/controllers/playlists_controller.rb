@@ -1,4 +1,7 @@
 class PlaylistsController < ChannelsController
   PODCAST_SOURCE_TYPE = 'playlist'.freeze
-  PODCAST_YT_KLASS = Yt::Playlist.freeze
+
+  def channel
+    @channel ||= Playlist.new id: params[:id]
+  end
 end

@@ -420,8 +420,6 @@ GEM
     websocket-extensions (0.1.5)
     xpath (3.2.0)
       nokogiri (~> 1.8)
-    yt (0.33.4)
-      activesupport
     zeitwerk (2.6.6)
 
 PLATFORMS
@@ -477,7 +475,6 @@ DEPENDENCIES
   web-console (>= 3.3.0)
   webmock
   webpacker (~> 3.0)
-  yt
 
 BUNDLED WITH
    2.3.10
