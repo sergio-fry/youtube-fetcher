@@ -7,6 +7,5 @@ RSpec.feature "DisplayVideos", type: :feature do
     visit video_path(episode.origin_id)
 
     expect(page).to have_content 'Video title'
-
   end
 end
