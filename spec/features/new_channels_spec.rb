@@ -33,7 +33,7 @@ RSpec.feature "Add new channel", type: :feature do
 
       click_on 'Convert to podcast'
 
-      expect(find_link('Subscribe')[:href]).to include '/channels/UCyt4Uriznp9Y6H0JkOZfcHA.atom'
+      expect(find_link('Subscribe')[:href]).to include '/channels/TheKiberpop.atom'
     end
   end
 end

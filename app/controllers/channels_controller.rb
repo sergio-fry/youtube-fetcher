@@ -8,9 +8,9 @@ class ChannelsController < ApplicationController
     elsif channel_id.present?
       create_podcast channel_id, nil, Youtube::Channel.new(channel_id).title
       redirect_to channel_path(channel_id)
-    elsif channel_id_by_user_id.present?
-      create_podcast channel_id_by_user_id, nil, Youtube::Channel.new(channel_id_by_user_id).title
-      redirect_to channel_path(channel_id_by_user_id)
+    elsif user_id.present?
+      create_podcast user_id, 'user', Youtube::UserChannel.new(user_id).title
+      redirect_to channel_path(user_id)
     else
       redirect_to root_path
     end
@@ -112,17 +112,6 @@ class ChannelsController < ApplicationController
     return if m.blank?
 
     m[1]
-  end
-
-  def channel_id_by_user_id
-    @channel_id_by_user_id ||= begin
-                                 url = "https://www.googleapis.com/youtube/v3/channels?key=#{ENV.fetch('YOUTUBE_API_KEY')}&forUsername=#{user_id}&part=id"
-                                 data = JSON.parse open(url).read
-
-                                 data['items'][0]['id']
-                               end
-  rescue
-    nil
   end
 
   def channel_url

@@ -8,6 +8,8 @@ class Podcast < ApplicationRecord
     case source_type
     when 'playlist'
       Youtube::Playlist.new(origin_id)
+    when 'user'
+      Youtube::UserChannel.new(origin_id)
     else
       Youtube::Channel.new(origin_id)
     end
