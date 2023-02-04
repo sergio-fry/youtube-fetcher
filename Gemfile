@@ -7,12 +7,13 @@ end
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '5.2.6'
+gem 'rails', '~> 7.0'
 
-gem 'pg', '~> 0.21'
+gem 'pg'
 gem 'sqlite3'
 
 gem 'bootstrap_form', '>= 4.2.0'
+gem 'bootstrap-sass', '~> 3.4.1'
 gem 'browser'
 gem 'carrierwave', '~> 1.0'
 gem 'carrierwave-ftp', require: 'carrierwave/storage/ftp'
@@ -39,19 +40,15 @@ gem 'staccato'
 gem 'uglifier', '>= 1.3.0'
 gem 'user-agent-randomizer', require: 'user_agent_randomizer'
 gem 'webpacker', '~> 3.0'
-gem 'yt'
 
 group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'debug'
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
   gem 'rspec-rails'
   gem 'rspec-its'
-  gem 'rspec-cells'
   gem 'factory_girl_rails'
-  gem 'pry'
 end
 
 group :development do

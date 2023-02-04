@@ -17,11 +17,11 @@ RSpec.feature "Add new channel", type: :feature do
     VCR.use_cassette :fetch_playlist do
       visit new_channel_url
 
-      fill_in 'Paste Youtube channel/playlist URL here', with: 'https://www.youtube.com/playlist?list=PLOGi5-fAu8bH_T9HhH9V2B5izEE4G5waV'
+      fill_in 'Paste Youtube channel/playlist URL here', with: 'https://www.youtube.com/playlist?list=PL_0JNvLqzOHSe8MTX-Z9ukuz9LeW6PsB0'
 
       click_on 'Convert to podcast'
 
-      expect(find_link('Subscribe')[:href]).to include '/playlists/PLOGi5-fAu8bH_T9HhH9V2B5izEE4G5waV.atom'
+      expect(find_link('Subscribe')[:href]).to include '/playlists/PL_0JNvLqzOHSe8MTX-Z9ukuz9LeW6PsB0.atom'
     end
   end
 
@@ -33,7 +33,7 @@ RSpec.feature "Add new channel", type: :feature do
 
       click_on 'Convert to podcast'
 
-      expect(find_link('Subscribe')[:href]).to include '/channels/UCyt4Uriznp9Y6H0JkOZfcHA.atom'
+      expect(find_link('Subscribe')[:href]).to include '/channels/TheKiberpop.atom'
     end
   end
 end

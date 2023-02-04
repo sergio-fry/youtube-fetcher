@@ -22,7 +22,7 @@
       <th><i class="fa fa-video-camera"></i></th>
     <% end %>
   </tr>
-  <% (new_videos + @videos).compact.sort_by(&:published_at).reverse.each do |episode| %>
+  <% @videos.compact.sort_by(&:published_at).reverse.each do |episode| %>
     <tr class='episode' id='episode-<%= episode.id %>'>
       <td><%= link_to episode.title, video_path(episode.origin_id) %></td>
       <td><%= episode.published_at %></td>

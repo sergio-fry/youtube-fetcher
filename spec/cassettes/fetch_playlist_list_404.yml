@@ -2,63 +2,39 @@
 http_interactions:
 - request:
     method: get
-    uri: https://www.googleapis.com/youtube/v3/playlistItems?key=AIzaSyD5F8jWLoWYO0qQGKChQ5uiTw1EvRO3N9w&maxResults=50&part=snippet,status&playlistId=PLKxLRVPSSlq_vwA7WLgNjw30ZZiDRdVK2
+    uri: https://www.youtube.com/feeds/videos.xml?playlist_id=PLKxLRVPSSlq_vwA7WLgNjw30ZZiDRdfoo
     body:
       encoding: US-ASCII
       string: ''
     headers:
-      Content-Length:
-      - '0'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
       User-Agent:
-      - Yt::Request (gzip)
+      - Ruby
   response:
     status:
       code: 404
       message: Not Found
     headers:
-      Vary:
-      - Origin,Accept-Encoding
-      - X-Origin
-      Content-Type:
-      - application/json; charset=UTF-8
       Date:
-      - Wed, 30 Jan 2019 08:13:54 GMT
-      Expires:
-      - Wed, 30 Jan 2019 08:13:54 GMT
-      Cache-Control:
-      - private, max-age=0
-      X-Content-Type-Options:
-      - nosniff
+      - Sat, 04 Feb 2023 06:37:11 GMT
+      Content-Type:
+      - text/html; charset=UTF-8
+      Server:
+      - YouTube RSS Feeds server
+      Content-Length:
+      - '1624'
+      X-Xss-Protection:
+      - '0'
       X-Frame-Options:
       - SAMEORIGIN
-      X-Xss-Protection:
-      - 1; mode=block
-      Server:
-      - GSE
       Alt-Svc:
-      - quic=":443"; ma=2592000; v="44,43,39"
-      Accept-Ranges:
-      - none
-      Transfer-Encoding:
-      - chunked
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
     body:
-      encoding: UTF-8
-      string: |
-        {
-         "error": {
-          "errors": [
-           {
-            "domain": "youtube.playlistItem",
-            "reason": "playlistNotFound",
-            "message": "The playlist identified with the requests \u003ccode\u003eplaylistId\u003c/code\u003e parameter cannot be found.",
-            "locationType": "parameter",
-            "location": "playlistId"
-           }
-          ],
-          "code": 404,
-          "message": "The playlist identified with the requests \u003ccode\u003eplaylistId\u003c/code\u003e parameter cannot be found."
-         }
-        }
-    http_version: 
-  recorded_at: Wed, 30 Jan 2019 08:13:52 GMT
-recorded_with: VCR 4.0.0
+      encoding: ASCII-8BIT
+      string: !binary |-
+        PCFET0NUWVBFIGh0bWw+CjxodG1sIGxhbmc9ZW4+CiAgPG1ldGEgY2hhcnNldD11dGYtOD4KICA8bWV0YSBuYW1lPXZpZXdwb3J0IGNvbnRlbnQ9ImluaXRpYWwtc2NhbGU9MSwgbWluaW11bS1zY2FsZT0xLCB3aWR0aD1kZXZpY2Utd2lkdGgiPgogIDx0aXRsZT5FcnJvciA0MDQgKE5vdCBGb3VuZCkhITE8L3RpdGxlPgogIDxzdHlsZT4KICAgICp7bWFyZ2luOjA7cGFkZGluZzowfWh0bWwsY29kZXtmb250OjE1cHgvMjJweCBhcmlhbCxzYW5zLXNlcmlmfWh0bWx7YmFja2dyb3VuZDojZmZmO2NvbG9yOiMyMjI7cGFkZGluZzoxNXB4fWJvZHl7bWFyZ2luOjclIGF1dG8gMDttYXgtd2lkdGg6MzkwcHg7bWluLWhlaWdodDoxODBweDtwYWRkaW5nOjMwcHggMCAxNXB4fSogPiBib2R5e2JhY2tncm91bmQ6dXJsKC8vd3d3Lmdvb2dsZS5jb20vaW1hZ2VzL2Vycm9ycy9yb2JvdC5wbmcpIDEwMCUgNXB4IG5vLXJlcGVhdDtwYWRkaW5nLXJpZ2h0OjIwNXB4fXB7bWFyZ2luOjExcHggMCAyMnB4O292ZXJmbG93OmhpZGRlbn1pbnN7Y29sb3I6Izc3Nzt0ZXh0LWRlY29yYXRpb246bm9uZX1hIGltZ3tib3JkZXI6MH1AbWVkaWEgc2NyZWVuIGFuZCAobWF4LXdpZHRoOjc3MnB4KXtib2R5e2JhY2tncm91bmQ6bm9uZTttYXJnaW4tdG9wOjA7bWF4LXdpZHRoOm5vbmU7cGFkZGluZy1yaWdodDowfX0jbG9nb3tiYWNrZ3JvdW5kOnVybCgvL3d3dy5nb29nbGUuY29tL2ltYWdlcy9icmFuZGluZy9nb29nbGVsb2dvLzF4L2dvb2dsZWxvZ29fY29sb3JfMTUweDU0ZHAucG5nKSBuby1yZXBlYXQ7bWFyZ2luLWxlZnQ6LTVweH1AbWVkaWEgb25seSBzY3JlZW4gYW5kIChtaW4tcmVzb2x1dGlvbjoxOTJkcGkpeyNsb2dve2JhY2tncm91bmQ6dXJsKC8vd3d3Lmdvb2dsZS5jb20vaW1hZ2VzL2JyYW5kaW5nL2dvb2dsZWxvZ28vMngvZ29vZ2xlbG9nb19jb2xvcl8xNTB4NTRkcC5wbmcpIG5vLXJlcGVhdCAwJSAwJS8xMDAlIDEwMCU7LW1vei1ib3JkZXItaW1hZ2U6dXJsKC8vd3d3Lmdvb2dsZS5jb20vaW1hZ2VzL2JyYW5kaW5nL2dvb2dsZWxvZ28vMngvZ29vZ2xlbG9nb19jb2xvcl8xNTB4NTRkcC5wbmcpIDB9fUBtZWRpYSBvbmx5IHNjcmVlbiBhbmQgKC13ZWJraXQtbWluLWRldmljZS1waXhlbC1yYXRpbzoyKXsjbG9nb3tiYWNrZ3JvdW5kOnVybCgvL3d3dy5nb29nbGUuY29tL2ltYWdlcy9icmFuZGluZy9nb29nbGVsb2dvLzJ4L2dvb2dsZWxvZ29fY29sb3JfMTUweDU0ZHAucG5nKSBuby1yZXBlYXQ7LXdlYmtpdC1iYWNrZ3JvdW5kLXNpemU6MTAwJSAxMDAlfX0jbG9nb3tkaXNwbGF5OmlubGluZS1ibG9jaztoZWlnaHQ6NTRweDt3aWR0aDoxNTBweH0KICA8L3N0eWxlPgogIDxhIGhyZWY9Ly93d3cuZ29vZ2xlLmNvbS8+PHNwYW4gaWQ9bG9nbyBhcmlhLWxhYmVsPUdvb2dsZT48L3NwYW4+PC9hPgogIDxwPjxiPjQwNC48L2I+IDxpbnM+VGhhdOKAmXMgYW4gZXJyb3IuPC9pbnM+CiAgPHA+VGhlIHJlcXVlc3RlZCBVUkwgPGNvZGU+L2ZlZWRzL3ZpZGVvcy54bWw/cGxheWxpc3RfaWQ9UExLeExSVlBTU2xxX3Z3QTdXTGdOanczMFpaaURSZGZvbzwvY29kZT4gd2FzIG5vdCBmb3VuZCBvbiB0aGlzIHNlcnZlci4gIDxpbnM+VGhhdOKAmXMgYWxsIHdlIGtub3cuPC9pbnM+Cg==
+  recorded_at: Sat, 04 Feb 2023 06:37:11 GMT
+recorded_with: VCR 6.1.0

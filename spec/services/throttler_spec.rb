@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Throttler do
-  let(:throttler) { described_class.new period, 'test action' }
+  let(:throttler) { described_class.new period, 'test action', cache: cache }
   let(:period) { 1.minute }
   let(:object) do
     obj = double(:object)
@@ -9,8 +9,9 @@ RSpec.describe Throttler do
 
     obj
   end
+  let(:cache) { ActiveSupport::Cache::MemoryStore.new }
 
-  before { Rails.cache.clear }
+  before { cache.clear }
 
   it 'should make an action' do
     expect(object).to receive(:touch)

@@ -7,9 +7,11 @@ class Podcast < ApplicationRecord
   def youtube_video_list
     case source_type
     when 'playlist'
-      YoutubePlaylist.new(origin_id)
+      Youtube::Playlist.new(origin_id)
+    when 'user'
+      Youtube::UserChannel.new(origin_id)
     else
-      YoutubeChannel.new(origin_id)
+      Youtube::Channel.new(origin_id)
     end
   end
 
