@@ -9,7 +9,7 @@ class Podcast < ApplicationRecord
     when 'playlist'
       YoutubePlaylist.new(origin_id)
     else
-      YoutubeChannel.new(origin_id)
+      Youtube::Channel.new(origin_id)
     end
   end
 

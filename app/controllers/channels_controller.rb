@@ -6,10 +6,10 @@ class ChannelsController < ApplicationController
       create_podcast playlist_id, 'playlist', YoutubePlaylist.new(playlist_id).title
       redirect_to playlist_path(playlist_id)
     elsif channel_id.present?
-      create_podcast channel_id, nil, YoutubeChannel.new(channel_id).title
+      create_podcast channel_id, nil, Youtube::Channel.new(channel_id).title
       redirect_to channel_path(channel_id)
     elsif channel_id_by_user_id.present?
-      create_podcast channel_id_by_user_id, nil, YoutubeChannel.new(channel_id_by_user_id).title
+      create_podcast channel_id_by_user_id, nil, Youtube::Channel.new(channel_id_by_user_id).title
       redirect_to channel_path(channel_id_by_user_id)
     else
       redirect_to root_path
@@ -91,7 +91,7 @@ class ChannelsController < ApplicationController
   end
 
   def channel
-    @channel ||= YoutubeChannel.new params[:id]
+    @channel ||= Youtube::Channel.new params[:id]
   end
 
   def playlist_id
