@@ -1,3 +1,5 @@
+require 'nokogiri'
+
 module Youtube
   class Feed
     def initialize(url)

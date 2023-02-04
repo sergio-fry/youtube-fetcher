@@ -1,6 +1,3 @@
-require 'nokogiri'
-require 'open-uri'
-require_relative 'youtube_video_list'
 require_relative 'youtube/feed'
 
 class YoutubeChannel
