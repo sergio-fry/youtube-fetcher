@@ -1,3 +1,4 @@
+require 'app/services/youtube_playlist'
 
 # 404 playlist PLKxLRVPSSlq_vwA7WLgNjw30ZZiDRdVK2
 RSpec.describe YoutubePlaylist do
@@ -15,7 +16,7 @@ RSpec.describe YoutubePlaylist do
 
     context 'channel not found' do
       # Not found
-      let(:youtube_channel_id) { 'PLKxLRVPSSlq_vwA7WLgNjw30ZZiDRdVK2' }
+      let(:youtube_channel_id) { 'PLKxLRVPSSlq_vwA7WLgNjw30ZZiDRdfoo' }
 
       it 'should should raise error' do
         VCR.use_cassette :fetch_playlist_list_404 do

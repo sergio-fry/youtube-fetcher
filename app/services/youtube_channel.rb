@@ -1,11 +1,12 @@
+require 'nokogiri'
+require 'open-uri'
+require_relative 'youtube_video_list'
+
 class YoutubeChannel < YoutubeVideoList
   def videos
-    yt_list.videos.where(order: 'date').take(10).reverse
-  end
-
-  private
-
-  def yt_list
-    Yt::Channel.new(id: origin_id)
+    Nokogiri::XML(
+      URI::open("https://www.youtube.com/feeds/videos.xml?channel_id=#{origin_id}"
+          )
+    ).css('entry').to_a.take(10)
   end
 end

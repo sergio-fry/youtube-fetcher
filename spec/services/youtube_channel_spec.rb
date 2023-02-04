@@ -1,3 +1,4 @@
+require 'app/services/youtube_channel'
 
 # 404 playlist PLKxLRVPSSlq_vwA7WLgNjw30ZZiDRdVK2
 RSpec.describe YoutubeChannel do

@@ -1,3 +1,8 @@
+require 'nokogiri'
+require 'net/http'
+
+require_relative 'youtube_video_list'
+
 class YoutubePlaylist < YoutubeVideoList
   class PlaylistItemWrapper
     attr_reader :id, :title, :published_at
@@ -10,30 +15,17 @@ class YoutubePlaylist < YoutubeVideoList
   end
 
   def videos
-    yt_list.playlist_items.take(100).reverse[0..10].map(&:video).map do |v|
-      begin
-        PlaylistItemWrapper.new(v)
-      rescue Exception
-      end
-    end.compact
+    Nokogiri::XML(
+      resp.body
+    ).css('entry').to_a.take(10)
   end
-  
+
   def exists?
-    begin
-      videos
-    rescue Yt::Errors::RequestError => ex
-      code = JSON.parse(ex.to_s)['response_body']['error']['code']
-
-      return false if code == 404
-    end
-
-    true
+    resp.code == '200'
   end
 
-
-  private
-
-  def yt_list
-    Yt::Playlist.new(id: origin_id)
+  def resp
+    uri = URI("https://www.youtube.com/feeds/videos.xml?playlist_id=#{origin_id}")
+    Net::HTTP.get_response(uri)
   end
 end

@@ -28,5 +28,6 @@ node_modules/
 /node_modules
 tags
 
-.env
+/.env.local
+/.env.*.local
 /spec/examples.txt

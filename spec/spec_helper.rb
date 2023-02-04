@@ -1,6 +1,7 @@
 require 'simplecov'
 SimpleCov.start 'rails'
 
+require 'debug'
 require 'vcr'
 
 VCR.configure do |c|
